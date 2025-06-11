@@ -1,5 +1,4 @@
-# Graphics Programming in Java
-
+# Event Driven Programming
 ---
 
 ## 1. Introduction to Graphics Programming
