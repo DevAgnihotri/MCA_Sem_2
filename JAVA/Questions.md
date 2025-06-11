@@ -1,29 +1,14 @@
-1. Define ServerSocket in java
-
-2. Write short note on following components:
-   (i) Label
-   (ii) TextField
-   (iii) TextArea
-   (iv) List
-   (v) Choice
-
-3. What do you understand by Layout manager? Illustrate three type of layout available in Java with the help of suitable syntax.
-4. What do you understand by Layout Manager in Java?
-5. Describe different types of Layout Manager used in Java using example
-
-6. Explain event handling model in Java with proper example.
-7. Determine event? How is event handling done in Java'? Explain with an example.
-8. What do you understand by event handling in Java? Give an example of any event like mouse event, keyboard event and windows events.
-9. What is event and event delegation model, explain with proper example of keyboard or mouse event handling.
-
-10. Draw hierarchical diagram of Java Swing Classes.
-11. Draw hierarchical diagram of Java Swing Classes.
-
-12. What is the difference between JPanel and JFrame in Java Swing?
-
-13. Explain difference between AWT and Swing with proper example.
-14. Explain difference between AWT and Swing with proper example.
-
-15. Write Java Swing program that change background color whenever user click on button and displays the message “Welcome to Java Swing”.
-
-16. How is Applet different from normal Java program?
+1. What is Spring framework? Discuss feature of the Spring.
+2. Discuss Spring Framework architecture with suitable example.
+3. Discuss disadvantages of Spring Framework
+4. Differentiate between spring & spring boot.
+5. What are the various attributes of Tables?
+6. What do you meant by Java bean? Is bean life cycle controlled by Spring
+7. What is Bean in Spring? How bean life cycle can be controlled Spring?
+8. What is AOP?
+9. Define AOP.
+10. Illustrate Aspect Oriented Programming in spring framework.
+11. Compare constructor injection and setter injection in spring with suitable example.
+12. What are the different types of scopes in Spring? Explain in detail.
+13. Explain the various types of scopes in spring?
+14. Classify the design patterns that are used in java programming.
