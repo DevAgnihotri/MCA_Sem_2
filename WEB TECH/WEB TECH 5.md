@@ -19,13 +19,13 @@ Spring Boot is a framework built on top of the Spring Framework that simplifies 
   - Provides production-ready features (metrics, health checks, etc.).
   - Integrates easily with Spring ecosystem and third-party libraries.
 - **Summary Table:**
-| Feature              | Spring Boot Advantage                  |
-|----------------------|----------------------------------------|
-| Auto-configuration   | Reduces manual setup                   |
-| Embedded server      | No need for external deployment (WAR)  |
-| Starter dependencies | Simplifies dependency management       |
-| Actuator             | Built-in monitoring and management     |
-| Rapid prototyping    | Enables quick development and iteration|
+  | Feature | Spring Boot Advantage |
+  |----------------------|----------------------------------------|
+  | Auto-configuration | Reduces manual setup |
+  | Embedded server | No need for external deployment (WAR) |
+  | Starter dependencies | Simplifies dependency management |
+  | Actuator | Built-in monitoring and management |
+  | Rapid prototyping | Enables quick development and iteration|
 
 ---
 
@@ -41,12 +41,12 @@ Spring Boot is a framework built on top of the Spring Framework that simplifies 
   - More flexible configuration (properties, YAML, profiles).
 - **JAX-RS** is mainly for REST APIs and lacks many of these features out-of-the-box.
 - **Summary Table:**
-| Feature            | Spring Boot | JAX-RS |
-|--------------------|-------------|--------|
-| Auto-configuration | Yes         | No     |
-| Embedded server    | Yes         | No     |
-| Monitoring tools   | Yes         | No     |
-| Ecosystem          | Large       | Small  |
+  | Feature | Spring Boot | JAX-RS |
+  |--------------------|-------------|--------|
+  | Auto-configuration | Yes | No |
+  | Embedded server | Yes | No |
+  | Monitoring tools | Yes | No |
+  | Ecosystem | Large | Small |
 
 ---
 
@@ -55,6 +55,7 @@ Spring Boot is a framework built on top of the Spring Framework that simplifies 
 - Spring Boot uses **application.properties** or **application.yml** for configuration.
 - Supports environment-specific profiles (e.g., `application-dev.properties`).
 - Configuration can be done via:
+
   - Properties files
   - YAML files
   - Command-line arguments
@@ -86,6 +87,7 @@ Spring Boot is a framework built on top of the Spring Framework that simplifies 
 ---
 
 ## 5. Can we call a Java class with annotations as a POJO class or not?
+
 **Question 5: Can we call a Java class with annotations as a POJO class or not?**
 
 - **POJO** stands for Plain Old Java Object.
@@ -93,15 +95,15 @@ Spring Boot is a framework built on top of the Spring Framework that simplifies 
 - Adding annotations (such as `@Entity`, `@Component`, etc.) does not affect its POJO status, since annotations do not alter inheritance or interface implementation.
 - **Conclusion:** Yes, a Java class with annotations can still be considered a POJO.
 - **Example:**
-    ```java
-    @Entity
-    public class User {
-            private Long id;
-            private String name;
-            // getters and setters
-    }
-    ```
-    In this example, `User` is still a POJO even though it uses the `@Entity` annotation.
+  ```java
+  @Entity
+  public class User {
+          private Long id;
+          private String name;
+          // getters and setters
+  }
+  ```
+  In this example, `User` is still a POJO even though it uses the `@Entity` annotation.
 
 ---
 
@@ -244,5 +246,209 @@ Spring Boot is a framework built on top of the Spring Framework that simplifies 
   public interface ImageRepository extends JpaRepository<ImageEntity, Long> {}
   ```
 - **Note:** Storing images in the database is possible, but for large files, storing them in the filesystem and saving the path in the database is often preferred.
+
+---
+
+## Logger in Spring Boot
+
+- **Logger** is used to record information, warnings, errors, and debug messages during application execution.
+- Spring Boot uses popular logging frameworks like **SLF4J** with **Logback** by default.
+- Logging helps in monitoring, debugging, and auditing application behavior.
+- **How to use Logger:**
+
+  ```java
+  import org.slf4j.Logger;
+  import org.slf4j.LoggerFactory;
+
+  @RestController
+  public class MyController {
+      private static final Logger logger = LoggerFactory.getLogger(MyController.class);
+      @GetMapping("/hello")
+      public String hello() {
+          logger.info("Hello endpoint called");
+          return "Hello World!";
+      }
+  }
+  ```
+
+- Log levels: TRACE, DEBUG, INFO, WARN, ERROR.
+- Configure logging in `application.properties`:
+  ```properties
+  logging.level.root=INFO
+  logging.level.com.example=DEBUG
+  ```
+
+---
+
+## Building RESTful Web Services in Spring Boot
+
+- **RESTful Web Services** allow applications to communicate over HTTP using standard methods (GET, POST, PUT, DELETE).
+- Spring Boot makes it easy to build REST APIs using annotations and auto-configuration.
+
+### Rest Controller
+
+- Annotate a class with `@RestController` to define REST endpoints.
+- Combines `@Controller` and `@ResponseBody`.
+- Example:
+  ```java
+  @RestController
+  public class UserController {
+      @GetMapping("/users")
+      public List<User> getAllUsers() {
+          // ...
+      }
+  }
+  ```
+
+### Request Mapping
+
+- `@RequestMapping` is used to map HTTP requests to handler methods.
+- Can specify path and HTTP method.
+- Example:
+  ```java
+  @RequestMapping(value = "/users", method = RequestMethod.GET)
+  public List<User> getUsers() { ... }
+  ```
+- Shortcuts: `@GetMapping`, `@PostMapping`, `@PutMapping`, `@DeleteMapping`.
+
+### Request Body
+
+- `@RequestBody` binds the HTTP request body to a Java object.
+- Used for POST/PUT requests to receive data.
+- Example:
+  ```java
+  @PostMapping("/users")
+  public User createUser(@RequestBody User user) { ... }
+  ```
+
+### Path Variable
+
+- `@PathVariable` extracts values from the URI path.
+- Example:
+  ```java
+  @GetMapping("/users/{id}")
+  public User getUser(@PathVariable Long id) { ... }
+  ```
+
+### Request Parameter
+
+- `@RequestParam` extracts query parameters from the URL.
+- Example:
+  ```java
+  @GetMapping("/search")
+  public List<User> searchUsers(@RequestParam String name) { ... }
+  ```
+
+---
+
+## 9. Explain GET, PUT, POST, and DELETE method with respect to REST API.
+
+**Question 9: Explain GET, PUT, POST, and DELETE method with respect to REST API.**
+
+| Method | Purpose                      | Usage Example    |
+| ------ | ---------------------------- | ---------------- |
+| GET    | Retrieve data                | Get user details |
+| POST   | Create new resource          | Add a new user   |
+| PUT    | Update/replace existing data | Update user info |
+| DELETE | Remove resource              | Delete a user    |
+
+- **GET:** Used to fetch data from the server. Should not modify data.
+- **POST:** Used to create a new resource. Sends data in the request body.
+- **PUT:** Used to update or replace an existing resource. Sends updated data in the request body.
+- **DELETE:** Used to remove a resource from the server.
+
+---
+
+## 10. Write short note on:
+
+### i. GET
+
+- Retrieves data from the server.
+- Safe and idempotent (multiple calls have the same effect).
+- Example: `GET /users/1` returns user with ID 1.
+
+### ii. POST
+
+- Creates a new resource on the server.
+- Not idempotent (multiple calls create multiple resources).
+- Example: `POST /users` with user data creates a new user.
+
+### iii. PUT
+
+- Updates or replaces an existing resource.
+- Idempotent (multiple calls with same data have same effect).
+- Example: `PUT /users/1` with updated data replaces user 1.
+
+### iv. DELETE
+
+- Removes a resource from the server.
+- Idempotent (deleting same resource multiple times has same effect).
+- Example: `DELETE /users/1` deletes user 1.
+
+---
+
+## 11. Create a RESTful Spring Boot application for handling the DELETE and PUT request.
+
+**Question 11: Create a RESTful Spring Boot application for handling the DELETE and PUT request.**
+
+- **Entity:**
+  ```java
+  @Entity
+  public class User {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      private String name;
+      private String email;
+      // getters and setters
+  }
+  ```
+- **Repository:**
+  ```java
+  public interface UserRepository extends JpaRepository<User, Long> {}
+  ```
+- **Controller:**
+
+  ```java
+  @RestController
+  @RequestMapping("/users")
+  public class UserController {
+      @Autowired
+      private UserRepository userRepository;
+
+      @PutMapping("/{id}")
+      public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails) {
+          User user = userRepository.findById(id).orElseThrow();
+          user.setName(userDetails.getName());
+          user.setEmail(userDetails.getEmail());
+          userRepository.save(user);
+          return ResponseEntity.ok(user);
+      }
+
+      @DeleteMapping("/{id}")
+      public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+          userRepository.deleteById(id);
+          return ResponseEntity.noContent().build();
+      }
+  }
+  ```
+
+- **Explanation:**
+  - `@PutMapping` handles updating a user by ID.
+  - `@DeleteMapping` handles deleting a user by ID.
+
+---
+
+## Build Web Applications with Spring Boot
+
+- Spring Boot simplifies building web applications with embedded servers, auto-configuration, and starter dependencies.
+- Supports RESTful APIs, MVC, static content, and more.
+- Typical steps:
+  1. Create a Spring Boot project (using Spring Initializr or build tool).
+  2. Define entities, repositories, and controllers.
+  3. Configure application properties.
+  4. Run the application and access endpoints via browser or API client.
+- **Example:**
+  - Access `http://localhost:8080/users` to interact with the REST API.
 
 ---
