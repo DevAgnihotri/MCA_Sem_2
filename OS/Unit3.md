@@ -57,4 +57,12 @@
 
     What is the average turnaround time for these processes with the preemptive shortest remaining processing time first (SRPT) algorithm?
 
+20. (c) Define the following terms:-
+(i) Dispatcher
+(ii) Dispatch Latency
+(iii) Optimization of scheduling criteria
+(iv) Swapping
+(v) Context switching
+
+21. c. What is dispatcher?
 ---
