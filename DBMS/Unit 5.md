@@ -266,5 +266,3 @@ Locking techniques, when properly implemented, provide robust concurrency contro
 | Timestamp  | Order by transaction timestamps    | No deadlocks, serializable | May cause rollbacks      |
 | Validation | Check for conflicts at commit      | High concurrency possible  | Rollbacks if conflicts   |
 | MVCC       | Multiple versions for reads/writes | Readers never blocked      | More storage, complexity |
-
----
