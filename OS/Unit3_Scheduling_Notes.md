@@ -13,6 +13,7 @@
 9. Threads and Their Management
 10. Multiprocessor Scheduling
 11. Scheduling Algorithms
+12. Deadlock in Operating Systems: Detailed Notes and Solved Questions
 
 ---
 
@@ -297,27 +298,27 @@ A PCB contains:
 
 - **How it works:** The process with the shortest burst time runs first.
 - **Types:**
-   - **Non-preemptive SJF:** Once a process starts, it runs to completion.
-   - **Preemptive SJF (Shortest Remaining Time First, SRTF):** If a new process arrives with a shorter burst time than the remaining time of the current process, the CPU switches to the new process.
+  - **Non-preemptive SJF:** Once a process starts, it runs to completion.
+  - **Preemptive SJF (Shortest Remaining Time First, SRTF):** If a new process arrives with a shorter burst time than the remaining time of the current process, the CPU switches to the new process.
 - **Example:**
-   - Processes: P1 (burst 6), P2 (burst 2), P3 (burst 8), P4 (burst 3)
-   - Order (non-preemptive): P2 → P4 → P1 → P3
+  - Processes: P1 (burst 6), P2 (burst 2), P3 (burst 8), P4 (burst 3)
+  - Order (non-preemptive): P2 → P4 → P1 → P3
 - **How to solve:**
-   - Sort processes by burst time.
-   - If arrival times differ, pick the shortest job among those that have arrived.
+  - Sort processes by burst time.
+  - If arrival times differ, pick the shortest job among those that have arrived.
 
 ### 3. Priority Scheduling
 
 - **How it works:** Each process has a priority. The process with the highest priority runs first (lower number = higher priority).
 - **Types:**
-   - **Non-preemptive Priority:** The running process is not interrupted; new higher-priority processes wait.
-   - **Preemptive Priority:** If a new process arrives with a higher priority, it preempts the current process.
+  - **Non-preemptive Priority:** The running process is not interrupted; new higher-priority processes wait.
+  - **Preemptive Priority:** If a new process arrives with a higher priority, it preempts the current process.
 - **Example:**
-   - P1 (priority 2), P2 (priority 1), P3 (priority 3)
-   - Order: P2 → P1 → P3
+  - P1 (priority 2), P2 (priority 1), P3 (priority 3)
+  - Order: P2 → P1 → P3
 - **How to solve:**
-   - Sort by priority.
-   - If priorities are equal, use FCFS among them.
+  - Sort by priority.
+  - If priorities are equal, use FCFS among them.
 
 ### 5. Round Robin (RR)
 
@@ -331,3 +332,210 @@ A PCB contains:
 
 ---
 
+# Deadlock in Operating Systems: Detailed Notes and Solved Questions
+
+---
+
+## Deadlock: System Model
+
+- In a computer system, **deadlock** is a situation where a set of processes are blocked because each process is holding a resource and waiting for another resource held by another process.
+- **System model:**
+  - Resources (like CPU, memory, printers) are assigned to processes.
+  - Processes request and release resources dynamically.
+  - Resources can be of different types: single instance (one printer) or multiple instances (memory blocks).
+
+---
+
+## Deadlock Characterization
+
+### Q9. What is deadlock? What are the necessary conditions for deadlock?
+
+**Question 9: What is deadlock? What are the necessary conditions for deadlock?**
+
+- **Deadlock** is a state in which two or more processes are unable to proceed because each is waiting for a resource held by the other(s).
+- **Necessary conditions for deadlock (Coffman conditions):**
+  1. **Mutual Exclusion:** At least one resource must be held in a non-sharable mode.
+  2. **Hold and Wait:** A process is holding at least one resource and waiting to acquire additional resources held by others.
+  3. **No Preemption:** Resources cannot be forcibly taken away from a process; they must be released voluntarily.
+  4. **Circular Wait:** There exists a set of processes {P1, P2, ..., Pn} such that P1 is waiting for a resource held by P2, P2 for P3, ..., and Pn for P1.
+
+---
+
+### Q10. What are the conditions under which a deadlock situation may arise?
+
+**Question 10: What are the conditions under which a deadlock situation may arise?**
+
+- Deadlock can occur if all four Coffman conditions (listed above) are true at the same time in the system.
+
+---
+
+### Q11. What is deadlock? How can we avoid deadlocks? Explain.
+
+**Question 11: What is deadlock? How can we avoid deadlocks? Explain.**
+
+- **Deadlock** is when processes are stuck waiting for each other forever.
+- **Deadlock avoidance** means designing the system so that deadlocks never happen.
+- **Methods to avoid deadlocks:**
+  - Do not allow at least one of the four necessary conditions.
+  - Use algorithms like the **Banker’s algorithm** to check if granting a resource will lead to a safe state.
+  - Request all resources at once (prevents hold and wait).
+  - Impose an order on resource requests (prevents circular wait).
+
+---
+
+### Q12. What do you mean by deadlock? Discuss various conditions for occurrence of deadlock. Also differentiate between deadlock detection and avoidance.
+
+**Question 12: What do you mean by deadlock? Discuss various conditions for occurrence of deadlock. Also differentiate between deadlock detection and avoidance.**
+
+- **Deadlock** is a situation where processes cannot proceed because they are each waiting for resources held by others.
+- **Conditions for deadlock:** Mutual exclusion, hold and wait, no preemption, circular wait.
+- **Deadlock detection:** The system allows deadlocks to occur but has a way to detect and recover from them (e.g., using a wait-for graph).
+- **Deadlock avoidance:** The system carefully allocates resources to ensure deadlocks never occur (e.g., Banker’s algorithm).
+
+| Aspect                | Deadlock Detection       | Deadlock Avoidance        |
+| --------------------- | ------------------------ | ------------------------- |
+| When deadlock occurs? | Allowed to happen        | Prevented from happening  |
+| System action         | Detects and recovers     | Avoids unsafe allocations |
+| Example               | Wait-for graph, recovery | Banker’s algorithm        |
+
+---
+
+## Deadlock Prevention
+
+- **Deadlock prevention** means designing the system so that at least one of the four necessary conditions for deadlock cannot hold.
+- Examples:
+  - **Mutual Exclusion:** Use only when necessary.
+  - **Hold and Wait:** Require processes to request all resources at once.
+  - **No Preemption:** Allow resources to be taken away if needed.
+  - **Circular Wait:** Impose a strict order on resource requests.
+
+---
+
+## Deadlock Avoidance
+
+- **Deadlock avoidance** means the system checks every resource request and only grants it if it will not lead to a deadlock.
+- The most famous avoidance algorithm is the **Banker’s algorithm**.
+
+---
+
+### Q15. Discuss deadlock avoidance using Banker’s algorithm.
+
+**Question 15: Discuss deadlock avoidance using Banker’s algorithm.**
+
+- **Banker’s algorithm** checks if granting a resource request will leave the system in a safe state.
+- If yes, the request is granted; if not, the process must wait.
+- **Safe state:** There is at least one sequence in which all processes can finish.
+- **How it works:**
+  1. Each process tells the system its maximum resource needs.
+  2. The system checks if resources can be allocated safely.
+  3. If yes, resources are given; if not, the process waits.
+- **Example Table:**
+  | Process | Max Need | Allocated | Available | Need |
+  |---------|----------|-----------|-----------|------|
+  | P1 | 7 | 5 | 3 | 2 |
+  | ... | ... | ... | ... | ... |
+
+---
+
+## Deadlock Detection
+
+- **Deadlock detection** means the system allows deadlocks to happen but has a way to find them and recover.
+- Uses a **wait-for graph** to detect cycles (deadlocks).
+
+### Q14. What is deadlock detection algorithm? Explain it with an example.
+
+**Question 14: What is deadlock detection algorithm? Explain it with an example.**
+
+- **Wait-for graph algorithm:**
+  - Each process is a node; an edge from P1 to P2 means P1 is waiting for a resource held by P2.
+  - If there is a cycle in the graph, a deadlock exists.
+- **Example:**
+  - P1 waits for P2, P2 waits for P3, P3 waits for P1 → cycle → deadlock.
+
+---
+
+## Recovery from Deadlock
+
+- **Recovery** means ending the deadlock by:
+  - Killing one or more processes in the cycle.
+  - Preempting (taking away) resources from some processes.
+  - Rolling back processes to a safe state.
+
+---
+
+### Q13. How is starvation different from deadlock? Explain.
+
+**Question 13: How is starvation different from deadlock? Explain.**
+
+- **Starvation** is when a process waits indefinitely because it never gets the resources it needs, even though they are available.
+- **Deadlock** is when a group of processes are all waiting for each other, and none can proceed.
+- **Difference:**
+  - In deadlock, processes are stuck because of each other.
+  - In starvation, a process is stuck because the system keeps choosing other processes over it.
+
+| Aspect   | Deadlock                       | Starvation                 |
+| -------- | ------------------------------ | -------------------------- |
+| Cause    | Circular waiting for resources | Resource allocation policy |
+| Solution | Detection, avoidance, recovery | Fair scheduling            |
+
+---
+
+## Summary Table: Deadlock Handling
+
+| Method     | What It Does                          | Example/Tool        |
+| ---------- | ------------------------------------- | ------------------- |
+| Prevention | Stops deadlock from happening         | Resource ordering   |
+| Avoidance  | Checks before granting resources      | Banker’s algorithm  |
+| Detection  | Finds deadlocks after they happen     | Wait-for graph      |
+| Recovery   | Ends deadlock by killing/rolling back | Process termination |
+
+## Banker’s Algorithm: Simple Explanation
+
+**Banker’s Algorithm** is a deadlock avoidance algorithm used by operating systems to safely allocate resources to processes. It is called "Banker’s" because it works like a bank deciding whether to grant a loan, making sure it never runs out of money (resources).
+
+### How Banker’s Algorithm Works
+
+1. **Processes declare maximum needs:**  
+  Each process tells the system the maximum number of each resource it may need.
+
+2. **Resource allocation check:**  
+  When a process requests resources, the system checks if it can safely grant the request without risking deadlock.
+
+3. **Safe state:**  
+  The system is in a *safe state* if there is at least one sequence in which all processes can finish, even if they all ask for their maximum resources.
+
+4. **Grant or wait:**  
+  - If granting the request keeps the system in a safe state, the resources are allocated.
+  - If not, the process must wait.
+
+### Steps of the Algorithm
+
+- **Step 1:** Check if the request is less than or equal to the process’s declared maximum need.
+- **Step 2:** Check if the requested resources are available.
+- **Step 3:** Pretend to allocate the resources and check if the system remains in a safe state.
+- **Step 4:** If safe, actually allocate the resources. If not, make the process wait.
+
+### Example Table
+
+| Process | Max Need | Allocated | Available | Need (Max - Allocated) |
+|---------|----------|-----------|-----------|------------------------|
+| P1      | 7        | 5         | 3         | 2                      |
+| P2      | 3        | 2         |           | 1                      |
+| ...     | ...      | ...       | ...       | ...                    |
+
+### Simple Example
+
+Suppose there are 3 processes (P1, P2, P3) and 10 total resources.  
+- P1 has 3, P2 has 2, P3 has 2 (total allocated = 7, so 3 available).
+- If P1 requests 2 more, the system checks:
+  - Is 2 ≤ P1’s max need? Yes.
+  - Are 2 resources available? Yes.
+  - If granted, can all processes finish? If yes, grant; if not, P1 waits.
+
+### Key Points
+
+- Prevents deadlock by only granting requests that keep the system safe.
+- Needs to know each process’s maximum resource needs in advance.
+- Used in systems where resource allocation must be carefully controlled.
+
+---
