@@ -1,14 +1,33 @@
-1. What is Spring framework? Discuss feature of the Spring.
-2. Discuss Spring Framework architecture with suitable example.
-3. Discuss disadvantages of Spring Framework
-4. Differentiate between spring & spring boot.
-5. What are the various attributes of Tables?
-6. What do you meant by Java bean? Is bean life cycle controlled by Spring
-7. What is Bean in Spring? How bean life cycle can be controlled Spring?
-8. What is AOP?
-9. Define AOP.
-10. Illustrate Aspect Oriented Programming in spring framework.
-11. Compare constructor injection and setter injection in spring with suitable example.
-12. What are the different types of scopes in Spring? Explain in detail.
-13. Explain the various types of scopes in spring?
-14. Classify the design patterns that are used in java programming.
+## 1. Object-Oriented Concepts in Java
+
+1. How are objects implemented in Java?
+2. What are the limitations of static members?
+3. Write a Java program to create a list.
+4. List out the types of constructors.
+5. What do you mean by Constructor? How many types of constructors are available in Java? Explain with suitable examples.
+7. Object is an instance of class, justify your answer.
+8. Write 3 uses of Encapsulation in Object Oriented Programming.
+9. What are uses of `this` keyword? Explain with proper example.
+
+## 2. Java Environment and Execution
+
+1. Compare Java Runtime Environment and Java Virtual Machine.
+2. Explain the difference between JDK and JRE in Java.
+3. Explain the compilation and execution process of Java program with proper diagram.
+
+## 3. Programming Paradigms
+
+1. Distinguish between Procedure Oriented Programming and Object Oriented Programming.
+
+## 4. Arrays and Inheritance
+
+1. Explain in detail about Array with syntax and example.
+
+## 5. Polymorphism and Abstraction
+
+1. What do you understand by Polymorphism? Explain types of polymorphism with proper example.
+2. What do you mean by abstract class? How is abstract class different from Interface?
+6. Which is the alternative approach to implement multiple inheritance in Java? Explain with an example.
+10. Explain the role of constructor and also explain how subclass constructor implicitly calls superclass constructor in Java.
+11. What is the role of class path in Java Package?
+12. Describe in detail about the types of inheritance in Java.
