@@ -312,15 +312,6 @@ frame.addWindowListener(new WindowAdapter() {
     - `ItemEvent` (checkbox, list selection)
     - `ComponentEvent` (component shown/hidden)
 
-| Event Class    | Description                      |
-| -------------- | -------------------------------- |
-| ActionEvent    | Button/menu actions              |
-| MouseEvent     | Mouse clicks, movement           |
-| KeyEvent       | Keyboard presses                 |
-| WindowEvent    | Window open, close, minimize     |
-| ItemEvent      | Checkbox, list item selection    |
-| ComponentEvent | Component shown, hidden, resized |
-
 ---
 
 ## 8. Difference Between AWT and Swing [Q13 & Q14]
@@ -374,7 +365,7 @@ Swing is a part of Java's standard library for building graphical user interface
 **Q5. Describe different types of Layout Manager used in Java using example**
 
 ### What is a Layout Manager?
-- A **Layout Manager** in Java is an object that controls the size and position of components inside a container (such as a `JFrame` or `JPanel`).
+- A **Layout Manager** in Java is the one that controls the size and position of components inside a container (such as a `JFrame` or `JPanel`).
 - It automatically arranges buttons, labels, text fields, and other components, so you don't have to manually specify their coordinates.
 - Layout managers make GUIs flexible and responsive to window resizing and different screen sizes.
 - Using a layout manager is essential for creating professional, portable, and maintainable Java GUIs.
