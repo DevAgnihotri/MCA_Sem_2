@@ -1,4 +1,4 @@
-expalin the given topics in detailed manner with parasdefs points tables if needed cover complete einformation in simple learnable english make sure it is complete and easy to understand and learn
+explain the given topics in detailed manner with parasdefs points tables if needed cover complete einformation in simple learnable english make sure it is complete and easy to understand and learn
 
 ""
 

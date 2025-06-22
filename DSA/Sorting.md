@@ -1,6 +1,32 @@
 # Sorting Algorithms Documentation
 
----
+## Non-Comparison Sort
+
+# Q What do you mean by non-comparison sort? List two non-comparison sort algorithms. 
+
+### Definition
+
+A **non-comparison sort** is a type of sorting algorithm that does not compare elements directly to determine their order. Instead, it uses properties of the elements (such as their digits or values as keys) to sort them. These algorithms can achieve better than O(n log n) time complexity for certain data types.
+
+### Examples of Non-Comparison Sort Algorithms
+
+- **Counting Sort**
+    - Counts how many times each value appears.
+    - Uses these counts to place each value in the correct position.
+    - Works well when numbers are small and not too spread out.
+    - Fast: runs in O(n + k) time.
+    - Example: [4, 2, 2, 8, 3, 3, 1] → [1, 2, 2, 3, 3, 4, 8]
+
+- **Radix Sort**
+    - Sorts numbers by looking at each digit, one place at a time.
+    - Usually starts from the rightmost digit.
+    - Uses another stable sort (like counting sort) for each digit.
+    - Good for sorting large numbers with a fixed number of digits.
+    - Example: [170, 45, 75, 90, 802, 24, 2, 66] → [2, 24, 45, 66, 75, 90, 170, 802]
+
+Other examples include **Bucket Sort**.
+
+
 
 ## Bubble Sort
 
