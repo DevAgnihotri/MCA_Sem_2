@@ -238,17 +238,6 @@ Depth First Search (DFS) is a graph traversal technique that starts at a chosen 
 
 DFS explores every path from the starting node as deeply as possible before moving to another path.
 
-#### Pseudocode:
-
-```
-DFS(graph, vertex, visited):
-    1. Mark vertex as visited
-    2. Process/print vertex
-    3. For each adjacent vertex 'adj' of vertex:
-        a. If adj is not visited:
-            i. DFS(graph, adj, visited)
-```
-
 #### DFS Example:
 
 ```
