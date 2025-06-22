@@ -181,22 +181,6 @@ Adjacency List:
 3: [0, 2]
 ```
 
-#### Code Implementation:
-
-```python
-# Python implementation
-graph = {
-    0: [1, 3],
-    1: [0, 2],
-    2: [1, 3],
-    3: [0, 2]
-}
-
-# Java implementation
-List<List<Integer>> adjList = new ArrayList<>();
-// adjList.get(i) gives neighbors of vertex i
-```
-
 #### Advantages and Disadvantages:
 
 | Advantages                       | Disadvantages                                    |
@@ -265,21 +249,6 @@ DFS(graph, vertex, visited):
             i. DFS(graph, adj, visited)
 ```
 
-#### Implementation:
-
-```python
-def dfs(graph, start, visited=None):
-    if visited is None:
-        visited = set()
-
-    visited.add(start)
-    print(start, end=' ')  # Process vertex
-
-    for neighbor in graph[start]:
-        if neighbor not in visited:
-            dfs(graph, neighbor, visited)
-```
-
 #### DFS Example:
 
 ```
@@ -314,7 +283,7 @@ DFS Tree:
 ### BFS Algorithm:
 
 **Definition:**  
-Breadth First Search (BFS) is a graph traversal technique that explores all vertices at the current depth level before moving on to the vertices at the next depth level. BFS starts from a selected source node, visits all its immediate neighbors, then moves to their neighbors, and so on. This approach ensures that the shortest path (in terms of number of edges) from the source to any other reachable node is found in an unweighted graph.
+Breadth First Search (BFS) is a graph traversal technique that explores the graph level by level, visiting all nodes at the current "breadth" (distance from the source) before moving to nodes at the next level. Starting from a chosen source vertex, BFS visits all its direct neighbors first, then their neighbors, and so on, expanding outward in layers. This method guarantees finding the shortest path (fewest edges) from the source to any other reachable vertex in an unweighted graph.
 
 #### Algorithm Steps:
 
@@ -338,26 +307,6 @@ BFS(graph, start):
             i. If adj is not visited:
                 - Mark adj as visited
                 - Enqueue adj
-```
-
-#### Implementation:
-
-```python
-from collections import deque
-
-def bfs(graph, start):
-    visited = set()
-    queue = deque([start])
-    visited.add(start)
-
-    while queue:
-        vertex = queue.popleft()
-        print(vertex, end=' ')  # Process vertex
-
-        for neighbor in graph[vertex]:
-            if neighbor not in visited:
-                visited.add(neighbor)
-                queue.append(neighbor)
 ```
 
 #### BFS Example:
@@ -420,22 +369,6 @@ Graph:     0 — 1    4 — 5
 Connected Components:
 Component 1: {0, 1, 2, 3}
 Component 2: {4, 5, 6}
-```
-
-### Algorithm:
-
-```python
-def find_connected_components(graph):
-    visited = set()
-    components = []
-
-    for vertex in graph:
-        if vertex not in visited:
-            component = []
-            dfs_component(graph, vertex, visited, component)
-            components.append(component)
-
-    return components
 ```
 
 ---
