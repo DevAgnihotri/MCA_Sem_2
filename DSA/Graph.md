@@ -102,12 +102,11 @@ Simple Cycle: A → B → C → D → A
 Hamilton Cycle: A → B → C → D → A (visits all vertices exactly once)
 ```
 
-**Difference:**
-| Feature | Simple Cycle | Hamilton Cycle |
-|---------|--------------|----------------|
-| **Vertex Visit** | Can skip vertices | Must visit ALL vertices exactly once |
-| **Requirement** | Any closed path | Closed path through every vertex |
-| **Existence** | Most graphs have cycles | Not all graphs have Hamilton cycles |
+| Feature            | Simple Cycle                                 | Hamilton Cycle                                   |
+|--------------------|----------------------------------------------|--------------------------------------------------|
+| **Vertex Visit**   | May skip some vertices                       | Must visit every vertex exactly once              |
+| **Definition**     | Any closed path with no repeated vertices    | Closed path that visits every vertex exactly once |
+| **Existence**      | Common in many graphs                        | Exists only in certain graphs                     |
 
 ---
 
