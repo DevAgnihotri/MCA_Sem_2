@@ -3,7 +3,6 @@
 ## 1. Binary Trees
 
 1. **Binary Search Tree (BST)**
-    1. Discuss the concept of inorder *successor* and inorder *predecessor* in a Binary Search Tree.
     2. What is a binary search tree? Write an algorithm to implement recursive or iterative search for a binary search tree.
     3. Write down a recursive algorithm to insert a node in a binary search tree. Apply that algorithm to construct a BST with the given data:  
        `8, 5, 12, 67, 43, 23, 6, 3, 2, 8, 24, 21, 20`
@@ -15,6 +14,7 @@
 2. **Tree Traversals**
     1. Write recursive algorithms for Pre-Order, Post-Order, and In-Order traversals of a binary tree.
     2. Short note on tree traversal.
+    3. Discuss the concept of inorder *successor* and inorder *predecessor* in a Binary Search Tree.
 
 3. **Memory Representation**
     1. Give static and dynamic memory representation of a binary tree.
