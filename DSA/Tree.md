@@ -150,7 +150,7 @@ A binary tree can be represented in a table where each row lists a node and the 
 #### Table Representation
 
 | Node | Left Child | Right Child |
-|------|------------|-------------|
+| ---- | ---------- | ----------- |
 | 1    | 2          | 3           |
 | 2    | 4          | 5           |
 | 3    | -          | 6           |
@@ -253,17 +253,21 @@ struct TreeNode* searchIterative(struct TreeNode* root, int key) {
 
 #### Recursive Insertion Algorithm (Step-by-Step):
 
-1. **If the tree is empty:**  
-    - Create a new node with the given value and return it as the root.
+1. **If the tree is empty:**
 
-2. **If the value to insert is less than the current node's value:**  
-    - Recursively insert the value into the left subtree.
+   - Create a new node with the given value and return it as the root.
 
-3. **If the value to insert is greater than the current node's value:**  
-    - Recursively insert the value into the right subtree.
+2. **If the value to insert is less than the current node's value:**
 
-4. **If the value is equal to the current node's value:**  
-    - Do not insert (to avoid duplicates).
+   - Recursively insert the value into the left subtree.
+
+3. **If the value to insert is greater than the current node's value:**
+
+   - Recursively insert the value into the right subtree.
+
+4. **If the value is equal to the current node's value:**
+
+   - Do not insert (to avoid duplicates).
 
 5. **Return the (possibly updated) root node.**
 
@@ -609,8 +613,8 @@ Tree traversals are broadly classified into two categories:
 2. **Breadth-First Search (BFS) Traversal**:
    - Level Order Traversal
 
-
 ---
+
 ### Q. Give static and dynamic memory representation of a binary tree. (Simple English & Complete Detail)
 
 #### 1. Static Memory Representation (Array Representation)
@@ -619,15 +623,17 @@ Tree traversals are broadly classified into two categories:
 In static representation, the binary tree is stored in a fixed-size array. Each node is placed at a specific index, and the relationships between parent and child nodes are determined by their positions in the array.
 
 **How does it work?**
+
 - The root node is stored at index 0 (or 1, depending on convention).
 - For a node at index `i`:
-    - **Left child** is at index `2i + 1` (if 0-based) or `2i` (if 1-based).
-    - **Right child** is at index `2i + 2` (if 0-based) or `2i + 1` (if 1-based).
-    - **Parent** is at index `(i - 1) / 2` (if 0-based) or `i / 2` (if 1-based).
+  - **Left child** is at index `2i + 1` (if 0-based) or `2i` (if 1-based).
+  - **Right child** is at index `2i + 2` (if 0-based) or `2i + 1` (if 1-based).
+  - **Parent** is at index `(i - 1) / 2` (if 0-based) or `i / 2` (if 1-based).
 
 **Example:**
 
 Suppose we have this tree:
+
 ```
         1
      / \
@@ -635,10 +641,11 @@ Suppose we have this tree:
  / \
 4   5
 ```
+
 Array representation (0-based): `[1, 2, 3, 4, 5]`
 
 | Index | Value | Parent | Left Child | Right Child |
-|-------|-------|--------|------------|-------------|
+| ----- | ----- | ------ | ---------- | ----------- |
 | 0     | 1     | -      | 1          | 2           |
 | 1     | 2     | 0      | 3          | 4           |
 | 2     | 3     | 0      | -          | -           |
@@ -646,10 +653,12 @@ Array representation (0-based): `[1, 2, 3, 4, 5]`
 | 4     | 5     | 1      | -          | -           |
 
 **Advantages:**
+
 - Simple and fast access using indices.
 - Good for complete or nearly complete trees.
 
 **Disadvantages:**
+
 - Wastes memory for sparse or skewed trees (many empty spots).
 - Fixed size; cannot easily grow or shrink.
 
@@ -661,12 +670,14 @@ Array representation (0-based): `[1, 2, 3, 4, 5]`
 In dynamic representation, each node is created as needed using pointers (links). Each node contains data and pointers to its left and right children.
 
 **How does it work?**
+
 - Each node is a structure (or class) with:
-    - Data field (stores value)
-    - Pointer to left child
-    - Pointer to right child
+  - Data field (stores value)
+  - Pointer to left child
+  - Pointer to right child
 
 **C Structure Example:**
+
 ```c
 struct TreeNode {
         int data;
@@ -676,6 +687,7 @@ struct TreeNode {
 ```
 
 **Creating a Node:**
+
 ```c
 struct TreeNode* createNode(int value) {
         struct TreeNode* node = (struct TreeNode*)malloc(sizeof(struct TreeNode));
@@ -687,11 +699,13 @@ struct TreeNode* createNode(int value) {
 ```
 
 **Advantages:**
+
 - Uses memory only for existing nodes (no wasted space).
 - Tree can grow or shrink as needed.
 - Suitable for any tree shape (balanced, skewed, sparse).
 
 **Disadvantages:**
+
 - Requires extra memory for pointers.
 - Accessing nodes is slower than array indexing.
 - More complex to implement.
@@ -700,14 +714,15 @@ struct TreeNode* createNode(int value) {
 
 #### **Summary Table**
 
-| Representation | How It Works                | Memory Usage      | Best For                   | Drawbacks                  |
-|----------------|----------------------------|-------------------|----------------------------|----------------------------|
-| Static (Array) | Uses array indices          | Fixed, may waste  | Complete/near-complete     | Wastes space for sparse    |
-| Dynamic (Links)| Uses pointers for children  | Flexible, minimal | Any tree shape, dynamic    | Extra pointer memory needed|
+| Representation  | How It Works               | Memory Usage      | Best For                | Drawbacks                   |
+| --------------- | -------------------------- | ----------------- | ----------------------- | --------------------------- |
+| Static (Array)  | Uses array indices         | Fixed, may waste  | Complete/near-complete  | Wastes space for sparse     |
+| Dynamic (Links) | Uses pointers for children | Flexible, minimal | Any tree shape, dynamic | Extra pointer memory needed |
 
 ---
 
-**In short:**  
+**In short:**
+
 - **Static (array):** Fast, simple, but wastes space for uneven trees.
 - **Dynamic (linked):** Flexible, memory-efficient, but needs pointers and is a bit slower to access.
 
@@ -1030,16 +1045,17 @@ Binary Search Trees support several fundamental operations that maintain the BST
 1. **Search for the node** to be deleted (let’s call it `target`).
 2. **If `target` is not found**, do nothing (or return the unchanged tree).
 3. **If `target` has no children** (leaf node):
-    - Remove `target` from the tree by setting its parent’s pointer to `NULL`.
+   - Remove `target` from the tree by setting its parent’s pointer to `NULL`.
 4. **If `target` has one child**:
-    - Replace `target` with its child (connect parent of `target` directly to the child).
+   - Replace `target` with its child (connect parent of `target` directly to the child).
 5. **If `target` has two children**:
-    - Find the inorder successor (smallest node in the right subtree) or inorder predecessor (largest node in the left subtree).
-    - Copy the successor’s (or predecessor’s) value to `target`.
-    - Recursively delete the successor (or predecessor) node, which will now have at most one child.
+   - Find the inorder successor (smallest node in the right subtree) or inorder predecessor (largest node in the left subtree).
+   - Copy the successor’s (or predecessor’s) value to `target`.
+   - Recursively delete the successor (or predecessor) node, which will now have at most one child.
 6. **Return the (possibly updated) root** of the tree.
 
 **Note:** Always ensure the BST property is maintained after deletion.
+
 #### Detailed Example of Deletion:
 
 **Initial BST**:
@@ -1276,3 +1292,298 @@ Finding successor of 15:
 5. **Consider using self-balancing trees** (AVL, Red-Black) for guaranteed performance
 
 ---
+
+## Threaded Binary Trees
+
+### Q5.1. What is a threaded binary tree? Explain the advantages and disadvantages of using this tree.
+
+### Definition and Concept
+
+A **Threaded Binary Tree** is a binary tree where the null pointers (also called null links) are replaced with pointers that point to other nodes in the tree. These special pointers are called "threads" and they help in faster traversal of the tree.
+
+#### Understanding the Problem
+
+In a normal binary tree, many pointers are null (approximately n+1 null pointers in a tree with n nodes). These null pointers waste memory and make traversal operations slower because we need recursion or a stack to traverse the tree.
+
+#### Types of Threaded Binary Trees
+
+1. **Single Threaded Binary Tree**:
+
+   - Only right null pointers are replaced with threads
+   - Threads point to the inorder successor
+
+2. **Double Threaded Binary Tree**:
+   - Both left and right null pointers are replaced with threads
+   - Left threads point to inorder predecessor
+   - Right threads point to inorder successor
+
+#### Threading Rules
+
+**For Right Threading (most common)**:
+
+- If a node's right child is null, replace it with a thread pointing to the inorder successor
+- If a node's left child is null, it remains null (in single threaded)
+
+**For Double Threading**:
+
+- Left null pointers point to inorder predecessor
+- Right null pointers point to inorder successor
+
+#### Visual Example
+
+**Normal Binary Tree**:
+
+```
+    A
+   / \
+  B   C
+ /   / \
+D   E   F
+```
+
+**Inorder traversal**: D → B → A → E → C → F
+
+**Threaded Binary Tree (Right Threaded)**:
+
+```
+    A
+   / \
+  B   C
+ /   / \
+D   E   F
+ \     /
+  B   C  (these are threads)
+```
+
+### Q5.2. Explain the operation of a threaded binary tree.
+
+### Operations of a Threaded Binary Tree
+
+A threaded binary tree is designed to make tree traversal more efficient by replacing some or all null pointers with special "threads" that point to the next node in a particular traversal order (usually inorder). Here are the main operations and how they work in a threaded binary tree:
+
+#### 1. Inorder Traversal
+
+- **Without Threading:** In a regular binary tree, inorder traversal (left, root, right) typically requires recursion or an explicit stack to keep track of nodes.
+- **With Threading:** In a threaded binary tree, threads allow traversal without recursion or a stack. When a node's right pointer is a thread, it points directly to its inorder successor, so you can move to the next node efficiently.
+- **Process:** Start at the leftmost node, visit it, and use threads to move to the next node in inorder sequence until all nodes are visited.
+
+#### 2. Preorder and Postorder Traversal
+
+- **Preorder Traversal:** Some threaded trees can be designed to support efficient preorder traversal by using threads that point to the preorder successor.
+- **Postorder Traversal:** Postorder traversal is less common with threading, but double-threaded trees (with both left and right threads) can be adapted for this purpose.
+
+#### 3. Insertion
+
+- **Finding the Position:** To insert a new node, first find the appropriate parent node as in a regular binary search tree.
+- **Updating Threads:** After insertion, update the threads of the new node and its neighbors. For example, if you insert a node as the left child, its left thread should point to the inorder predecessor, and its right thread (if applicable) should point to the parent or inorder successor.
+- **Complexity:** Insertion is more complex than in a regular tree because you must carefully maintain the threading structure.
+
+#### 4. Deletion
+
+- **Removing the Node:** Deletion involves removing the node as in a regular binary tree.
+- **Restoring Threads:** After deletion, update the threads of neighboring nodes to ensure the threaded structure remains correct. This may involve redirecting threads to bypass the deleted node and point to the correct inorder predecessor or successor.
+- **Complexity:** Deletion is also more complex due to the need to update threads.
+
+#### 5. Searching
+
+- **Same as BST:** Searching for a value in a threaded binary tree is similar to searching in a regular binary search tree, as threading does not affect the search path.
+- **Benefit:** Once a node is found, threads can be used for efficient traversal from that point.
+
+#### 6. Successor and Predecessor Operations
+
+- **Inorder Successor:** In a right-threaded tree, the right thread of a node points directly to its inorder successor, making this operation very efficient (O(1) time).
+- **Inorder Predecessor:** In a left-threaded or double-threaded tree, the left thread points to the inorder predecessor, also allowing O(1) access.
+
+#### 7. Traversal Without Recursion or Stack
+
+- **Key Benefit:** The main advantage of threaded binary trees is that they allow traversing the tree in a specific order (usually inorder) without using recursion or an explicit stack, saving both time and memory.
+
+#### Summary Table: Threaded Binary Tree Operations
+
+| Operation         | How Threading Helps                          | Complexity      |
+|-------------------|----------------------------------------------|-----------------|
+| Inorder Traversal | No recursion/stack; use threads for next     | O(n), O(1) space|
+| Insertion         | Must update threads for new node and neighbors| O(h)            |
+| Deletion          | Must update threads for affected nodes       | O(h)            |
+| Search            | Same as BST; threading not used              | O(h)            |
+| Successor/Pred.   | Direct access via threads                    | O(1)            |
+
+**Note:** `h` is the height of the tree, and `n` is the number of nodes.
+
+Threaded binary trees are especially useful when frequent traversals are needed and memory or stack space is limited.
+
+### Advantages of Threaded Binary Trees
+
+| Advantage                           | Explanation                        | Benefit                   |
+| ----------------------------------- | ---------------------------------- | ------------------------- |
+| **Faster Traversal**                | No recursion or stack needed       | O(n) time with O(1) space |
+| **Memory Utilization**              | Uses null pointers effectively     | Better memory usage       |
+| **Efficient Successor/Predecessor** | Direct pointer access              | O(1) average time         |
+| **Simplified Algorithms**           | Iterative implementations possible | Easier to understand      |
+| **No Stack Overflow**               | Eliminates recursion               | Safe for large trees      |
+
+### Disadvantages of Threaded Binary Trees
+
+| Disadvantage               | Explanation                          | Impact                      |
+| -------------------------- | ------------------------------------ | --------------------------- |
+| **Complex Implementation** | More complex insertion/deletion      | Harder to code and maintain |
+| **Extra Storage**          | Need boolean flags for threads       | Additional memory per node  |
+| **Insertion Complexity**   | Must update multiple threads         | Slower insertion operations |
+| **Deletion Complexity**    | Must handle thread updates carefully | Error-prone operations      |
+| **Limited Flexibility**    | Structure is more rigid              | Less adaptable to changes   |
+
+### Practical Applications
+
+1. **Compiler Design**: Expression tree traversal
+2. **Database Systems**: Index traversal
+3. **Operating Systems**: Process tree navigation
+4. **Memory-Constrained Systems**: When stack space is limited
+
+---
+
+## Huffman Coding Using Binary Tree
+
+### Introduction to Huffman Coding
+
+**Huffman Coding** is a lossless data compression algorithm that uses a binary tree to create variable-length codes for characters. Characters that appear more frequently get shorter codes, while less frequent characters get longer codes.
+
+### How Huffman Coding Works
+
+#### Basic Principle
+
+- **More frequent characters** → **Shorter codes**
+- **Less frequent characters** → **Longer codes**
+- **No code is a prefix of another** (prefix property)
+
+#### Algorithm Steps
+
+1. **Calculate character frequencies**
+2. **Create leaf nodes** for each character
+3. **Build a min-heap** of nodes
+4. **Repeatedly combine** two nodes with smallest frequencies
+5. **Create Huffman tree** from root
+6. **Generate codes** by traversing tree
+
+### Step-by-Step Example
+
+**Input String**: "ABRACADABRA"
+
+#### Huffman Coding Algorithm
+
+```
+Algorithm: HuffmanCoding(text)
+Input: text - input string to compress
+Output: Huffman tree and character codes
+
+1. START
+2. // Step 1: Calculate character frequencies
+3. frequencies = calculateFrequencies(text)
+4. // Step 2: Create leaf nodes for each character
+5. nodes = []
+6. FOR each character c with frequency f DO
+7.     node = createNode(c, f)
+8.     nodes.add(node)
+9. END FOR
+10. // Step 3: Build min-heap
+11. heap = createMinHeap(nodes)
+12. // Step 4: Build Huffman tree
+13. WHILE heap.size > 1 DO
+14.     left = extractMin(heap)
+15.     right = extractMin(heap)
+16.     merged = createNode(null, left.freq + right.freq)
+17.     merged.left = left
+18.     merged.right = right
+19.     insertMinHeap(heap, merged)
+20. END WHILE
+21. root = extractMin(heap)
+22. // Step 5: Generate codes
+23. codes = generateCodes(root)
+24. RETURN root, codes
+25. STOP
+
+Algorithm: generateCodes(root)
+Input: root - root of Huffman tree
+Output: array of codes for each character
+
+1. codes = []
+2. generateCodesHelper(root, "", codes)
+3. RETURN codes
+
+Algorithm: generateCodesHelper(node, code, codes)
+1. IF node = NULL THEN RETURN
+2. IF node.isLeaf THEN
+3.     codes[node.character] = code
+4.     RETURN
+5. END IF
+6. generateCodesHelper(node.left, code + "0", codes)
+7. generateCodesHelper(node.right, code + "1", codes)
+```
+
+#### Step 1: Calculate Frequencies
+
+| Character | Frequency |
+| --------- | --------- |
+| A         | 5         |
+| B         | 2         |
+| R         | 2         |
+| C         | 1         |
+| D         | 1         |
+
+#### Step 2: Create Initial Nodes
+
+```
+C(1)  D(1)  B(2)  R(2)  A(5)
+```
+
+#### Step 3: Build Huffman Tree
+
+**Iteration 1**: Combine C(1) and D(1)
+
+```
+   (2)
+  /   \
+C(1) D(1)
+
+Remaining: (2), B(2), R(2), A(5)
+```
+
+**Iteration 2**: Combine (2) and B(2)
+
+```
+   (4)
+  /   \
+(2)   B(2)
+ /\
+C D
+
+Remaining: (4), R(2), A(5)
+```
+
+**Iteration 3**: Combine (4) and R(2)
+
+```
+     (6)
+    /   \
+  (4)   R(2)
+  /\
+(2) B
+/\
+C D
+
+Remaining: (6), A(5)
+```
+
+**Iteration 4**: Combine (6) and A(5)
+
+```
+Final Huffman Tree:
+       (11)
+      /    \
+    A(5)   (6)
+           /   \
+         (4)   R(2)
+         /\
+       (2) B(2)
+       /\
+     C(1) D(1)
+```
