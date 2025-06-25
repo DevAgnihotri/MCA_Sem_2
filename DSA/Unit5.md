@@ -59,10 +59,12 @@
 **Strassen's Matrix Multiplication Algorithm:**
 
 1. **Partition the input matrices** A and B into 2×2 format:
+
    - Matrix A has elements a11, a12, a21, a22
    - Matrix B has elements b11, b12, b21, b22
 
 2. **Calculate seven strategic products** (instead of the usual eight multiplications):
+
    - **Product P1**: Multiply a11 by the difference (b12 - b22)
    - **Product P2**: Multiply the sum (a11 + a12) by b22
    - **Product P3**: Multiply the sum (a21 + a22) by b11
@@ -72,6 +74,7 @@
    - **Product P7**: Multiply the difference (a11 - a21) by the sum (b11 + b12)
 
 3. **Combine the products** to form the result matrix elements:
+
    - **Element c11**: Add P5, P4, subtract P2, then add P6
    - **Element c12**: Add P1 and P2
    - **Element c21**: Add P3 and P4
@@ -173,36 +176,35 @@ c22 = 7×2 + 3×4 = 14 + 12 = 26 ✓
 
 #### Algorithm
 
-```
-Algorithm: Dijkstra(Graph G, source s)
-Input: Weighted graph G, source vertex s
-Output: Shortest distances from s to all vertices
+**Dijkstra's Shortest Path Algorithm:**
 
-1. START
-2. FOR each vertex v in G DO
-3.     distance[v] = INFINITY
-4.     previous[v] = NULL
-5.     visited[v] = FALSE
-6. END FOR
-7. distance[s] = 0
-8. priorityQueue = createMinHeap()
-9. INSERT(priorityQueue, s, 0)
-10. WHILE priorityQueue is not empty DO
-11.     u = EXTRACT_MIN(priorityQueue)
-12.     IF visited[u] = TRUE THEN CONTINUE
-13.     visited[u] = TRUE
-14.     FOR each neighbor v of u DO
-15.         alt = distance[u] + weight(u, v)
-16.         IF alt < distance[v] THEN
-17.             distance[v] = alt
-18.             previous[v] = u
-19.             INSERT(priorityQueue, v, alt)
-20.         END IF
-21.     END FOR
-22. END WHILE
-23. RETURN distance[], previous[]
-24. STOP
-```
+1. **Initialize the algorithm**:
+
+   - Set the distance to the source vertex as zero
+   - Set the distance to all other vertices as infinity
+   - Mark all vertices as unvisited
+   - Create a priority queue and add the source vertex with distance 0
+
+2. **Main processing loop** (continue until priority queue is empty):
+
+   - **Extract the vertex** with minimum distance from the priority queue
+   - **Skip if already visited** to avoid reprocessing
+   - **Mark the current vertex** as visited
+
+3. **Update neighboring vertices**:
+
+   - **For each unvisited neighbor** of the current vertex:
+     - **Calculate alternative distance** = current vertex distance + edge weight
+     - **If alternative distance is shorter** than the stored distance:
+       - **Update the neighbor's distance** to the shorter value
+       - **Update the neighbor's predecessor** to current vertex
+       - **Add the neighbor** to priority queue with new distance
+
+4. **Result**: The algorithm produces:
+   - **Shortest distances** from source to all reachable vertices
+   - **Predecessor information** to reconstruct actual shortest paths
+
+**Key Principle**: Always process the closest unvisited vertex next, ensuring optimal distances are found in order of increasing distance from source.
 
 #### Example
 
@@ -246,39 +248,40 @@ Output: Shortest distances from s to all vertices
 
 #### Algorithm
 
-```
-Algorithm: BellmanFord(Graph G, source s)
-Input: Weighted graph G, source vertex s
-Output: Shortest distances and negative cycle detection
+**Bellman-Ford Shortest Path Algorithm:**
 
-1. START
-2. // Initialize distances
-3. FOR each vertex v in G DO
-4.     distance[v] = INFINITY
-5.     predecessor[v] = NULL
-6. END FOR
-7. distance[s] = 0
-8.
-9. // Relax edges V-1 times
-10. FOR i = 1 TO |V| - 1 DO
-11.     FOR each edge (u, v) in G DO
-12.         IF distance[u] + weight(u, v) < distance[v] THEN
-13.             distance[v] = distance[u] + weight(u, v)
-14.             predecessor[v] = u
-15.         END IF
-16.     END FOR
-17. END FOR
-18.
-19. // Check for negative cycles
-20. FOR each edge (u, v) in G DO
-21.     IF distance[u] + weight(u, v) < distance[v] THEN
-22.         RETURN "Negative cycle detected"
-23.     END IF
-24. END FOR
-25.
-26. RETURN distance[], predecessor[]
-27. STOP
-```
+1. **Initialize distances**:
+
+   - Set the distance to the source vertex as zero
+   - Set the distance to all other vertices as infinity
+   - Initialize predecessor array to track shortest paths
+
+2. **Relaxation phase** (repeat V-1 times, where V is number of vertices):
+
+   - **For each iteration**:
+     - **Examine every edge** in the graph
+     - **For each edge (u,v)** with weight w:
+       - **Calculate potential shorter path**: distance[u] + w
+       - **If this path is shorter** than current distance[v]:
+         - **Update distance[v]** to the shorter value
+         - **Set predecessor[v]** to vertex u
+
+3. **Negative cycle detection** (one additional check):
+
+   - **Examine every edge** one more time
+   - **If any edge can still be relaxed** (distance can be reduced):
+     - **Report negative cycle detected** in the graph
+     - **Terminate algorithm** as shortest paths are undefined
+
+4. **Result**:
+   - **Return shortest distances** if no negative cycle exists
+   - **Return negative cycle warning** if negative cycle is detected
+
+**Key Features**:
+
+- **Handles negative edge weights** unlike Dijkstra's algorithm
+- **Detects negative cycles** which make shortest paths undefined
+- **Guaranteed to find shortest paths** in graphs without negative cycles
 
 #### Example
 
@@ -323,40 +326,38 @@ Output: Shortest distances and negative cycle detection
 
 #### Algorithm
 
-```
-Algorithm: FloydWarshall(Graph G)
-Input: Weighted graph G with adjacency matrix
-Output: All-pair shortest distances
+**Floyd-Warshall All-Pair Shortest Path Algorithm:**
 
-1. START
-2. n = number of vertices
-3. // Initialize distance matrix
-4. FOR i = 0 TO n-1 DO
-5.     FOR j = 0 TO n-1 DO
-6.         IF i = j THEN
-7.             distance[i][j] = 0
-8.         ELSE IF edge(i,j) exists THEN
-9.             distance[i][j] = weight(i,j)
-10.        ELSE
-11.            distance[i][j] = INFINITY
-12.        END IF
-13.    END FOR
-14. END FOR
-15.
-16. // Main algorithm - try all intermediate vertices
-17. FOR k = 0 TO n-1 DO
-18.     FOR i = 0 TO n-1 DO
-19.         FOR j = 0 TO n-1 DO
-20.             IF distance[i][k] + distance[k][j] < distance[i][j] THEN
-21.                 distance[i][j] = distance[i][k] + distance[k][j]
-22.             END IF
-23.         END FOR
-24.     END FOR
-25. END FOR
-26.
-27. RETURN distance[][]
-28. STOP
-```
+1. **Initialize the distance matrix**:
+
+   - **Create a matrix** of size n×n where n is the number of vertices
+   - **For each pair of vertices (i,j)**:
+     - **If i equals j**: set distance to 0 (vertex to itself)
+     - **If direct edge exists**: set distance to the edge weight
+     - **Otherwise**: set distance to infinity (no direct path)
+
+2. **Main algorithm - try each vertex as intermediate**:
+
+   - **For each possible intermediate vertex k** (from 0 to n-1):
+     - **For each source vertex i** (from 0 to n-1):
+       - **For each destination vertex j** (from 0 to n-1):
+         - **Calculate path through k**: distance[i][k] + distance[k][j]
+         - **If path through k is shorter** than current direct path:
+           - **Update distance[i][j]** to the shorter path distance
+           - **This represents finding a better route** from i to j via k
+
+3. **Progressive improvement**:
+
+   - **After processing vertex k**: all shortest paths using vertices 0 through k are optimal
+   - **Each iteration** potentially discovers shorter paths by using the new intermediate vertex
+   - **Final result** contains shortest paths between all pairs of vertices
+
+4. **Result interpretation**:
+   - **distance[i][j]** gives the shortest path distance from vertex i to vertex j
+   - **Infinity values** indicate no path exists between those vertices
+   - **Algorithm handles negative edges** but assumes no negative cycles
+
+**Key Insight**: By systematically considering each vertex as a potential intermediate point, the algorithm discovers all possible shortest routes through the graph.
 
 #### Applied Example
 
@@ -564,45 +565,36 @@ Sync: Only send Block D
 
 ### LCS Algorithm
 
-```
-Algorithm: LCS(X, Y)
-Input: Sequences X[1..m] and Y[1..n]
-Output: Length of LCS and the LCS itself
+**Longest Common Subsequence Algorithm:**
 
-1. START
-2. m = length of X
-3. n = length of Y
-4. // Create DP table
-5. FOR i = 0 TO m DO
-6.     FOR j = 0 TO n DO
-7.         IF i = 0 OR j = 0 THEN
-8.             dp[i][j] = 0
-9.         ELSE IF X[i-1] = Y[j-1] THEN
-10.            dp[i][j] = dp[i-1][j-1] + 1
-11.        ELSE
-12.            dp[i][j] = max(dp[i-1][j], dp[i][j-1])
-13.        END IF
-14.    END FOR
-15. END FOR
-16.
-17. // Backtrack to find LCS
-18. i = m, j = n
-19. lcs = ""
-20. WHILE i > 0 AND j > 0 DO
-21.     IF X[i-1] = Y[j-1] THEN
-22.         lcs = X[i-1] + lcs
-23.         i = i - 1
-24.         j = j - 1
-25.     ELSE IF dp[i-1][j] > dp[i][j-1] THEN
-26.         i = i - 1
-27.     ELSE
-28.         j = j - 1
-29.     END IF
-30. END WHILE
-31.
-32. RETURN dp[m][n], lcs
-33. STOP
-```
+1. **Setup the dynamic programming table**:
+
+   - **Create a 2D table** of size (m+1) × (n+1) where m and n are lengths of input sequences
+   - **Initialize first row and column** to zero (representing empty sequence comparisons)
+
+2. **Fill the DP table using bottom-up approach**:
+
+   - **For each position (i,j)** in the table:
+     - **If characters match** (X[i-1] equals Y[j-1]):
+       - **Take diagonal value and add 1**: dp[i][j] = dp[i-1][j-1] + 1
+       - **This represents extending the LCS** by including the matching character
+     - **If characters don't match**:
+       - **Take maximum** of left cell (dp[i][j-1]) and top cell (dp[i-1][j])
+       - **This represents the best LCS** found by excluding one character
+
+3. **Backtrack to reconstruct the actual LCS**:
+
+   - **Start from bottom-right corner** of the filled table
+   - **While both indices are positive**:
+     - **If characters match**: add character to LCS, move diagonally up-left
+     - **If top cell is larger**: move up (exclude current row character)
+     - **Otherwise**: move left (exclude current column character)
+
+4. **Build the result**:
+   - **LCS length**: value in dp[m][n] (bottom-right corner)
+   - **LCS sequence**: characters collected during backtracking (in reverse order)
+
+**Key Principle**: The algorithm builds optimal solutions for smaller subproblems and combines them to solve larger problems, ensuring the longest common subsequence is found efficiently.
 
 ### Applied Example
 
@@ -692,35 +684,41 @@ Starting from dp[8][9] = 6:
 
 #### Algorithm
 
-```
-Algorithm: PrimMST(Graph G)
-Input: Connected weighted graph G
-Output: Minimum Spanning Tree
+**Prim's Minimum Spanning Tree Algorithm:**
 
-1. START
-2. mstSet = {}
-3. key[] = array of size V, initialize all as INFINITY
-4. parent[] = array to store MST
-5. key[0] = 0  // Start with vertex 0
-6. parent[0] = -1
-7.
-8. FOR count = 0 TO V-1 DO
-9.     // Find minimum key vertex not in MST
-10.    u = extractMin(key, mstSet)
-11.    mstSet[u] = TRUE
-12.
-13.    // Update key values of adjacent vertices
-14.    FOR each vertex v adjacent to u DO
-15.        IF v not in mstSet AND weight(u,v) < key[v] THEN
-16.            parent[v] = u
-17.            key[v] = weight(u,v)
-18.        END IF
-19.    END FOR
-20. END FOR
-21.
-22. RETURN parent[]
-23. STOP
-```
+1. **Initialize the algorithm**:
+
+   - **Create an empty MST set** to track vertices included in the spanning tree
+   - **Set up a key array** with all values as infinity except the starting vertex (set to 0)
+   - **Initialize parent array** to track the MST structure
+   - **Choose any vertex as starting point** (typically vertex 0)
+
+2. **Main loop** (repeat until all vertices are included):
+
+   - **Find the minimum key vertex** that is not yet in the MST set
+   - **Add this vertex** to the MST set
+   - **Mark it as processed** to avoid revisiting
+
+3. **Update adjacent vertices**:
+
+   - **For each neighbor** of the newly added vertex:
+     - **If neighbor is not in MST** and **edge weight is smaller** than current key value:
+       - **Update the neighbor's key** to the smaller edge weight
+       - **Set the neighbor's parent** to the current vertex
+       - **This represents finding a cheaper connection** to the growing MST
+
+4. **Continue growing the tree**:
+
+   - **Each iteration adds one vertex** with the minimum cost edge connection
+   - **The algorithm ensures** that at each step, the cheapest possible edge is chosen
+   - **Process continues** until all vertices are connected
+
+5. **Result**:
+   - **Parent array contains** the MST structure
+   - **Total weight** is the sum of all selected edge weights
+   - **The tree is guaranteed** to be minimum cost and span all vertices
+
+**Key Strategy**: Always choose the cheapest edge that connects a vertex outside the current tree to a vertex inside the tree, ensuring minimum total cost.
 
 #### Example
 
@@ -764,58 +762,47 @@ Output: Minimum Spanning Tree
 
 #### Algorithm
 
-```
-Algorithm: KruskalMST(Graph G)
-Input: Connected weighted graph G
-Output: Minimum Spanning Tree
+**Kruskal's Minimum Spanning Tree Algorithm:**
 
-1. START
-2. result = []  // To store MST edges
-3. edges = getAllEdges(G)
-4. SORT edges by weight in ascending order
-5.
-6. // Initialize Union-Find
-7. FOR each vertex v DO
-8.     parent[v] = v
-9.     rank[v] = 0
-10. END FOR
-11.
-12. edgeCount = 0
-13. i = 0
-14. WHILE edgeCount < V-1 AND i < total_edges DO
-15.     edge = edges[i]
-16.     u = edge.source
-17.     v = edge.destination
-18.
-19.     // Check if adding this edge creates cycle
-20.     IF find(u) ≠ find(v) THEN
-21.         result[edgeCount] = edge
-22.         union(u, v)
-23.         edgeCount = edgeCount + 1
-24.     END IF
-25.     i = i + 1
-26. END WHILE
-27.
-28. RETURN result
-29. STOP
+1. **Prepare the edges**:
 
-// Union-Find Helper Functions
-Function find(x):
-    IF parent[x] ≠ x THEN
-        parent[x] = find(parent[x])  // Path compression
-    RETURN parent[x]
+   - **Collect all edges** from the graph into a list
+   - **Sort the entire edge list** in ascending order by weight
+   - **This ensures** we always consider the cheapest available edges first
 
-Function union(x, y):
-    rootX = find(x)
-    rootY = find(y)
-    IF rank[rootX] < rank[rootY] THEN
-        parent[rootX] = rootY
-    ELSE IF rank[rootX] > rank[rootY] THEN
-        parent[rootY] = rootX
-    ELSE
-        parent[rootY] = rootX
-        rank[rootX] = rank[rootX] + 1
-```
+2. **Initialize Union-Find data structure**:
+
+   - **Set each vertex as its own parent** (each vertex forms its own component)
+   - **Initialize rank arrays** to track tree heights for efficient union operations
+   - **This helps detect cycles** efficiently during edge addition
+
+3. **Process edges in weight order**:
+
+   - **For each edge in the sorted list**:
+     - **Extract source and destination vertices** of the current edge
+     - **Check if vertices belong to different components** using Union-Find
+     - **If they are in different components**:
+       - **Add the edge to MST** (it won't create a cycle)
+       - **Union the two components** (merge them into one)
+       - **Increment the edge counter**
+
+4. **Cycle prevention**:
+
+   - **If vertices are already connected** (same component):
+     - **Skip this edge** as it would create a cycle
+     - **Continue to next edge** in the sorted list
+
+5. **Termination**:
+
+   - **Stop when MST has V-1 edges** (where V is number of vertices)
+   - **This ensures** all vertices are connected with minimum edges
+
+6. **Union-Find operations**:
+   - **Find operation**: Determines which component a vertex belongs to
+   - **Union operation**: Merges two components into one
+   - **Path compression** and **union by rank** optimize these operations
+
+**Key Strategy**: Process edges from cheapest to most expensive, adding each edge only if it connects previously disconnected components, thus avoiding cycles while minimizing total cost.
 
 #### Applied Example
 
@@ -917,42 +904,50 @@ Function union(x, y):
 
 ### Huffman Algorithm Steps
 
-```
-Algorithm: HuffmanCoding(characters[], frequencies[])
-Input: Array of characters and their frequencies
-Output: Huffman codes for each character
+**Huffman Coding Algorithm:**
 
-1. START
-2. // Step 1: Create leaf nodes
-3. FOR each character c with frequency f DO
-4.     node = createLeafNode(c, f)
-5.     INSERT node into minHeap
-6. END FOR
-7.
-8. // Step 2: Build Huffman tree
-9. WHILE minHeap.size > 1 DO
-10.    left = EXTRACT_MIN(minHeap)
-11.    right = EXTRACT_MIN(minHeap)
-12.    merged = createInternalNode(left.freq + right.freq)
-13.    merged.left = left
-14.    merged.right = right
-15.    INSERT merged into minHeap
-16. END WHILE
-17.
-18. // Step 3: Generate codes
-19. root = EXTRACT_MIN(minHeap)
-20. generateCodes(root, "", codes)
-21. RETURN codes
-22. STOP
+1. **Analyze character frequencies**:
 
-Function generateCodes(node, code, codes):
-1. IF node.isLeaf THEN
-2.     codes[node.character] = code
-3.     RETURN
-4. END IF
-5. generateCodes(node.left, code + "0", codes)
-6. generateCodes(node.right, code + "1", codes)
-```
+   - **Count the frequency** of each character in the input text
+   - **Create leaf nodes** for each character with its frequency
+   - **Add all leaf nodes** to a priority queue (min-heap) ordered by frequency
+
+2. **Build the Huffman tree** using a greedy approach:
+
+   - **While more than one node exists** in the priority queue:
+     - **Extract the two nodes** with lowest frequencies
+     - **Create a new internal node** with frequency equal to sum of the two nodes
+     - **Set the two extracted nodes** as left and right children
+     - **Insert the new internal node** back into the priority queue
+
+3. **Generate binary codes** from the completed tree:
+
+   - **Start from the root** and traverse to each leaf
+   - **Assign '0' for left branches** and '1' for right branches
+   - **The path from root to leaf** gives the binary code for that character
+   - **More frequent characters** get shorter codes (closer to root)
+
+4. **Encode the text**:
+
+   - **Replace each character** in the original text with its corresponding binary code
+   - **Concatenate all codes** to form the compressed bit stream
+
+5. **Verification and analysis**:
+   - **Calculate compression ratio** by comparing original and compressed sizes
+   - **Ensure prefix property**: no code is a prefix of another code
+   - **Store the tree structure** for later decoding
+
+**Tree Construction Helper Process:**
+
+- **Find minimum frequency nodes**: Always select the two nodes with smallest frequencies
+- **Create parent node**: Combine selected nodes under a new parent with combined frequency
+- **Maintain heap property**: Keep the priority queue ordered after each insertion
+
+**Code Generation Process:**
+
+- **Traverse recursively**: Visit left child (append '0') and right child (append '1')
+- **Record leaf codes**: When reaching a leaf, save the accumulated path as the character's code
+- **Build encoding table**: Create a lookup table mapping characters to their binary codes
 
 ### Detailed Example
 
