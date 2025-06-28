@@ -1,6 +1,82 @@
 # Data Structures and Algorithms Questions
 
+Unit 1 and 2
+
+## 1. Algorithms
+
+1. Define the term ‘Algorithm’. Give the essential properties of an algorithm.
+2. Describe the Big Oh notation.
+3. Write down algorithm to evaluate postfix expression and also evaluate given postfix expression using the algorithm:  
+    `10, 7 + 30, 6 / * 8 -`
+4. (a) Let A[n] be an array of “n” numbers. Design a data structure and algorithm to perform any sequence of the following two operations:  
+    (i) Add(i, y): add the value y to the ith number in the array.  
+    (ii) Partial-sum(i): returns the sum of the first ”i” numbers in the array, i.e.,  
+    $$\sum_{j=1}^{i} A[j]$$
+
+## 2. Data Structures: Definitions and Types
+
+1. Define the term data structure. List some linear and non-linear data structures stating the application area where they will be used.
+2. Discuss Linear and Nonlinear data structure with example.
+3. Differentiate between array and linked list.
+
+## 3. Queues
+
+1. Define the types of queues.
+2. What is Queue? Explain Priority Queue. Write uses of Queue.
+3. (a) Write an algorithm for insertion and deletion of elements of a queue. Use a Boolean variable to distinguish between a queue being empty or full.
+4. (b) Consider the following linear queue capable of accommodating maximum five elements.  
+    Front = 2, Rear = 4, Queue = [_, L, M, N, _]  
+    Compute the following operations:  
+    (i) Add O  
+    (ii) Add P  
+    (iii) Delete two letters  
+    (iv) Add Q, R
+
+## 4. Arrays
+
+1. (a) How two-dimensional arrays are represented in memory? Also obtain the formula for calculating the address of any element stored in array, in case of column major order. (Make necessary assumptions yourself)
+2. (b) Drive the index formula for 2-Dimensional array stored as row major order.
+
+## 5. Stacks
+
+1. (b) Write a “C” program using stack to check whether a string is palindrome or not. Do not define empty, push, and pop functions. (Note: Palindrome is a sequence of characters that reads the same backward and forward.)
+2. (c) Transform the following prefix expression to infix:  
+    `++A-*$BCD/+EF*GHI`
+3. Define Stack. Convert the expressioninfix to prefix using stack:
+A*(B+D)/E-F*(G+H/K).
+4. What is the Tower of Hanoi problem? Explain the solutions of the Tower of
+Hanoi problem where the numbers of disks are 3 and numbers of pages are 3.
+
+## 6. Strings
+
+1. (b) Write function in C, which deletes all occurrences of a given character from a given string.
+
+## 7. Hashing
+
+1. Define Hashing. Discuss various methods of collision resolution with suitable example.
+2. What do you understand by hashing? What are the different hashing techniques? Discuss different techniques to resolve collision once it is occurred during hashing.
+3. Define Hash function. Explain Collision resolution strategies. How collision is resolved using separate chaining concept?
+4. Define hashing. What are the properties of a good hash function? With necessary examples explain four different hashing techniques.
+
+## 8. Parameter Passing
+
+1. (d) Explain parameter-passing technique used in C with example.
+
+## 9. Recursion
+
+1. (c) Let J and K be integers and suppose Q(J, K) is recursively defined as  
+    - Q(J, K) = 5 if J < K  
+    - Q(J, K) = Q(J-K, K+3) + J if J ≥ K  
+    Find Q(4, 7).
+
+
+Unit 4 and 5
+
 ## 1. Binary Trees
+
+(d) What do you mean by pattern matching? Discuss any pattern matching
+algorithm with proper example.
+(e) Write an algorithm which finds the transitive closure of a graph. 
 
 1. **Binary Search Tree (BST)**
     2. What is a binary search tree? Write an algorithm to implement recursive or iterative search for a binary search tree.
