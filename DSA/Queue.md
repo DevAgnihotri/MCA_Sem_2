@@ -141,16 +141,18 @@ void enqueue(int value) {
 
 // Removes and returns the front element from the queue
 int dequeue() {
-     if (front == -1 || front   rear) {
-          printf("Queue Underflow\n");
-          return -1;
-     } else
+    ```c
+        if (front == -1) {
+            printf("Queue Underflow\n");
+            return -1;
+        } else
+    ```
           return queue[front++];
 }
 
 // Returns the front element without removing it
 int peek() {
-     if (front == -1 || front   rear) {
+     if (front == -1 || front > rear) {
           printf("Queue is Empty\n");
           return -1;
      } else
@@ -159,7 +161,7 @@ int peek() {
 
 // Checks if the queue is empty
 int isEmpty() {
-     return (front == -1 || front   rear);
+     return (front == -1 || front > rear);
 }
 
 // Checks if the queue is full
@@ -257,7 +259,7 @@ A **circular queue** is a linear data structure that connects the last position 
 Below is an implementation of a circular queue using arrays in C, including insertion (enqueue), deletion (dequeue), and display operations:
 
 ```c
-#include <stdio.h 
+#include <stdio.h> 
 #define MAX 5
 
 int cqueue[MAX];
@@ -368,7 +370,7 @@ A **double-ended queue (deque)** is a linear data structure that allows insertio
 ### Complete Deque Implementation in C (Using Array)
 
 ```c
-#include <stdio.h 
+#include <stdio.h> 
 #define MAX 10
 
 int deque[MAX];
