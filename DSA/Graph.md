@@ -119,8 +119,17 @@ Hamilton Cycle: A → B → C → D → A (visits all vertices exactly once)
 There are three main ways to represent graphs in computer memory:
 
 ### 1. Adjacency Matrix
+**Definition:**  
+An adjacency matrix is a two-dimensional array (matrix) used to represent a graph. For a graph with *V* vertices, the matrix has dimensions *V × V*. Each cell at position *(i, j)* indicates whether there is an edge between vertex *i* and vertex *j*:
 
-**Definition:** A 2D array where entry (i,j) indicates whether there's an edge between vertex i and vertex j.
+- For **undirected graphs**, the matrix is symmetric:  
+    - `Adj[i][j] = 1` if there is an edge between vertex *i* and vertex *j*  
+    - `Adj[i][j] = 0` if there is no edge
+- For **directed graphs**,  
+    - `Adj[i][j] = 1` if there is an edge from vertex *i* to vertex *j*  
+    - `Adj[i][j] = 0` otherwise
+
+The adjacency matrix allows constant-time checks for the existence of an edge between any two vertices, but requires *O(V²)* space regardless of the number of edges.
 
 #### For Undirected Graph:
 
@@ -219,7 +228,11 @@ Adjacency List:
 ### DFS Algorithm:
 
 **Definition:**  
-Depth First Search (DFS) is a graph traversal technique that starts at a chosen node (vertex) and explores as far as possible along each branch before backtracking. In DFS, a node is visited, then one of its unvisited neighbors is selected for further exploration, continuing deeper until reaching a node with no unvisited neighbors. At that point, the algorithm backtracks to the previous node and continues the process until all nodes are visited.
+Depth First Search (DFS) is a graph traversal technique. 
+It starts from a chosen node and moves to one of its unvisited neighbors, then keeps going deeper from there. 
+If it reaches a node with no unvisited neighbors, it goes back (backtracks) to the previous node and tries a different path. 
+DFS continues this process until all nodes that can be reached from the starting node are visited. 
+This way, DFS explores each path as far as possible before trying other paths, making it useful for searching "deep" into a graph.
 
 **Key Points:**
 

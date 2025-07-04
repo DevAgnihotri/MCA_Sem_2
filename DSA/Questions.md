@@ -18,6 +18,8 @@ Unit 1 and 2
 1. Define the term data structure. List some linear and non-linear data structures stating the application area where they will be used.
 2. Discuss Linear and Nonlinear data structure with example.
 3. Differentiate between array and linked list.
+4. Define Data structure and also write down the primitive and non-primitive data
+structure in detail with examples. 
 
 ## 3. Queues
 
@@ -31,6 +33,11 @@ Unit 1 and 2
     (ii) Add P  
     (iii) Delete two letters  
     (iv) Add Q, R
+5. WAP it insert and element in already exisiting queue
+6. Define Queue also write the algorithm for insertion and deletion of element in a
+Queue.
+7. Why circular queues are better than simple queue? Write an algorithm to insert
+and delete an item from the circular queue. 
 
 ## 4. Arrays
 
@@ -46,10 +53,15 @@ Unit 1 and 2
 A*(B+D)/E-F*(G+H/K).
 4. What is the Tower of Hanoi problem? Explain the solutions of the Tower of
 Hanoi problem where the numbers of disks are 3 and numbers of pages are 3.
+5. Define Stack and algo for Push and Pop
 
-## 6. Strings
+## 6. Searching
 
 1. (b) Write function in C, which deletes all occurrences of a given character from a given string.
+2. Write an algorithm for binary search and discuss its speed compared with linear
+search.
+3. What is searching and sorting? Write an algorithm for linear search and binary
+search
 
 ## 7. Hashing
 
@@ -69,6 +81,25 @@ Hanoi problem where the numbers of disks are 3 and numbers of pages are 3.
     - Q(J, K) = Q(J-K, K+3) + J if J ≥ K  
     Find Q(4, 7).
 
+## 10. LL
+
+1. How to represent followings linked lists in memory provide their self-referential
+structure and proper diagram
+(i) Single linear Linked List
+(ii) Doubly linear Linked list
+(iii) Circular Doubly Linked List
+(iv) Header Li
+
+2. Give an algorithm or C function to perform following operations on single linear linked
+list
+(i) Insert a node after a given node
+(ii) Delete a node from end
+
+3. What is a 2 way LL and it's adv over one way LL
+4. C program to find the greatest common divisor
+5. C prog to reverse a LL
+6. What is doubly linked list? Write an algorithm to add an element in the doubly
+linked list before the given element.
 
 Unit 4 and 5
 
@@ -91,6 +122,10 @@ algorithm with proper example.
     1. Write recursive algorithms for Pre-Order, Post-Order, and In-Order traversals of a binary tree.
     2. Short note on tree traversal.
     3. Discuss the concept of inorder *successor* and inorder *predecessor* in a Binary Search Tree.
+    4. The pre-order and in-order traversal of binary tree is given below, construct the
+tree:
+preorder:-FAEKCDHGB
+in-order:-EACKFHDBG 
 
 3. **Memory Representation**
     1. Give static and dynamic memory representation of a binary tree.
