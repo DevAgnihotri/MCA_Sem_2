@@ -1,4 +1,36 @@
-## ✅ What is a Linked List?
+# PYQs on Linked Lists (with Answers)
+
+Below are important previous year questions (PYQs) on Linked Lists. Detailed answers are provided in the relevant sections below.
+
+1. **How to represent the following linked lists in memory? Provide their self-referential structure and proper diagram.**
+
+   - (i) Single linear Linked List
+   - (ii) Doubly linear Linked list
+   - (iii) Circular Doubly Linked List
+   - (iv) Header Linked List
+     See: [Memory Representation and Diagrams of Linked Lists](#memory-representation-and-diagrams-of-linked-lists)
+
+2. **Give an algorithm or C function to perform following operations on single linear linked list:**
+
+   - (i) Insert a node after a given node
+   - (ii) Delete a node from end
+     See: [Insert at End / Delete at End](#3b-delete-at-end) and [Insert a node after a given node](#pyq-2i-insert-a-node-after-a-given-node)
+
+3. **What is a 2 way LL and its advantages over one way LL?**
+   See: [What is a Linked List?](#what-is-a-linked-list)
+
+4. **C program to find the greatest common divisor (GCD)**
+   See: [PYQ 4: C program to find the greatest common divisor (GCD)](#pyq-4-c-program-to-find-the-greatest-common-divisor-gcd)
+
+5. **C program to reverse a linked list**
+   See: [Reversing a Singly Linked List](#reversing-a-singly-linked-list)
+
+6. **What is doubly linked list? Write an algorithm to add an element in the doubly linked list before the given element.**
+   See: [PYQ 6: Algorithm to add an element in the doubly linked list before a given element](#pyq-6-algorithm-to-add-an-element-in-the-doubly-linked-list-before-a-given-element)
+
+---
+
+## What is a Linked List?
 
 A **Linked List** is a way to store a collection of items (like numbers or words) in a sequence. It is called "linked" because each item, called a **node**, is connected to the next one using a pointer.
 
@@ -84,9 +116,7 @@ struct Node {
 
 ---
 
-## ✅ Operations on Singly Linked List
-
-## ✅ Operations on Singly Linked List
+##  Operations on Singly Linked List
 
 The 8 functions created for the singly linked list are:
 
@@ -162,6 +192,12 @@ void insertAtEnd(struct Node** head, int newData) {
 
 ### 3b. **Delete at End**
 
+PYQ 2(ii):
+
+**Delete a node from end (C function):**
+
+See the function `deleteAtEnd` below for deleting the last node of a singly linked list.
+
 ```c
 // Function to delete the last node of the linked list
 void deleteAtEnd(struct Node** head) {
@@ -183,6 +219,25 @@ void deleteAtEnd(struct Node** head) {
 
     free(temp->next);
     temp->next = NULL;
+}
+```
+
+---
+
+### PYQ 2(i): Insert a node after a given node
+
+PYQ 2(i):
+
+**Give an algorithm or C function to insert a node after a given node in a singly linked list.**
+
+```c
+// Insert a node after a given node
+void insertAfter(struct Node* prevNode, int newData) {
+    if (prevNode == NULL) return;
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = newData;
+    newNode->next = prevNode->next;
+    prevNode->next = newNode;
 }
 ```
 
@@ -556,6 +611,14 @@ Sorted List: 2 -> 5 -> 20 -> NULL
 
 ## ✅ Memory Representation and Diagrams of Linked Lists
 
+PYQ 1:
+
+**How to represent the following linked lists in memory? Provide their self-referential structure and proper diagram.**
+(i) Single linear Linked List
+(ii) Doubly linear Linked list
+(iii) Circular Doubly Linked List
+(iv) Header Linked List
+
 ### (i) **Singly Linear Linked List**
 
 **Self-referential Structure:**
@@ -829,3 +892,67 @@ void deleteNode(struct DNode** head, struct DNode* del) {
 
 - DLLs make deletion operations more efficient and straightforward, especially when you have a pointer to the node to be deleted.
 - SLLs require extra traversal to find the previous node, making deletion less efficient.
+
+---
+
+## PYQ 4: C program to find the greatest common divisor (GCD)
+
+PYQ 4:
+
+**C program to find the greatest common divisor (GCD) of two numbers**
+
+```c
+#include <stdio.h>
+int gcd(int a, int b) {
+    if (b == 0)
+        return a;
+    else
+        return gcd(b, a % b);
+}
+int main() {
+    int x = 36, y = 60;
+    printf("GCD of %d and %d is %d\n", x, y, gcd(x, y));
+    return 0;
+}
+```
+
+---
+
+## PYQ 6: Algorithm to add an element in the doubly linked list before a given element
+
+PYQ 6:
+
+**What is doubly linked list? Write an algorithm to add an element in the doubly linked list before the given element.**
+
+A **doubly linked list** is a linked list in which each node contains a pointer to both the next and previous nodes, allowing traversal in both directions.
+
+**Algorithm to insert before a given element:**
+
+1. Create a new node with the given data.
+2. Traverse the list to find the node with the target value.
+3. If the node is found:
+   - Set newNode->prev = target->prev
+   - Set newNode->next = target
+   - If target->prev is not NULL, set target->prev->next = newNode
+   - Set target->prev = newNode
+   - If the node is the head, update the head pointer to newNode
+4. If the node is not found, do nothing or report not found.
+
+```c
+// Insert before a given value in a doubly linked list
+void insertBefore(struct DNode** head, int target, int newData) {
+    struct DNode* curr = *head;
+    while (curr && curr->data != target)
+        curr = curr->next;
+    if (!curr) return; // Target not found
+    struct DNode* newNode = (struct DNode*)malloc(sizeof(struct DNode));
+    newNode->data = newData;
+    newNode->prev = curr->prev;
+    newNode->next = curr;
+    if (curr->prev)
+        curr->prev->next = newNode;
+    else
+        *head = newNode; // New node becomes head
+    curr->prev = newNode;
+}
+```

@@ -153,16 +153,18 @@ c22 = 7×2 + 3×4 = 14 + 12 = 26 ✓
 
 **Dynamic Programming (DP)** is an algorithmic technique for solving optimization problems by breaking them into smaller subproblems and storing solutions to avoid redundant calculations.
 
-#### Key Characteristics:
+#### Key Characteristics of Dynamic Programming
 
-1. **Optimal Substructure**: Optimal solution contains optimal solutions to subproblems
-2. **Overlapping Subproblems**: Same subproblems are solved multiple times
-3. **Memoization**: Store solutions to subproblems
+1. **Optimal Substructure**: The optimal solution to a problem can be constructed from optimal solutions of its subproblems.
+2. **Overlapping Subproblems**: The problem can be broken down into subproblems which are reused multiple times.
+3. **Memoization**: Solutions to subproblems are stored to avoid redundant computations, improving efficiency.
 
-#### DP Approaches:
+#### Dynamic Programming Approaches
 
-- **Top-Down (Memoization)**: Recursion with memory
-- **Bottom-Up (Tabulation)**: Iterative approach
+- **Top-Down (Memoization)**: Solve the problem recursively and store the results of subproblems in a table (usually a hash map or array). When a subproblem is encountered again, its solution is retrieved from the table instead of recomputing.
+- **Bottom-Up (Tabulation)**: Solve all possible subproblems iteratively, starting from the smallest, and build up solutions to larger subproblems using a table. This approach avoids recursion and fills the table in a systematic way.
+
+Both approaches ensure that each subproblem is solved only once, leading to significant performance improvements over naive recursive solutions.
 
 ---
 
@@ -319,7 +321,7 @@ c22 = 7×2 + 3×4 = 14 + 12 = 26 ✓
 **Question 1: Write down the algorithm of Floyd-Warshall to compute all-pair shortest paths in a graph. Also, apply it on a given graph.**
 
 ### Floyd-Warshall Algorithm
-
+(https://www.youtube.com/watch?v=DCDwITxLUZc&ab_channel=XtraLectures)
 #### Introduction
 
 **Floyd-Warshall Algorithm** finds the shortest paths between all pairs of vertices in a weighted graph. It works with negative edges but not negative cycles.
@@ -454,7 +456,7 @@ c22 = 7×2 + 3×4 = 14 + 12 = 26 ✓
 ---
 
 ## Longest Common Subsequence (LCS)
-
+(https://www.youtube.com/watch?v=XeqwjB7hVZ0&ab_channel=Alltechnicalsolution)
 ### Q2.1. Discuss the applications of the longest common subsequence (LCS).
 
 **Question 2.1: Discuss the applications of the longest common subsequence (LCS).**
@@ -464,90 +466,6 @@ c22 = 7×2 + 3×4 = 14 + 12 = 26 ✓
 A **Longest Common Subsequence (LCS)** of two sequences is the longest sequence that appears in both sequences in the same relative order, but not necessarily contiguous.
 
 ### Applications of LCS
-
-#### 1. Bioinformatics and DNA Analysis
-
-**Application**: Comparing DNA sequences to find similarities
-
-```
-DNA Sequence 1: AGGTAB
-DNA Sequence 2: GXTXAYB
-LCS: GTAB (common genetic pattern)
-```
-
-**Uses**:
-
-- Gene sequence alignment
-- Identifying mutations
-- Evolutionary analysis
-- Protein sequence comparison
-
-#### 2. Version Control Systems (Git, SVN)
-
-**Application**: Finding differences between file versions
-
-```
-Old File: "Hello World Program"
-New File: "Hello Beautiful World Program"
-LCS: "Hello World Program"
-Difference: Added "Beautiful"
-```
-
-**Uses**:
-
-- Efficient diff algorithms
-- Merge conflict resolution
-- Patch generation
-- Code repository management
-
-#### 3. Text Processing and Plagiarism Detection
-
-**Application**: Comparing documents for similarity
-
-```
-Text 1: "The quick brown fox jumps"
-Text 2: "A quick brown fox jumps high"
-LCS: "quick brown fox jumps" (similarity measure)
-```
-
-**Uses**:
-
-- Document similarity measurement
-- Plagiarism detection systems
-- Text comparison tools
-- Content matching algorithms
-
-#### 4. Data Compression
-
-**Application**: Finding repeating patterns for compression
-
-```
-Data Stream: ABCABCABC
-LCS patterns help identify: ABC repeats 3 times
-Compressed: ABC*3
-```
-
-#### 5. Speech Recognition
-
-**Application**: Matching spoken words with text patterns
-
-```
-Expected: "RECOGNIZE SPEECH"
-Actual: "RECOG SPEECH"
-LCS: "RECOG SPEECH" (error correction)
-```
-
-#### 6. File Comparison and Synchronization
-
-**Application**: Rsync, backup systems
-
-```
-File 1: [Block A][Block B][Block C]
-File 2: [Block A][Block D][Block C]
-LCS: [Block A][Block C] (unchanged blocks)
-Sync: Only send Block D
-```
-
 ### LCS Applications Summary
 
 | Domain                   | Application                               | Benefit                                  |
@@ -673,6 +591,8 @@ Starting from dp[8][9] = 6:
 - Huffman Coding
 
 ---
+
+(https://www.youtube.com/watch?v=f30rxGvPWPo&ab_channel=Dr.GajendraPurohit)
 
 ## Minimum Spanning Tree Algorithms
 

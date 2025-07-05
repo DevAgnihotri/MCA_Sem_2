@@ -144,8 +144,7 @@ in-order:-EACKFHDBG
     3. Write a short note on B-Tree.
     4. Write procedures for B-tree search and B-tree insert.
     5. Explain B+ tree index files and B-tree index files in detail.
-    6. 4. Write the difference between a B-tree and B+ tree. When might you prefer to use a B+ tree instead of a B-tree?
-    7. Describe the minimum cost spanning tree with a suitable example.
+    6. Write the difference between a B-tree and B+ tree. When might you prefer to use a B+ tree instead of a B-tree?
 
 
 
@@ -154,6 +153,11 @@ in-order:-EACKFHDBG
 **Graph Algorithms**
     1. Write down the algorithm of Floyd-Warshall to compute all-pair shortest paths in a graph. Also, apply it on a given graph.
     2. Explain Kruskal’s algorithm to find the minimum cost spanning tree with an example.
+    3. Define spanning tree. Describe the Dijikstra’s algorithm for finding shortest
+        path with the help of suitable example. 
+    4. Describe the minimum cost spanning tree with a suitable example.
+    5. Explain the minimum spanning tree algorithms with an example. 
+
 
 1. **Strassen’s Matrix Multiplication**
     1. How does Strassen’s matrix multiplication provide better time complexity over the classical matrix multiplication algorithm? Apply Strassen's algorithm on the following matrices:  
