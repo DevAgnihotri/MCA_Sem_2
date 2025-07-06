@@ -115,8 +115,11 @@ greet("Sam"); // returns "Hello, Sam!"
 - **Arrow Function (shorter way):**
 
   ```javascript
+  // Arrow Function (shorter way)
   const add = (a, b) => a + b;
-  ```
+
+  // Example usage:
+  let answer = add(2, 3); // answer is 5 ```
 
 ---
 
