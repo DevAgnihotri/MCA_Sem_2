@@ -122,14 +122,15 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 ```
 
 **Table: GET vs POST (Q4)**
-| Feature | GET (`doGet`) | POST (`doPost`) |
-|--------------|---------------|-------------------|
-| Data Location| URL | Request Body |
-| Security | Less secure | More secure |
-| Data Size | Limited | Large |
-| Use Case | Fetch data | Submit data/forms |
-| Bookmarked | Yes | No |
-| Cached | Yes | No |
+
+| Feature      | GET (`doGet`)         | POST (`doPost`)         |
+|--------------|-----------------------|-------------------------|
+| Data Location| URL                   | Request Body            |
+| Security     | Less secure           | More secure             |
+| Data Size    | Limited               | Large                   |
+| Use Case     | Fetch data            | Submit data/forms       |
+| Bookmarked   | Yes                   | No                      |
+| Cached       | Yes                   | No                      |
 
 ---
 
