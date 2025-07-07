@@ -192,28 +192,14 @@ Spring manages the bean’s entire life cycle, so you don’t have to worry abou
 
 ---
 
-## 3. Bean Scopes in Spring
-
-Spring provides several bean scopes that define how long a bean lives and how many instances are created.
-
-| Scope       | Description                                                                                           | Usage Example           |
-| ----------- | ----------------------------------------------------------------------------------------------------- | ----------------------- |
-| singleton   | Only one instance per Spring container (default). All requests for the bean return the same instance. | `@Scope("singleton")`   |
-| prototype   | A new instance is created every time the bean is requested from the container.                        | `@Scope("prototype")`   |
-| request     | A new bean instance is created for each HTTP request. (Web applications only)                         | `@Scope("request")`     |
-| session     | A new bean instance is created for each HTTP session. (Web applications only)                         | `@Scope("session")`     |
-| application | A single bean instance is created for the lifecycle of a ServletContext. (Web applications only)      | `@Scope("application")` |
-| websocket   | A single bean instance is created for the lifecycle of a WebSocket. (WebSocket apps only)             | `@Scope("websocket")`   |
-
-- **singleton:** Shared, single object for all requests (default).
-- **prototype:** New object each time you ask for it.
-- **request/session/application/websocket:** Used in web applications for different lifecycles.
-
----
-
 ## 4. Autowiring in Spring
 
 - **Autowiring** is a feature in Spring that automatically injects the required dependencies into a bean, so you don't have to do it manually.
+
+Autowiring is a feature in the Spring Framework that automatically injects dependencies into
+components, eliminating the need for manual configuration. It simplifies the process of wiring beans
+together by matching the types of the properties, constructor arguments, or method arguments. 
+
 - Types of autowiring:
   - **byName:** Injects dependency by matching the property name with a bean name.
   - **byType:** Injects dependency by matching the property type with a bean type.
