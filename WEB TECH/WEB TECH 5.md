@@ -4,7 +4,8 @@
 
 ## Spring Boot Overview
 
-Spring Boot is a framework built on top of the Spring Framework that simplifies the process of building stand-alone, production-grade Spring applications. It provides defaults for code and configuration, reducing boilerplate and setup time.
+Spring Boot is a framework built on top of the Spring Framework that simplifies the process of building stand-alone, production-grade Spring applications. It provides defaults for code and configuration, reducing boilerplate and setup time.The main goal of Spring Boot is to reduce, development, unit test, and integration test time and in Spring Boot, there is no requirement for XML
+configuration allowing developers to focus more on writing code for their applications.It facilitates Rapid Application Development (RAD) capabilities.
 
 ---
 
@@ -18,14 +19,16 @@ Spring Boot is a framework built on top of the Spring Framework that simplifies 
   - Has embedded servers (Tomcat, Jetty) so no need for external deployment.
   - Provides production-ready features (metrics, health checks, etc.).
   - Integrates easily with Spring ecosystem and third-party libraries.
+
 - **Summary Table:**
-  | Feature | Spring Boot Advantage |
-  |----------------------|----------------------------------------|
-  | Auto-configuration | Reduces manual setup |
-  | Embedded server | No need for external deployment (WAR) |
-  | Starter dependencies | Simplifies dependency management |
-  | Actuator | Built-in monitoring and management |
-  | Rapid prototyping | Enables quick development and iteration|
+
+  | Feature              | Spring Boot Advantage                        |
+  |----------------------|----------------------------------------------|
+  | Auto-configuration   | Reduces manual setup                         |
+  | Embedded server      | No need for external deployment (WAR)        |
+  | Starter dependencies | Simplifies dependency management             |
+  | Actuator             | Built-in monitoring and management           |
+  | Rapid prototyping    | Enables quick development and iteration      |
 
 ---
 
@@ -39,16 +42,16 @@ Spring Boot is a framework built on top of the Spring Framework that simplifies 
   - Rich ecosystem (Spring Data, Security, etc.).
   - Actuator for monitoring and management.
   - More flexible configuration (properties, YAML, profiles).
-- **JAX-RS** is mainly for REST APIs and lacks many of these features out-of-the-box.
-- **Summary Table:**
-  | Feature | Spring Boot | JAX-RS |
-  |--------------------|-------------|--------|
-  | Auto-configuration | Yes | No |
-  | Embedded server | Yes | No |
-  | Monitoring tools | Yes | No |
-  | Ecosystem | Large | Small |
 
----
+- **JAX-RS** is mainly for REST APIs and lacks many of these features out-of-the-box.
+
+- **Summary Table:**
+  | Feature            | Spring Boot | JAX-RS |
+  |--------------------|-------------|--------|
+  | Auto-configuration | Yes         | No     |
+  | Embedded server    | Yes         | No     |
+  | Monitoring tools   | Yes         | No     |
+  | Ecosystem          | Large       | Small  |
 
 ## Spring Boot Configuration
 
@@ -125,6 +128,18 @@ Spring Boot is a framework built on top of the Spring Framework that simplifies 
   ```properties
   management.endpoints.web.exposure.include=*
   ```
+
+Spring Boot Actuator is a sub-project of the Spring Boot framework that provides production-ready features for monitoring and managing Spring Boot applications. It exposes operational information about
+the running application through a set of built-in endpoints. Spring Boot provides an actuator dependency that can be used to monitor and manage your Spring Boot application.
+Features of Spring Boot Actuator:
+
+• Monitoring: Provides insights into the application's health, performance, and resource usage.
+• Metrics: Collects and exposes various metrics, such as JVM memory usage, HTTP request counts, and
+database connection pool statistics.
+• Health Checks: Allows for checking the health status of the application and its dependencies.
+• Configuration: Provides access to the application's configuration properties.
+• Auditing: Tracks application events and changes.
+• Management: Enables remote management of the application. 
 
 ---
 
