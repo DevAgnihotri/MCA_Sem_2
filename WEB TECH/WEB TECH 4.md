@@ -14,6 +14,7 @@ Spring is widely used because it solves many common problems in Java development
 - **Inversion of Control (IoC):** Instead of creating objects yourself, Spring creates and manages them for you. This makes your code cleaner and easier to manage.
 - **Dependency Injection (DI):** Spring automatically provides the objects (dependencies) that your classes need. This reduces the amount of code you write and makes testing easier.
 - **Modular:** You can use only the parts of Spring you need. For example, you can use just Spring Core for basic features, or add Spring MVC for web applications.
+
 - **Aspect-Oriented Programming (AOP):** Lets you separate common tasks (like logging or security) from your main business logic, so your code is less cluttered.
 - **Transaction Management:** Makes it easy to manage database transactions, so you can ensure data is saved or rolled back correctly.
 - **Integration:** Works well with other popular frameworks and technologies, such as Hibernate, JPA, and JMS.
@@ -71,7 +72,7 @@ Spring has a layered architecture. Each layer provides different functionalities
 | Configuration     | Manual setup (XML/Java config)          | Auto-configuration, minimal setup           |
 | Server Management | Requires external server (Tomcat, etc.) | Embedded servers (Tomcat, Jetty, etc.)      |
 | Starter Templates | Not available                           | Provides starter templates (starters)       |
-| Project Structure | Flexible, but more boilerplate          | Opinionated defaults, less boilerplate      |
+| Project Structure | Flexible, but more boilerplate          | choice based, less boilerplate              |
 | Deployment        | WAR packaging, needs deployment steps   | JAR packaging, run as standalone app        |
 | Complexity        | More complex, fine-grained control      | Simplified, rapid development               |
 | Learning Curve    | Steeper, more concepts to learn         | Easier for beginners                        |
