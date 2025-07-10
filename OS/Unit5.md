@@ -1,6 +1,147 @@
 # I/O Devices, I/O Subsystems, Buffering, Disk Storage, Disk Scheduling, and RAID: Extra Detailed Notes
 
 ---
+https://www.youtube.com/watch?v=dEt7mr9R_Z8&ab_channel=Lastmomenttuitions
+
+## File System: Explained in Simple English
+
+A **file system** is the way an operating system organizes and manages files and folders on a storage device (like a hard disk, SSD, or USB drive). It acts like a librarian, keeping track of where everything is stored, how to find it, and who can use it.
+
+### What Does a File System Do?
+
+- **Stores files and folders:** Keeps your documents, pictures, programs, and other data in an organized way.
+- **Manages space:** Decides where to put new files and how to use free space efficiently.
+- **Keeps track of locations:** Remembers where each file is physically stored on the disk.
+- **Controls access:** Decides who can read, write, or delete each file.
+- **Protects data:** Helps prevent data loss or corruption.
+
+### Main Parts of a File System
+
+1. **Files:** Collections of data (like text, images, or programs).
+2. **Directories (Folders):** Containers that organize files and other folders.
+3. **Metadata:** Information about each file (name, size, type, permissions, dates).
+4. **Allocation Table:** A map showing which parts of the disk are used by which files (e.g., FAT, NTFS Master File Table).
+5. **Free Space Management:** Keeps track of which parts of the disk are empty and available for new files.
+
+### How Files are Organized
+
+- **Hierarchical Structure:** Files are grouped into folders, and folders can contain more folders (like a tree).
+- **Path Names:** Each file has a unique path (e.g., `C:\Users\John\Documents\file.txt`).
+
+### How Data is Stored
+
+- **Blocks:** The disk is divided into small pieces called blocks. Files are stored in one or more blocks.
+- **Allocation Methods:** The file system decides how to assign blocks to files (contiguous, linked, indexed, etc.).
+
+### Common File Systems
+
+- **FAT (File Allocation Table):** Simple, used in USB drives and memory cards.
+- **NTFS (New Technology File System):** Used in Windows, supports large files, security, and recovery.
+- **ext4:** Used in Linux, fast and reliable.
+- **APFS:** Used in macOS, optimized for SSDs.
+
+### File System Operations
+
+- **Create:** Make a new file or folder.
+- **Read:** Open and view a file.
+- **Write:** Save changes to a file.
+- **Delete:** Remove a file or folder.
+- **Rename:** Change the name of a file or folder.
+- **Move/Copy:** Change the location or make a duplicate.
+
+### File System Protection and Security
+
+- **Permissions:** Decide who can read, write, or execute a file.
+- **Access Control Lists (ACLs):** More detailed rules for file access.
+- **Encryption:** Scrambles data to keep it safe from unauthorized users.
+
+### Why File Systems Matter
+
+- **Organization:** Makes it easy to find and manage files.
+- **Efficiency:** Uses storage space wisely.
+- **Reliability:** Protects data from loss or corruption.
+- **Security:** Keeps files safe from unauthorized access.
+
+In summary, a file system is like the brain of your storage device, making sure all your data is safe, organized, and easy to use.
+
+
+## Detailed Discussion: Linked, Contiguous, Indexed, and Multi-level Indexing File Allocation Schemes
+
+### 1. Contiguous Allocation
+
+- **How it works:** Each file occupies a set of contiguous (neighboring) blocks on the disk. The directory stores the starting block and the length (number of blocks) for each file.
+- **Advantages:**
+  - Simple to implement.
+  - Fast sequential and direct access (just calculate the block address).
+- **Disadvantages:**
+  - External fragmentation: Free space gets scattered, making it hard to find large enough contiguous blocks for new files.
+  - Difficult to grow files: If a file needs to expand, there may not be enough space after its current blocks.
+- **Use case:** Good for files with known, fixed sizes (e.g., system files, read-only media).
+
+**Diagram:**  
+```
+|---File A---|---File B---|---Free---|---File C---|
+```
+
+### 2. Linked Allocation
+
+- **How it works:** Each file is a linked list of disk blocks. Each block contains a pointer to the next block. The directory stores the address of the first block.
+- **Advantages:**
+  - No external fragmentation.
+  - Easy to grow files (just add another block and update the pointer).
+- **Disadvantages:**
+  - Slow direct access: To read block N, must follow N pointers from the start.
+  - Extra space needed for pointers in each block.
+  - Reliability: If a pointer is lost or corrupted, the rest of the file is inaccessible.
+- **Use case:** Suitable for sequential access files (e.g., log files).
+
+**Diagram:**  
+```
+[Block1]→[Block2]→[Block3]→[Block4]→NULL
+```
+
+### 3. Indexed Allocation
+
+- **How it works:** Each file has an index block that contains a list of pointers to all the file's disk blocks. The directory stores the address of the index block.
+- **Advantages:**
+  - Supports both sequential and direct access efficiently.
+  - No external fragmentation.
+  - Easy to grow files (add pointers to the index block).
+- **Disadvantages:**
+  - The index block can be large for big files (may need to limit file size or use multi-level indexing).
+  - Slight overhead for storing and accessing the index block.
+- **Use case:** Used in systems where both sequential and random access are needed.
+
+**Diagram:**  
+```
+[Index Block] → [Block1], [Block2], [Block3], ...
+```
+
+### 4. Multi-level Indexing
+
+- **How it works:** Uses multiple levels of index blocks (like a tree structure). The first-level index points to second-level index blocks, which then point to data blocks. This allows very large files to be managed efficiently.
+- **Advantages:**
+  - Can handle very large files (scalable).
+  - Efficient direct access using multiple index levels.
+- **Disadvantages:**
+  - More complex to implement.
+  - Slightly more overhead for accessing data (may require multiple reads to follow index pointers).
+- **Use case:** Used in UNIX file systems (e.g., inode structure with direct, single, double, and triple indirect pointers).
+
+**Diagram:**  
+```
+[Inode] → [Direct Blocks], [Single Indirect] → [Blocks], [Double Indirect] → [Index Blocks] → [Blocks], etc.
+```
+
+**Summary Table:**
+
+| Method         | Pros                        | Cons                        | Best For                |
+| -------------- | --------------------------- | --------------------------- | ----------------------- |
+| Contiguous     | Fast, simple                | Fragmentation, hard to grow | Fixed-size files        |
+| Linked         | Easy to grow, no frag.      | Slow direct access          | Sequential access files |
+| Indexed        | Fast access, flexible       | Index block overhead        | Mixed access patterns   |
+| Multi-level    | Handles very large files    | More complex                | Large file systems      |
+
 
 ## I/O Devices: What They Are and How They Work
 
