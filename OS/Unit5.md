@@ -3,7 +3,7 @@
 ---
 https://www.youtube.com/watch?v=dEt7mr9R_Z8&ab_channel=Lastmomenttuitions
 
-## File System: Explained in Simple English
+## Q File System: Explained in Simple English
 
 A **file system** is the way an operating system organizes and manages files and folders on a storage device (like a hard disk, SSD, or USB drive). It acts like a librarian, keeping track of where everything is stored, how to find it, and who can use it.
 
@@ -65,7 +65,7 @@ A **file system** is the way an operating system organizes and manages files and
 In summary, a file system is like the brain of your storage device, making sure all your data is safe, organized, and easy to use.
 
 
-## Detailed Discussion: Linked, Contiguous, Indexed, and Multi-level Indexing File Allocation Schemes
+## Q Detailed Discussion: Linked, Contiguous, Indexed, and Multi-level Indexing File Allocation Schemes
 
 ### 1. Contiguous Allocation
 
@@ -509,39 +509,6 @@ In summary, a file system is like the brain of your storage device, making sure 
 - Each block contains a pointer to the next block.
 - Only the starting block address is stored in the directory.
 - Good for sequential access, but slow for direct access.
-
-### Q3,4,5. Discuss in detail the ‘Linked, Contiguous, Index & Multi-level Indexing’ file allocation schemes.
-
-#### Contiguous Allocation
-
-- Each file occupies a set of contiguous (neighboring) blocks on disk.
-- Simple and fast for direct access.
-- Can cause external fragmentation (free space scattered).
-
-#### Linked Allocation
-
-- Each file is a linked list of disk blocks.
-- No external fragmentation, but slow for direct access.
-
-#### Indexed Allocation
-
-- Each file has an index block containing pointers to all its disk blocks.
-- Supports both sequential and direct access.
-- No external fragmentation, but index block can be large.
-
-#### Multi-level Indexing
-
-- Uses multiple levels of index blocks (like a tree).
-- Handles very large files efficiently.
-- Used in UNIX file systems (inode structure).
-
-| Method      | Pros                        | Cons                        |
-| ----------- | --------------------------- | --------------------------- |
-| Contiguous  | Fast, simple                | Fragmentation, hard to grow |
-| Linked      | No fragmentation, easy grow | Slow direct access          |
-| Indexed     | Fast access, flexible       | Index block overhead        |
-| Multi-level | Handles big files           | More complex                |
-
 
 ## File System Implementation Issues
 
