@@ -244,9 +244,81 @@ This ensures that only one process can be in the critical section at a time, mai
 
 Semaphores are important for making sure multiple processes can work together without causing errors or conflicts.
 
-Here is the OCR (extracted) text from the image:
-
 ---
+
+## Reader-Writer Problem with Semaphore (Simple Explanation)
+
+The **Reader-Writer Problem** is a classic synchronization problem that deals with situations where a shared resource (like a file or database) can be read by multiple processes at the same time, but only one process can write to it at a time. The challenge is to allow multiple readers to access the resource simultaneously, but writers must have exclusive access.
+
+### The Problem
+
+- **Readers**: Can read the shared resource at the same time as other readers.
+- **Writers**: Need exclusive access—no other reader or writer can access the resource while a writer is writing.
+
+The goal is to synchronize access so that:
+- Many readers can read at once.
+- Only one writer can write at a time.
+- No reader can read while a writer is writing.
+
+### Solution Using Semaphores
+
+We use semaphores to control access:
+
+- `mutex`: Protects the variable that counts the number of readers.
+- `rw_mutex`: Ensures mutual exclusion for writers (and blocks readers when a writer is writing).
+- `read_count`: Counts the number of readers currently reading.
+
+#### Pseudocode
+```
+Initialize:
+  mutex = 1         // Semaphore for protecting read_count
+  rw_mutex = 1      // Semaphore for writers and first/last reader
+  read_count = 0    // Number of active readers
+
+Reader Process:
+  wait(mutex)
+  read_count = read_count + 1
+  if read_count == 1 then
+    wait(rw_mutex)      // First reader locks resource for readers
+  end if
+  signal(mutex)
+
+  // Perform reading
+
+  wait(mutex)
+  read_count = read_count - 1
+  if read_count == 0 then
+    signal(rw_mutex)    // Last reader unlocks resource for writers
+  end if
+  signal(mutex)
+
+Writer Process:
+  wait(rw_mutex)
+  // Perform writing
+  signal(rw_mutex)
+```
+
+#### How It Works (Simple Steps)
+
+- **Readers**:
+  - The first reader locks the resource for readers (blocks writers).
+  - Multiple readers can enter and read together.
+  - The last reader unlocks the resource, allowing writers to proceed.
+
+- **Writers**:
+  - Only one writer can access the resource at a time.
+  - Writers must wait until there are no readers.
+
+### Key Points
+
+- Semaphores help coordinate access so that data is not corrupted.
+- This solution avoids race conditions and ensures safe sharing of resources.
+
+**In summary:**  
+- Many readers can read at once.
+- Only one writer can write at a time.
+- Writers get exclusive access, and readers coordinate using a counter and semaphores.
+
 
 ### Producer-Consumer Problem
 
