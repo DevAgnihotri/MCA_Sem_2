@@ -290,6 +290,22 @@
   - Process size: 212 KB
   - Allocated to 600 KB (largest block)
 
+  ### 4. Next Fit
+
+  - Similar to First Fit, but instead of always starting from the beginning of memory, Next Fit continues searching from where the last allocation was made.
+  - **Advantage:** Can be faster than First Fit in some cases, as it avoids repeatedly scanning the same small blocks at the start.
+  - **Disadvantage:** Can lead to fragmentation at the end of memory.
+  - **Example:**
+    - Memory blocks: 100 KB, 500 KB, 200 KB, 300 KB, 600 KB
+    - Process size: 212 KB
+    - If the last allocation was at the 200 KB block, Next Fit starts searching from there and would allocate the process to the next suitable block (300 KB in this case).
+  - **Summary Table:**
+
+  | Strategy   | Search Start Point | Allocation Pattern         |
+  |------------|-------------------|---------------------------|
+  | First Fit  | Beginning         | First suitable block      |
+  | Next Fit   | Last allocation   | Next suitable block found |
+
 ---
 
 ## 10. Page Replacement Algorithms [Q10]
@@ -491,6 +507,49 @@
 - 6: [5,2,6] (fault, 4 out)
 
 **Total page faults (Optimal, 3 frames):** 14
+
+---
+
+(https://www.youtube.com/watch?v=P90SuC6UKPo&pp=ygUtcmVzb3VyY2UgYWxsb2NhdGlvbiBncmFwaCBpbiBvcGVyYXRpbmcgc3lzdGVt)
+
+## Resource Allocation Graph (RAG)
+
+A **Resource Allocation Graph (RAG)** is a directed graph used to represent the allocation of resources to processes in a computer system. It is a fundamental tool for analyzing and detecting deadlocks in operating systems.
+
+### Components of RAG
+
+- **Processes:** Represented as circles (nodes) labeled P1, P2, etc.
+- **Resources:** Represented as squares (nodes) labeled R1, R2, etc.
+- **Edges:**
+  - **Request edge:** A directed edge from a process to a resource (P → R) indicates that the process has requested that resource and is waiting for it.
+  - **Assignment edge:** A directed edge from a resource to a process (R → P) indicates that the resource has been allocated to the process.
+
+### How RAG Works
+
+- The graph visually shows which processes are holding which resources and which are waiting.
+- **Deadlock Detection:** If the RAG contains a cycle, there is a possibility of deadlock. If each resource has only one instance, a cycle means a deadlock exists. If resources have multiple instances, a cycle may not always indicate a deadlock.
+
+### Example
+
+Suppose:
+- P1 holds R1 and requests R2
+- P2 holds R2 and requests R1
+
+The RAG would look like:
+
+```
+P1 → R2
+R2 → P2
+P2 → R1
+R1 → P1
+```
+
+This forms a cycle, indicating a deadlock.
+
+### Uses
+
+- RAGs help visualize and analyze resource allocation and potential deadlocks in systems.
+- They are used in deadlock avoidance and detection algorithms.
 
 ---
 
