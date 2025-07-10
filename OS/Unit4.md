@@ -385,9 +385,9 @@
 - It stores frequently accessed data and instructions to speed up processing.
 - **Levels:** L1 (fastest, smallest), L2, L3 (larger, slower).
 - **Organization:**
-  - **Direct-mapped cache:** Each block of main memory maps to only one cache line.
-  - **Fully associative cache:** Any block can go into any cache line.
-  - **Set-associative cache:** A compromise; each block can go into a set of lines.
+  - **Direct-mapped cache:** Each block of main memory maps to exactly one cache line, determined by the address. Simple and fast, but can lead to frequent conflicts if multiple blocks compete for the same line.
+  - **Fully associative cache:** Any block from main memory can be loaded into any cache line. This provides maximum flexibility and minimizes conflicts, but requires complex hardware to search all lines for a match.
+  - **Set-associative cache:** Memory blocks are divided into sets, and each set contains multiple lines (e.g., 2-way, 4-way). A block maps to a specific set, but can be placed in any line within that set. This balances speed and flexibility, reducing conflicts compared to direct-mapped caches while being simpler than fully associative caches.
 - **Cache hit:** Data is found in cache (fast access).
 - **Cache miss:** Data is not in cache (must fetch from main memory).
 
