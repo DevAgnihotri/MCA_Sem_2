@@ -365,7 +365,7 @@
 
 (https://www.youtube.com/watch?v=P90SuC6UKPo&pp=ygUtcmVzb3VyY2UgYWxsb2NhdGlvbiBncmFwaCBpbiBvcGVyYXRpbmcgc3lzdGVt)
 
-## Resource Allocation Graph (RAG)
+## Resource Allocation Graph (RAG) [Prcoess, Allocated, Request, Availble]
 
 A **Resource Allocation Graph (RAG)** is a directed graph used to represent the allocation of resources to processes in a computer system. It is a fundamental tool for analyzing and detecting deadlocks in operating systems.
 
@@ -406,7 +406,9 @@ This forms a cycle, indicating a deadlock.
 
 ---
 
-## 16. Banker's Algorithm: Safe Sequence
+## 16. Banker's Algorithm: Safe Sequence 
+
+*[Process, Max, Alloc, Availble] - check requirement < availble yes then do Alloc + Availble* 
 
 **Question 16: Can the system execute the following processes without deadlock occurring, if yes find safe sequence?**
 
