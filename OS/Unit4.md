@@ -410,7 +410,7 @@ This forms a cycle, indicating a deadlock.
 
 *[Process, Max, Alloc, Availble] - check need < availble yes then do Alloc + Availble, need=max-alloc* 
 
-**Question 16: Can the system execute the following processes without deadlock occurring, if yes find safe sequence?**
+**Question 16: Can the system execute the following processes without deadlock occurring, if yes find safe sequence ?**
 
 ### Given:
 
