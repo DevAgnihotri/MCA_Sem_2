@@ -45,7 +45,7 @@
   - Simple to implement.
   - Allows some multitasking.
 - **Disadvantages:**
-  - Internal fragmentation: Wasted space if a program is smaller than its partition.
+  - Internal fragmentation: Wasted space if a program is smaller than its partition. 
   - Number and size of partitions are fixed; not flexible.
 
 | Partition | Size (KB) | Program Loaded |
