@@ -32,7 +32,7 @@
 
 ---
 
-## Multiprogramming with Fixed Partitions
+## Q Multiprogramming with Fixed Partitions
 
 - **Multiprogramming** allows multiple programs to be in memory at the same time, so the CPU can switch between them.
 - **Fixed partitions:** Memory is divided into fixed-size blocks (partitions) when the system starts.
@@ -408,7 +408,7 @@ This forms a cycle, indicating a deadlock.
 
 ## 16. Banker's Algorithm: Safe Sequence 
 
-*[Process, Max, Alloc, Availble] - check requirement < availble yes then do Alloc + Availble* 
+*[Process, Max, Alloc, Availble] - check need < availble yes then do Alloc + Availble, need=max-alloc* 
 
 **Question 16: Can the system execute the following processes without deadlock occurring, if yes find safe sequence?**
 
