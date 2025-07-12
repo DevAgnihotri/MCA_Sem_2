@@ -389,6 +389,8 @@ Array: 4, 1, 3, 9, 7
 
 ## Quick Sort
 
+(https://www.youtube.com/shorts/mPW4cMAh-2I)
+
 ### Definition
 
 **Quick Sort** is a fast and efficient sorting algorithm that uses the "divide and conquer" approach. It works by selecting a "pivot" element from the list and partitioning the other elements into two groups: those less than the pivot and those greater than the pivot. The process is then repeated (recursively) for each group until the whole list is sorted.
@@ -485,6 +487,8 @@ Let's sort step by step:
 - **Space complexity:** O(log n) due to recursion stack (in-place sorting, no extra array needed)
 
 ## Merge Sort
+
+(https://www.youtube.com/shorts/MkonenVLMbY?feature=share)
 
 ### Definition
 
