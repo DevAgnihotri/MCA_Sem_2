@@ -120,6 +120,8 @@ Selection sort is a simple sorting algorithm that sorts a list by repeatedly fin
 
 ### Example
 
+#### Q12. Apply selection sort algorithm on given data to sort in ascending order: 5, 8, 6, 2, 1, 3
+
 Suppose we have the list: 5, 8, 6, 2, 1, 3
 
 - **First pass:**
@@ -174,24 +176,9 @@ int main() {
 
 ---
 
-### Q12. Apply selection sort algorithm on given data to sort in ascending order: 5, 8, 6, 2, 1, 3
-
-**Step-by-step solution:**
-
-- Start: 5, 8, 6, 2, 1, 3
-- Pass 1: Find min (1), swap with 5 → 1, 8, 6, 2, 5, 3
-- Pass 2: Find min (2), swap with 8 → 1, 2, 6, 8, 5, 3
-- Pass 3: Find min (3), swap with 6 → 1, 2, 3, 8, 5, 6
-- Pass 4: Find min (5), swap with 8 → 1, 2, 3, 5, 8, 6
-- Pass 5: Find min (6), swap with 8 → 1, 2, 3, 5, 6, 8
-- Sorted: 1, 2, 3, 5, 6, 8
-
-**Final Answer:**
-1, 2, 3, 5, 6, 8
-
----
-
 ## Insertion Sort
+
+(https://www.youtube.com/watch?v=O0VbBkUvriI&ab_channel=CS50)
 
 ### Definition
 
