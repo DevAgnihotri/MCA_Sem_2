@@ -386,3 +386,161 @@ Array: 4, 1, 3, 9, 7
 ---
 
 **(Mutual Questions: Q17, Q19)**
+
+## Quick Sort
+
+### Definition
+
+**Quick Sort** is a fast and efficient sorting algorithm that uses the "divide and conquer" approach. It works by selecting a "pivot" element from the list and partitioning the other elements into two groups: those less than the pivot and those greater than the pivot. The process is then repeated (recursively) for each group until the whole list is sorted.
+
+### How Quick Sort Works (Step-by-Step):
+
+1. Choose a pivot element from the array (often the first, last, or middle element).
+2. Rearrange the array so that all elements less than the pivot come before it, and all elements greater come after it. This is called "partitioning".
+3. The pivot is now in its correct sorted position.
+4. Recursively apply the above steps to the sub-arrays of elements less than and greater than the pivot.
+5. Continue until each sub-array has one or zero elements (which means it is sorted).
+
+---
+
+### Example: Quick Sort on [5, 8, 7, 6, 3, 4, 1, 9, 2, 10]
+
+Let's sort the array step by step:
+
+**Step 1:** Choose pivot (let's pick the last element, 10).
+
+- Partition: All elements are less than 10, so after partition, 10 is at the end.
+
+**Step 2:** Now, quick sort the sub-array [5, 8, 7, 6, 3, 4, 1, 9, 2] (pivot is 10).
+
+- Choose pivot 2 (last element).
+- Partition: [1] [2] [5, 8, 7, 6, 3, 4, 9]
+- 2 is now in its correct position.
+
+**Step 3:** Quick sort [1] (already sorted).
+
+**Step 4:** Quick sort [5, 8, 7, 6, 3, 4, 9] (pivot 9).
+
+- Partition: [5, 8, 7, 6, 3, 4] [9]
+- 9 is now in its correct position.
+
+**Step 5:** Quick sort [5, 8, 7, 6, 3, 4] (pivot 4).
+
+- Partition: [3] [4] [5, 8, 7, 6]
+- 4 is now in its correct position.
+
+**Step 6:** Quick sort [3] (already sorted).
+
+**Step 7:** Quick sort [5, 8, 7, 6] (pivot 6).
+
+- Partition: [5] [6] [8, 7]
+- 6 is now in its correct position.
+
+**Step 8:** Quick sort [5] (already sorted).
+
+**Step 9:** Quick sort [8, 7] (pivot 7).
+
+- Partition: [7] [8]
+- Both are now sorted.
+
+**Final sorted array:** 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+
+---
+
+### Quick Sort Algorithm (Pseudocode)
+
+1. If the array has 1 or 0 elements, it is already sorted.
+2. Choose a pivot element.
+3. Partition the array into two sub-arrays:
+    - Left: elements less than pivot
+    - Right: elements greater than pivot
+4. Recursively apply quick sort to the left and right sub-arrays.
+5. Combine the sorted sub-arrays and the pivot.
+
+---
+
+### Apply Quick Sort on [65, 70, 75, 80, 85, 60, 55, 40, 45]
+
+Let's sort step by step:
+
+1. Choose pivot (45).
+2. Partition: [40] [45] [70, 75, 80, 85, 60, 55, 65]
+3. Quick sort [40] (already sorted).
+4. Quick sort [70, 75, 80, 85, 60, 55, 65] (pivot 65).
+5. Partition: [60, 55] [65] [70, 75, 80, 85]
+6. Quick sort [60, 55] (pivot 55): [55] [60]
+7. Quick sort [70, 75, 80, 85] (pivot 85): [70, 75, 80] [85]
+8. Quick sort [70, 75, 80] (pivot 80): [70, 75] [80]
+9. Quick sort [70, 75] (pivot 75): [70] [75]
+
+**Final sorted array:** 40, 45, 55, 60, 65, 70, 75, 80, 85
+
+---
+
+### Time and Space Complexity
+
+- **Best case:** O(n log n) (when partitions are balanced)
+- **Average case:** O(n log n)
+- **Worst case:** O(n^2) (when partitions are very unbalanced, e.g., already sorted array)
+- **Space complexity:** O(log n) due to recursion stack (in-place sorting, no extra array needed)
+
+## Merge Sort
+
+### Definition
+
+**Merge Sort** is a divide-and-conquer sorting algorithm. It divides the input array into two halves, recursively sorts each half, and then merges the two sorted halves to produce the final sorted array. Merge sort is stable and guarantees O(n log n) time complexity for all cases.
+
+### Explanation
+
+- **Divide:** Split the array into two halves.
+- **Conquer:** Recursively sort each half.
+- **Combine:** Merge the two sorted halves into a single sorted array.
+
+### Merge Sort Algorithm (Step-by-step)
+
+1. If the array has 1 or 0 elements, it is already sorted.
+2. Divide the array into two halves.
+3. Recursively apply merge sort to each half.
+4. Merge the two sorted halves into a single sorted array.
+
+### Merge Sort Algorithm (Pseudocode)
+
+```
+MERGE-SORT(arr, left, right):
+    if left < right:
+        mid = (left + right) / 2
+        MERGE-SORT(arr, left, mid)
+        MERGE-SORT(arr, mid + 1, right)
+        MERGE(arr, left, mid, right)
+```
+
+### Example: Sort `75, 10, 20, 70, 80, 90, 100, 40, 30, 50` using Merge Sort
+
+**Step 1:** Divide the array  
+[75, 10, 20, 70, 80] | [90, 100, 40, 30, 50]
+
+**Step 2:** Recursively divide  
+[75, 10, 20] | [70, 80] | [90, 100] | [40, 30, 50]
+
+**Step 3:** Continue dividing  
+[75, 10] | [20] | [70] | [80] | [90] | [100] | [40, 30] | [50]
+
+**Step 4:** Sort and merge  
+[10, 75] | [20] → [10, 20, 75]  
+[70, 80] → [70, 80]  
+[10, 20, 75] | [70, 80] → [10, 20, 70, 75, 80]
+
+[90, 100] → [90, 100]  
+[30, 40] | [50] → [30, 40, 50]  
+[90, 100] | [30, 40, 50] → [30, 40, 50, 90, 100]
+
+**Step 5:** Final merge  
+[10, 20, 70, 75, 80] | [30, 40, 50, 90, 100] → [10, 20, 30, 40, 50, 70, 75, 80, 90, 100]
+
+**Sorted array:**  
+10, 20, 30, 40, 50, 70, 75, 80, 90, 100
+
+### Time and Space Complexity
+
+- **Time complexity:** O(n log n) in all cases
+- **Space complexity:** O(n) (requires extra space for merging)
