@@ -638,8 +638,6 @@ Step 2: Left rotation at 10
 
 ### Q8. Explain Complete Binary Tree and Extended Binary Tree.
 
-**Questions 7 & 8: Differentiate between a Binary Tree and a Complete Binary Tree. Explain Complete Binary Tree and Extended Binary Tree.**
-
 ### Binary Tree vs Complete Binary Tree
 
 | Aspect                   | Binary Tree                                                      | Complete Binary Tree                                                                                              |
