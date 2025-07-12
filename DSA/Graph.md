@@ -116,7 +116,7 @@ Hamilton Cycle: A → B → C → D → A (visits all vertices exactly once)
 
 **Questions 1-5: What are the different ways the graph is represented in computer memory? Explain with suitable example.**
 
-There are three main ways to represent graphs in computer memory:
+There are two main ways to represent graphs in computer memory:
 
 ### 1. Adjacency Matrix
 **Definition:**  
