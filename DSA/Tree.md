@@ -195,37 +195,24 @@ A **Binary Search Tree (BST)** is a binary tree with the following properties:
 - All nodes in the right subtree have values greater than the root
 - Both left and right subtrees are also BSTs
 
-### Search Algorithms
+### Algorithm: Search in a Binary Search Tree (BST)
 
-#### Recursive Search Algorithm:
+#### Recursive Search Algorithm (Pseudocode)
 
-```c
-struct TreeNode* searchRecursive(struct TreeNode* root, int key) {
-    // Base cases: root is null or key is present at root
-    if (root == NULL || root->data == key)
-        return root;
-
-    // Key is greater than root's data
-    if (key > root->data)
-        return searchRecursive(root->right, key);
-
-    // Key is smaller than root's data
-    return searchRecursive(root->left, key);
-}
 ```
+Algorithm BST_Search(root, key)
+Input: root - pointer to the root node of BST
+    key  - value to search for
+Output: pointer to the node containing key, or NULL if not found
 
-#### Iterative Search Algorithm:
-
-```c
-struct TreeNode* searchIterative(struct TreeNode* root, int key) {
-    while (root != NULL && root->data != key) {
-        if (key > root->data)
-            root = root->right;
-        else
-            root = root->left;
-    }
-    return root;
-}
+1. If root is NULL
+      return NULL
+2. If root.data == key
+      return root
+3. If key < root.data
+      return BST_Search(root.left, key)
+4. Else
+      return BST_Search(root.right, key)
 ```
 
 #### Time Complexity:
@@ -1376,6 +1363,120 @@ D   E   F
   B   C  (these are threads)
 ```
 
+---
+
+## Collective Topic: B-Trees and B+ Trees
+
+Below are detailed, easy-to-understand answers to the following questions:
+
+### 3. Write a short note on B-Tree.
+
+A **B-Tree** is a self-balancing search tree used to store large amounts of sorted data and allow searches, sequential access, insertions, and deletions in logarithmic time. B-Trees are widely used in databases and file systems because they minimize disk reads.
+
+**Key Features:**
+- Each node can have multiple keys and children (not just two like binary trees).
+- All leaves are at the same level (balanced).
+- Internal nodes can have a variable number of children within a predefined range.
+- Efficient for systems that read and write large blocks of data (like disks).
+
+**Properties:**
+- A B-Tree of order *m* has at most *m* children per node.
+- Every node (except root) must have at least ⌈m/2⌉ children.
+- All leaves appear at the same level.
+- Keys within a node are sorted.
+
+**Use Cases:**  
+Databases, file systems, and any application where large data blocks are stored and accessed efficiently.
+
+---
+
+### 4. Write procedures for B-tree search and B-tree insert.
+
+#### B-Tree Search Procedure
+
+1. Start at the root node.
+2. For the current node:
+    - Scan the keys in order.
+    - If the key matches, return the node.
+    - If the key is less than a key in the node, move to the left child.
+    - If the key is greater than all keys, move to the rightmost child.
+3. Repeat until the key is found or a leaf is reached (not found).
+
+**Pseudocode:**
+```
+BTreeSearch(node, key):
+     i = 1
+     while i ≤ n and key > node.key[i]:
+          i = i + 1
+     if i ≤ n and key == node.key[i]:
+          return (node, i)
+     elif node.isLeaf:
+          return NULL
+     else:
+          return BTreeSearch(node.child[i], key)
+```
+
+#### B-Tree Insert Procedure
+
+1. Search for the correct leaf node where the key should be inserted.
+2. Insert the key in sorted order in the node.
+3. If the node overflows (has more than *m-1* keys), split the node:
+    - The middle key moves up to the parent.
+    - The node is split into two nodes.
+4. If the parent overflows, repeat the split process up to the root.
+5. If the root splits, create a new root.
+
+**Summary:**  
+Insertion may cause nodes to split and the tree to grow in height, but the tree remains balanced.
+
+---
+
+### 5. Explain B+ tree index files and B-tree index files in detail.
+
+#### B-Tree Index Files
+
+- B-Tree index files use B-Trees to organize and search for records efficiently.
+- Each node contains keys and pointers to child nodes or data records.
+- Both internal and leaf nodes can store data pointers.
+- Searching, insertion, and deletion are efficient (O(log n)).
+
+#### B+ Tree Index Files
+
+- B+ Trees are a variation of B-Trees used in databases and file systems.
+- All data records are stored at the leaf level; internal nodes only store keys for navigation.
+- Leaf nodes are linked together, making range queries and full scans faster.
+- Internal nodes act as a directory, while leaves hold actual data pointers.
+
+**Advantages of B+ Trees for Indexing:**
+- Faster range queries due to linked leaves.
+- All data at the same level, making sequential access efficient.
+- Internal nodes are smaller, allowing more keys per node and reducing tree height.
+
+---
+
+### 6. Write the difference between a B-tree and B+ tree. When might you prefer to use a B+ tree instead of a B-tree?
+
+| Aspect                | B-Tree                                   | B+ Tree                                  |
+|-----------------------|------------------------------------------|------------------------------------------|
+| **Data Storage**      | Data in both internal and leaf nodes     | Data only in leaf nodes                  |
+| **Leaf Node Linking** | Not necessarily linked                   | Leaf nodes are linked (linked list)      |
+| **Search**            | May end at internal or leaf node         | Always ends at leaf node                 |
+| **Range Queries**     | Slower, must traverse tree               | Faster, scan linked leaves sequentially  |
+| **Tree Height**       | Slightly taller (less keys per node)     | Shorter (more keys per internal node)    |
+| **Use Case**          | Good for single key lookups              | Best for range queries and full scans    |
+
+**When to Prefer B+ Tree:**
+- When you need efficient range queries or ordered traversals (e.g., database indexes).
+- When you want all data at the leaf level for easier sequential access.
+- When you need to minimize tree height for faster search and update operations.
+
+---
+
+**In summary:**  
+- **B-Trees** are general-purpose balanced trees for fast search, insert, and delete.
+- **B+ Trees** are optimized for database and file system indexing, especially when range queries and sequential access are important.
+
+
 ### Q5.2. Explain the operation of a threaded binary tree.
 
 ### Operations of a Threaded Binary Tree
@@ -1461,6 +1562,8 @@ Threaded binary trees are especially useful when frequent traversals are needed 
 4. **Memory-Constrained Systems**: When stack space is limited
 
 ---
+
+
 
 ## Huffman Coding Using Binary Tree
 
