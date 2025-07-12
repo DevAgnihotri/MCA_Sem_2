@@ -8,12 +8,14 @@ This guide provides a comprehensive overview of tree data structures, focusing o
 - [Binary Trees](#binary-trees)
 - [Binary Tree Representation](#binary-tree-representation)
 - [Binary Search Tree (BST)](#binary-search-tree-bst)
+- [AVL Trees](#avl-trees)
 - [Complete Binary Tree](#complete-binary-tree)
 - [Summary Table: Tree Types Comparison](#summary-table-tree-types-comparison)
 - [Tree Traversal Algorithms](#tree-traversal-algorithms)
 - [Constructing Binary Tree from Given Tree Traversal](#constructing-binary-tree-from-given-tree-traversal)
 - [Operations in Binary Search Tree](#operations-in-binary-search-tree)
 - [Threaded Binary Trees](#threaded-binary-trees)
+- [Collective Topic: B-Trees and B+ Trees](#collective-topic-b-trees-and-b-trees)
 - [Huffman Coding Using Binary Tree](#huffman-coding-using-binary-tree)
 
 ---
@@ -467,6 +469,166 @@ Successor of 10 = 15 (leftmost in right subtree)
 Successor of 15 = 20 (lowest ancestor)
 Successor of 25 = 30 (lowest ancestor)
 ```
+
+---
+
+## AVL Trees
+
+### Q What is an AVL Tree?
+
+An **AVL tree** is a special type of self-balancing binary search tree (BST). It was named after its inventors Adelson-Velsky and Landis. In an AVL tree, the heights of the left and right subtrees of every node differ by at most one. This property ensures that the tree remains approximately balanced, which keeps operations like search, insert, and delete efficient (O(log n) time).
+
+#### Key Points:
+- **Self-balancing:** The tree automatically keeps itself balanced after every insertion or deletion.
+- **Binary Search Tree:** It follows all BST properties.
+- **Height-balanced:** The difference in height between left and right subtrees (called the balancing factor) is always -1, 0, or +1 for every node.
+
+---
+
+### Q What is the Balancing Factor?
+
+The **balancing factor** of a node in an AVL tree is calculated as:
+
+```
+Balancing Factor = Height of Left Subtree - Height of Right Subtree
+```
+
+- If the balancing factor is **-1, 0, or +1**, the node is balanced.
+- If it becomes less than -1 or greater than +1, the tree needs to be rebalanced.
+
+---
+
+### Q Balancing Methods in AVL Trees
+
+When an insertion or deletion causes the balancing factor of a node to become less than -1 or greater than +1, the tree must be rebalanced. This is done using **rotations**.
+
+#### Types of Rotations
+
+There are four possible cases:
+
+1. **Left-Left (LL) Case:**  
+    - Insertion in the left subtree of the left child.
+    - **Solution:** Right rotation.
+
+2. **Right-Right (RR) Case:**  
+    - Insertion in the right subtree of the right child.
+    - **Solution:** Left rotation.
+
+3. **Left-Right (LR) Case:**  
+    - Insertion in the right subtree of the left child.
+    - **Solution:** Left rotation on left child, then right rotation on node.
+
+4. **Right-Left (RL) Case:**  
+    - Insertion in the left subtree of the right child.
+    - **Solution:** Right rotation on right child, then left rotation on node.
+
+#### Visual Examples
+
+**1. LL Case (Right Rotation):**
+
+```
+Before:
+     30
+    /
+ 20
+ /
+10
+
+Insert 10 causes imbalance at 30 (BF = 2)
+
+After right rotation at 30:
+    20
+  /  \
+10   30
+```
+
+**2. RR Case (Left Rotation):**
+
+```
+Before:
+10
+  \
+  20
+     \
+     30
+
+Insert 30 causes imbalance at 10 (BF = -2)
+
+After left rotation at 10:
+    20
+  /  \
+10   30
+```
+
+**3. LR Case (Left-Right Rotation):**
+
+```
+Before:
+     30
+    /
+ 20
+    \
+    25
+
+Insert 25 causes imbalance at 30 (BF = 2)
+
+Step 1: Left rotation at 20
+     30
+    /
+ 25
+ /
+20
+
+Step 2: Right rotation at 30
+    25
+  /  \
+20   30
+```
+
+**4. RL Case (Right-Left Rotation):**
+
+```
+Before:
+10
+  \
+  30
+  /
+20
+
+Insert 20 causes imbalance at 10 (BF = -2)
+
+Step 1: Right rotation at 30
+10
+  \
+ 20
+    \
+    30
+
+Step 2: Left rotation at 10
+    20
+  /  \
+10   30
+```
+
+---
+
+### Summary Table: AVL Tree Rotations
+
+| Case | Where Insertion Occurs         | Rotation(s) Needed         |
+|------|-------------------------------|---------------------------|
+| LL   | Left of left child            | Right rotation            |
+| RR   | Right of right child          | Left rotation             |
+| LR   | Right of left child           | Left, then right rotation |
+| RL   | Left of right child           | Right, then left rotation |
+
+---
+
+### Key Points
+
+- **AVL trees** are always balanced, so operations are fast.
+- **Balancing factor** helps detect imbalance.
+- **Rotations** restore balance after insertions or deletions.
+- **Balanced binary trees** (like AVL) are crucial for efficient data structures.
 
 ---
 
@@ -1367,7 +1529,7 @@ D   E   F
 
 ## Collective Topic: B-Trees and B+ Trees
 
-Below are detailed, easy-to-understand answers to the following questions:
+(https://www.youtube.com/watch?v=BwUvgG29fPc&pp=ygUWYiB0cmVlIGIrIHRyZWUgYiogdHJlZQ%3D%3D)
 
 ### 3. Write a short note on B-Tree.
 
@@ -1562,8 +1724,6 @@ Threaded binary trees are especially useful when frequent traversals are needed 
 4. **Memory-Constrained Systems**: When stack space is limited
 
 ---
-
-
 
 ## Huffman Coding Using Binary Tree
 
