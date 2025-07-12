@@ -1,7 +1,5 @@
 # Searching and Hashing: Concepts, Techniques, and PYQs (with Answers)
 
-This note covers the concepts of searching and hashing in data structures, including all important previous year questions (PYQs) with detailed, easy-to-understand answers. Each question is clearly marked and answered within the relevant topic.
-
 ---
 
 ## 1. Concept of Searching
