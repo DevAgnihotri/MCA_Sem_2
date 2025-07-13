@@ -316,6 +316,28 @@ A **heap** is a special binary tree-based data structure that satisfies the heap
 - A **heap** is a complete binary tree where each parent is greater (max-heap) or smaller (min-heap) than its children.
 - **Heap sort** works by building a max-heap, then repeatedly swapping the root with the last element and reducing the heap size, maintaining the heap each time.
 
+### What is Heapify?
+
+**Heapify** is the process of rearranging a binary tree (or array representation) to satisfy the heap property. Given a node in the tree, heapify ensures that the subtree rooted at that node is a valid max-heap (or min-heap).
+
+- In a **max-heap**, heapify ensures the parent node is greater than or equal to its children.
+- In a **min-heap**, heapify ensures the parent node is less than or equal to its children.
+
+**How heapify works:**
+1. Compare the parent node with its left and right children.
+2. If the heap property is violated (e.g., the parent is smaller than a child in a max-heap), swap the parent with the largest child.
+3. Recursively heapify the affected subtree.
+
+**Usage in Heap Sort:**  
+Heapify is used to maintain the heap property after removing the root or after building the initial heap.
+
+**Example (max-heap):**
+Given array: `[4, 10, 3, 5, 1]`, heapify at index 0:
+- 4 (parent), 10 (left child), 3 (right child)
+- 10 is largest, swap 4 and 10 → `[10, 4, 3, 5, 1]`
+- Heapify subtree rooted at index 1 if needed.
+
+---
 ---
 
 ### Q17. Write heap sort algorithm and draw the max-heap only for following data 1,2,3,4,5,6,7,8,9,10
