@@ -158,7 +158,7 @@ int dequeue() {
 Below is a simple queue implementation using an array in C, with comments explaining each operation:
 
 ```c
-#include <stdio.h 
+#include <stdio.h> 
 #define MAX 100
 
 int queue[MAX];
@@ -176,12 +176,11 @@ void enqueue(int value) {
 
 // Removes and returns the front element from the queue
 int dequeue() {
-    ```c
         if (front == -1) {
             printf("Queue Underflow\n");
             return -1;
         } else
-    ```
+    
           return queue[front++];
 }
 
@@ -275,113 +274,56 @@ A **circular queue** is a linear data structure that connects the last position 
   - In a simple queue, once the rear reaches the end of the array, no more elements can be added even if there is space at the front (due to deletions).
   - Circular queues connect the end of the array back to the front, allowing efficient use of all available space.
  
-  **Algorithm for Insertion (Enqueue) in Circular Queue:**
- 
-  1. If (front == 0 && rear == MAX-1) or (rear + 1) % MAX == front, the queue is full (overflow).
-  2. If the queue is empty (front == -1), set front = rear = 0.
-  3. Else, set rear = (rear + 1) % MAX.
-  4. Insert the new element at cqueue[rear].
- 
-  **Algorithm for Deletion (Dequeue) in Circular Queue:**
- 
-  1. If the queue is empty (front == -1), report underflow.
-  2. Remove the element at cqueue[front].
-  3. If front == rear, set front = rear = -1 (queue becomes empty).
-  4. Else, set front = (front + 1) % MAX.
+**Algorithm for Insertion (Enqueue) in Circular Queue:**
 
-### Circular Queue Operations
-
-Below is an implementation of a circular queue using arrays in C, including insertion (enqueue), deletion (dequeue), and display operations:
+1. If `(front == 0 && rear == MAX-1)` or `(rear + 1) % MAX == front`, the queue is full (overflow).
+2. If the queue is empty (`front == -1`), set `front = rear = 0`.
+3. Else, set `rear = (rear + 1) % MAX`.
+4. Insert the new element at `cqueue[rear]`.
 
 ```c
-#include <stdio.h> 
-#define MAX 5
-
+#define MAX 100
 int cqueue[MAX];
 int front = -1, rear = -1;
 
-// Insert an element into the circular queue
+// Enqueue operation for circular queue
 void enqueue(int value) {
     if ((front == 0 && rear == MAX - 1) || (rear + 1) % MAX == front) {
         printf("Circular Queue Overflow\n");
         return;
     }
-    if (front == -1) { // First element
+    if (front == -1) {
         front = rear = 0;
     } else {
         rear = (rear + 1) % MAX;
     }
     cqueue[rear] = value;
 }
+```
 
-// Delete an element from the circular queue
+**Algorithm for Deletion (Dequeue) in Circular Queue:**
+
+1. If the queue is empty (`front == -1`), report underflow.
+2. Remove the element at `cqueue[front]`.
+3. If `front == rear`, set `front = rear = -1` (queue becomes empty).
+4. Else, set `front = (front + 1) % MAX`.
+
+```c
+// Dequeue operation for circular queue
 int dequeue() {
     if (front == -1) {
         printf("Circular Queue Underflow\n");
         return -1;
     }
     int value = cqueue[front];
-    if (front == rear) { // Only one element
+    if (front == rear) {
         front = rear = -1;
     } else {
         front = (front + 1) % MAX;
     }
     return value;
 }
-
-// Display elements of the circular queue
-void display() {
-    if (front == -1) {
-        printf("Circular Queue is Empty\n");
-        return;
-    }
-    printf("Circular Queue elements:\n");
-    int i = front;
-    while (1) {
-        printf("%d\n", cqueue[i]);
-        if (i == rear)
-            break;
-        i = (i + 1) % MAX;
-    }
-}
-
-int main() {
-    int choice, value;
-    while (1) {
-        printf("\n--- Circular Queue Menu ---\n");
-        printf("1. Enqueue\n2. Dequeue\n3. Display\n4. Exit\n");
-        printf("Enter your choice: ");
-        scanf("%d", &choice);
-
-        switch (choice) {
-            case 1:
-                printf("Enter value to enqueue: ");
-                scanf("%d", &value);
-                enqueue(value);
-                break;
-            case 2:
-                value = dequeue();
-                if (value != -1)
-                    printf("Dequeued: %d\n", value);
-                break;
-            case 3:
-                display();
-                break;
-            case 4:
-                return 0;
-            default:
-                printf("Invalid choice\n");
-        }
-    }
-    return 0;
-}
 ```
-
-**Key Points:**
-
-- In a circular queue, both `front` and `rear` wrap around to the beginning of the array when they reach the end.
-- Overflow occurs when the next position of `rear` is `front`.
-- Underflow occurs when the queue is empty (`front == -1`).
 
 ## Double-Ended Queue (Deque) in C
 
@@ -559,8 +501,8 @@ A **priority queue** is a special type of queue in which each element is associa
  
   **Explain Priority Queue.**
  
-  A priority queue is a queue in which each element is assigned a priority, and elements with higher priority are served before those with lower priority. If two elements have the same priority, they are served according to their order in the queue.
-
+    Explained above..
+    
 ### Applications
 
 - Task scheduling in operating systems
