@@ -47,6 +47,7 @@ A **queue** is a linear data structure that follows the First In First Out (FIFO
   - Breadth-First Search in graphs
   - Task scheduling
   - Bandwidth management
+
 **Algorithm for Insertion (Enqueue):**
 
 1. Check if the queue is full. If yes, report overflow.
