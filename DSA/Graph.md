@@ -79,8 +79,6 @@ D → E                   D — E
 
 ### Q9. Explain Cycle and Hamilton cycle in graph.
 
-**Question 9: Explain Cycle and Hamilton cycle in graph.**
-
 #### Cycle:
 
 - A **cycle** is a path in a graph that starts and ends at the same vertex, with no other vertex repeated.
