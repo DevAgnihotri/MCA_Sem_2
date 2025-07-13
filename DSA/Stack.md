@@ -471,3 +471,15 @@ int main() {
 - Only one disk can be moved at a time, and a larger disk cannot be placed on a smaller one.
 - The minimum number of moves required is (2ⁿ - 1).
 - The problem is solved recursively by moving smaller stacks between rods.
+
+# PYQ
+
+
+1. (b) Write a “C” program using stack to check whether a string is palindrome or not. Do not define empty, push, and pop functions. (Note: Palindrome is a sequence of characters that reads the same backward and forward.)
+2. (c) Transform the following prefix expression to infix:  
+    `++A-*$BCD/+EF*GHI`
+3. Define Stack. Convert the expressioninfix to prefix using stack:
+A*(B+D)/E-F*(G+H/K).
+4. What is the Tower of Hanoi problem? Explain the solutions of the Tower of
+Hanoi problem where the numbers of disks are 3 and numbers of pages are 3.
+5. Define Stack and algo for Push and Pop
