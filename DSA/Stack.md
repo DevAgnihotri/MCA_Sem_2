@@ -303,6 +303,64 @@ int tailFactorial(int n, int acc) {
 - Uses less stack space than regular recursion.
 - Not all C compilers optimize tail recursion, but it's a good practice for deep recursive calls.
 ---
+## Infix, Prefix, and Postfix Expressions
+
+### What are Infix, Prefix, and Postfix?
+
+- **Infix:** Operators are written between operands.  
+    Example: `A + B`
+- **Prefix (Polish Notation):** Operators are written before operands.  
+    Example: `+ A B`
+- **Postfix (Reverse Polish Notation):** Operators are written after operands.  
+    Example: `A B +`
+
+### Why Convert Between Them?
+
+- Computers find it easier to evaluate prefix or postfix expressions because they do not require parentheses and operator precedence is explicit.
+- Infix is natural for humans, but not for stack-based evaluation.
+
+### How to Convert Using Stack
+
+#### Infix to Postfix
+
+1. **Scan the infix expression from left to right.**
+2. **If the token is an operand, add it to the output.**
+3. **If the token is an operator:**
+     - Pop operators from the stack to the output if they have higher or equal precedence.
+     - Push the current operator onto the stack.
+4. **If the token is '(', push it onto the stack.**
+5. **If the token is ')', pop and output from the stack until '(' is found.**
+6. **After the expression, pop all remaining operators from the stack.**
+
+#### Infix to Prefix 
+
+(https://www.youtube.com/watch?v=E0QGRN-zi_c&ab_channel=GateSmashers)
+
+- Similar to infix to postfix, but scan the expression from right to left and reverse the order of operators and operands.
+
+#### Postfix/Prefix Evaluation
+
+- **Postfix:** Scan left to right, push operands to stack, pop operands for operator, push result.
+- **Prefix:** Scan right to left, push operands to stack, pop operands for operator, push result.
+
+### Operator Precedence Chart
+
+| Operator | Description      | Associativity |
+|----------|------------------|--------------|
+| `()`     | Parentheses      | Left         |
+| `^`      | Exponentiation   | Right        |
+| `*` `/`  | Multiply/Divide  | Left         |
+| `+` `-`  | Add/Subtract     | Left         |
+
+**Note:** Higher precedence operators are applied before lower ones.
+
+### Summary
+
+- Stack is essential for converting and evaluating expressions.
+- Operator precedence and associativity are managed using the stack.
+- Postfix and prefix forms are easier for computers to evaluate.
+
+
 
 ## Tower of Hanoi
 
