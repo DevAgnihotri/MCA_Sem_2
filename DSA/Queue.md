@@ -47,20 +47,54 @@ A **queue** is a linear data structure that follows the First In First Out (FIFO
   - Breadth-First Search in graphs
   - Task scheduling
   - Bandwidth management
- 
-  **Algorithm for Insertion (Enqueue):**
- 
-  1. Check if the queue is full. If yes, report overflow.
-  2. If the queue is empty, set front and rear to 0.
-  3. Else, increment rear by 1.
-  4. Insert the new element at queue[rear].
- 
-  **Algorithm for Deletion (Dequeue):**
- 
-  1. Check if the queue is empty. If yes, report underflow.
-  2. Remove the element at queue[front].
-  3. If front == rear, set front and rear to -1 (queue becomes empty).
-  4. Else, increment front by 1.
+**Algorithm for Insertion (Enqueue):**
+
+1. Check if the queue is full. If yes, report overflow.
+2. If the queue is empty, set `front = 0` and `rear = 0`.
+3. Else, increment `rear` by 1.
+4. Insert the new element at `queue[rear]`.
+
+```c
+
+// Enqueue operation
+void enqueue(int value) {
+    if (rear == MAX - 1) {
+        printf("Queue Overflow\n");
+        return;
+    }
+    if (front == -1) {
+        front = rear = 0;
+    } else {
+        rear++;
+    }
+    queue[rear] = value;
+}
+
+```
+
+**Algorithm for Deletion (Dequeue):**
+
+1. Check if the queue is empty. If yes, report underflow.
+2. Remove the element at `queue[front]`.
+3. If `front == rear`, set `front = rear = -1` (queue becomes empty).
+4. Else, increment `front` by 1.
+
+```c
+// Dequeue operation
+int dequeue() {
+    if (front == -1) {
+        printf("Queue Underflow\n");
+        return -1;
+    }
+    int value = queue[front];
+    if (front == rear) {
+        front = rear = -1;
+    } else {
+        front++;
+    }
+    return value;
+}
+```
 
   **PYQ 1:**
  
