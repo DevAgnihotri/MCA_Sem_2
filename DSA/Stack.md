@@ -194,7 +194,7 @@ int main() {
 - Each character of the string is pushed onto the stack.
 - When popping from the stack, characters come out in reverse order, thus reversing the string.
 
-## Recursion in C
+# Recursion in C
 
 ### What is Recursion?
 
@@ -254,12 +254,6 @@ A recursive function has two main parts:
 1. **Base Case:** The condition under which the function stops calling itself.
 2. **Recursive Case:** The part where the function calls itself with a smaller or simpler input.
 
-### Good Uses of Recursion
-
-- **Tree Traversals:** Navigating hierarchical data like file systems or expression trees.
-- **Divide and Conquer Algorithms:** Such as quicksort, mergesort, and binary search.
-- **Problems with Unknown or Variable Depth:** Like exploring all possible paths in a maze.
-
 #### Example: Fibonacci Sequence
 
 ```c
@@ -269,27 +263,6 @@ int fibonacci(int n) {
     return fibonacci(n-1) + fibonacci(n-2); // Recursive calls
 }
 ```
-
-### When Recursion is Not Good
-
-- **When the problem can be solved more efficiently with loops:** Recursion can lead to high memory usage and slower performance due to repeated function calls.
-- **When the recursion depth is very large:** This can cause a stack overflow error.
-- **When the same subproblems are solved repeatedly:** This leads to inefficiency (e.g., naive Fibonacci).
-
-#### Example: Bad Use of Recursion
-
-Calculating Fibonacci numbers recursively without memoization is inefficient because it recalculates the same values many times.
-
-```c
-// Inefficient for large n
-int fibonacci(int n) {
-    if (n == 0) return 0;
-    if (n == 1) return 1;
-    return fibonacci(n-1) + fibonacci(n-2);
-}
-```
-
-For large `n`, this approach is very slow and can crash due to too many recursive calls.
 
 ### Pros and Cons of Recursion
 
@@ -312,10 +285,23 @@ For large `n`, this approach is very slow and can crash due to too many recursiv
 | Divide and conquer          | Problems with repeated subproblems |
 | Problems with unknown depth | When loops are more efficient      |
 
-### Conclusion
+### What is Tail Recursion?
 
-Recursion is a powerful tool for solving problems that can be divided into similar subproblems. It makes code cleaner and easier to understand for certain tasks, but should be used carefully to avoid inefficiency and stack overflow. Always ensure there is a clear base case, and consider iterative solutions for performance-critical code.
+**Tail recursion** is a type of recursion where the function calls itself as the very last step. This means nothing is left to do after the recursive call. Because of this, the computer does not need to remember previous steps, so it can save memory and work faster.
 
+**Example (Tail Recursive Factorial):**
+```c
+int tailFactorial(int n, int acc) {
+    if (n == 0) return acc;
+    return tailFactorial(n - 1, n * acc);
+}
+// Call with tailFactorial(n, 1)
+```
+
+**Key Points:**
+- Tail recursion allows for compiler optimizations (tail call optimization).
+- Uses less stack space than regular recursion.
+- Not all C compilers optimize tail recursion, but it's a good practice for deep recursive calls.
 ---
 
 ## Tower of Hanoi
