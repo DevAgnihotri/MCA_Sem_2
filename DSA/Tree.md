@@ -896,6 +896,12 @@ struct TreeNode* createNode(int value) {
 
 ### Q1. Write recursive algorithms for Pre-Order, Post-Order, and In-Order traversals of a binary tree.
 
+(https://www.youtube.com/watch?v=XRcC7bAtL3c&ab_channel=GateSmashers)
+
+(https://www.youtube.com/shorts/6-4H3wvn7CM)
+
+(https://www.youtube.com/watch?v=Z9zF0gLnuvM&pp=ygUpUHJlb3JkZXIsIElub3JkZXIgYW5kIFBvc3RvcmRlciB0cmF2ZXJzYWw%3D)
+
 ### Detailed Tree Traversal Algorithms
 
 #### 1. Inorder Traversal (Left → Root → Right)
