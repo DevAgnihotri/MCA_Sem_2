@@ -203,7 +203,7 @@ void removeChar(char* str, char c) {
 
 ## 6. Concept of Hashing
 
-**Hashing** is a technique used to quickly store and retrieve data using a special function called a **hash function**. The hash function converts a key (like a number or string) into an index in a table (called a hash table).
+**Hashing** is a technique used to quickly store and retrieve data using a special function called a **hash function**. The hash function converts a key (like a number or string) into an index. And this key index realationship is mapped in a table (called a hash table).
 
 - **Why use hashing?**
   - Fast access to data (ideally O(1) time).
