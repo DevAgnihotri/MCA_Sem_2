@@ -301,7 +301,7 @@ bool search(struct Node* head, int key) {
 }
 ```
 
-# Important
+## Important - TODO
 
 ### 7. **Insert at a Specific Position**
 
@@ -509,106 +509,6 @@ Always use `free()` to release memory we allocate with `malloc()` to prevent **m
 | Deletion (value)  | O(n)            |
 | Search            | O(n)            |
 
-## ✅ Reversing a Singly Linked List
-
-### 🔹 Function to Reverse the List
-
-```c
-// Function to reverse a singly linked list
-void reverseList(struct Node** head) {
-    struct Node* prev = NULL;
-    struct Node* current = *head;
-    struct Node* next = NULL;
-
-    while (current != NULL) {
-        next = current->next;   // Store next node
-        current->next = prev;   // Reverse current node's pointer
-        prev = current;         // Move prev to current node
-        current = next;         // Move to next node
-    }
-    *head = prev; // Update head to new first node
-}
-```
-
-### 🔹 How It Works
-
-- **prev** keeps track of the previous node (initially `NULL`).
-- **current** traverses the list.
-- For each node, we:
-  1. Save the next node.
-  2. Reverse the `next` pointer to point to the previous node.
-  3. Move `prev` and `current` forward.
-- At the end, `prev` points to the new head, so we update `*head`.
-
-### 🔹 Example Usage
-
-```c
-reverseList(&head);
-printf("Reversed List: ");
-printList(head);
-```
-
-**Output:**
-
-```
-Reversed List: 20 -> 5 -> 2 -> NULL
-```
-
-## ✅ Sorting a Singly Linked List (By Rearranging Links)
-
-To sort a singly linked list **without changing the data values** in the nodes, you need to rearrange the links (pointers) between nodes. One common approach is to use **Bubble Sort** by swapping the nodes themselves (not just their data).
-
-### 🔹 Function to Sort the List (Bubble Sort by Links)
-
-```c
-// Function to sort the linked list by rearranging links (not data)
-void sortList(struct Node** head) {
-    if (*head == NULL || (*head)->next == NULL)
-        return;
-
-    int swapped;
-    struct Node **ptr;
-    do {
-        swapped = 0;
-        ptr = head;
-        while ((*ptr)->next != NULL) {
-            struct Node* a = *ptr;
-            struct Node* b = a->next;
-            if (a->data > b->data) {
-                // Swap nodes by changing links
-                a->next = b->next;
-                b->next = a;
-                *ptr = b;
-                swapped = 1;
-            }
-            ptr = &((*ptr)->next);
-        }
-    } while (swapped);
-}
-```
-
-### 🔹 Example Usage
-
-```c
-sortList(&head);
-printf("Sorted List: ");
-printList(head);
-```
-
-**Output:**
-
-```
-Sorted List: 2 -> 5 -> 20 -> NULL
-```
-
-**Note:**
-
-- This function does not modify the data field of any node.
-- It only rearranges the links between nodes to achieve a sorted order.
-- Time complexity is O(n²) for Bubble Sort; for large lists, consider more efficient algorithms.
-
----
-
 ## ✅ Memory Representation and Diagrams of Linked Lists
 
 PYQ 1:
@@ -657,11 +557,7 @@ struct DNode {
 **Diagram:**
 
 ```
-NULL <--+------+<-->+------+<-->+------+--> NULL
-       | Data |    | Data |    | Data |
-       +--+---+    +--+---+    +--+---+
-         ^  |        ^  |        ^  |
-       prev next   prev next   prev next
+NULL <-- [ Head | prev | next ] <--> [ Node 1 | prev | next ] <--> [ Node 2 | prev | next ] --> NULL
 ```
 
 ---
@@ -681,14 +577,7 @@ struct CDNode {
 **Diagram:**
 
 ```
-   +------+<-->+------+<-->+------+
-   | Data |    | Data |    | Data |
-   +--+---+    +--+---+    +--+---+
-   ^  |         ^  |        ^  |
-   |  v         |  v        |  v
-   +-------------+----------+
-   |                        |
-   +------------------------+
+[ Head ] <--> [ Node 1 | prev | next ] <--> [ Node 2 | prev | next ] <--> [ Node 3 | prev | next ] <--> [ Head ]
 (Last node's next points to head, head's prev points to last)
 ```
 
@@ -711,110 +600,8 @@ struct Node {
 **Diagram:**
 
 ```
-+--------+     +------+     +------+
-| Header | --> | Data | --> | Data | --> NULL
-+---+----+     +---+--+     +---+--+
-    |             |            |
-   next          next         next
+[ Header Node | count | firstNode ] --> [ Node 1 | next ] --> [ Node 2 | next ] --> NULL
 ```
-
-## ✅ Representing a Polynomial Using Linked List
-
-A polynomial like **5x³ + 4x² + 3x + 2** can be represented using a linked list where each node contains:
-
-- The coefficient (`coeff`)
-- The exponent (`exp`)
-- A pointer to the next node
-
-**Node Structure:**
-
-```c
-struct PolyNode {
-    int coeff;
-    int exp;
-    struct PolyNode* next;
-};
-```
-
-**Example Representation:**
-
-| Coefficient | Exponent | Next |
-| ----------- | -------- | ---- |
-| 5           | 3        | →    |
-| 4           | 2        | →    |
-| 3           | 1        | →    |
-| 2           | 0        | NULL |
-
----
-
-## ✅ Algorithm: Addition of Two Polynomials Using Linked List
-
-**Steps:**
-
-1. Create two linked lists for the polynomials, sorted by decreasing exponents.
-2. Traverse both lists:
-   - If exponents are equal, add coefficients and create a new node.
-   - If one exponent is greater, copy that term to the result and move its pointer.
-   - Continue until both lists are exhausted.
-3. Append any remaining terms from either list.
-
-**Pseudocode:**
-
-```c
-struct PolyNode* addPolynomials(struct PolyNode* poly1, struct PolyNode* poly2) {
-    struct PolyNode* result = NULL;
-    struct PolyNode** lastPtr = &result;
-
-    while (poly1 && poly2) {
-        struct PolyNode* temp = (struct PolyNode*)malloc(sizeof(struct PolyNode));
-        if (poly1->exp == poly2->exp) {
-            temp->coeff = poly1->coeff + poly2->coeff;
-            temp->exp = poly1->exp;
-            poly1 = poly1->next;
-            poly2 = poly2->next;
-        } else if (poly1->exp > poly2->exp) {
-            temp->coeff = poly1->coeff;
-            temp->exp = poly1->exp;
-            poly1 = poly1->next;
-        } else {
-            temp->coeff = poly2->coeff;
-            temp->exp = poly2->exp;
-            poly2 = poly2->next;
-        }
-        temp->next = NULL;
-        *lastPtr = temp;
-        lastPtr = &(temp->next);
-    }
-
-    // Append remaining terms
-    while (poly1) {
-        struct PolyNode* temp = (struct PolyNode*)malloc(sizeof(struct PolyNode));
-        temp->coeff = poly1->coeff;
-        temp->exp = poly1->exp;
-        temp->next = NULL;
-        *lastPtr = temp;
-        lastPtr = &(temp->next);
-        poly1 = poly1->next;
-    }
-    while (poly2) {
-        struct PolyNode* temp = (struct PolyNode*)malloc(sizeof(struct PolyNode));
-        temp->coeff = poly2->coeff;
-        temp->exp = poly2->exp;
-        temp->next = NULL;
-        *lastPtr = temp;
-        lastPtr = &(temp->next);
-        poly2 = poly2->next;
-    }
-    return result;
-}
-```
-
-**Summary:**
-
-- Each term of the polynomial is a node.
-- Addition is performed by traversing both lists and combining like terms.
-
----
 
 ## ✅ Advantages of Doubly Linked List Over Singly Linked List
 
@@ -955,4 +742,204 @@ void insertBefore(struct DNode** head, int target, int newData) {
         *head = newNode; // New node becomes head
     curr->prev = newNode;
 }
+
 ```
+## ✅ Representing a Polynomial Using Linked List
+
+A polynomial like **5x³ + 4x² + 3x + 2** can be represented using a linked list where each node contains:
+
+- The coefficient (`coeff`)
+- The exponent (`exp`)
+- A pointer to the next node
+
+**Node Structure:**
+
+```c
+struct PolyNode {
+    int coeff;
+    int exp;
+    struct PolyNode* next;
+};
+```
+
+**Example Representation:**
+
+| Coefficient | Exponent | Next |
+| ----------- | -------- | ---- |
+| 5           | 3        | →    |
+| 4           | 2        | →    |
+| 3           | 1        | →    |
+| 2           | 0        | NULL |
+
+---
+
+## ✅ Algorithm: Addition of Two Polynomials Using Linked List
+
+**Steps:**
+
+1. Create two linked lists for the polynomials, sorted by decreasing exponents.
+2. Traverse both lists:
+   - If exponents are equal, add coefficients and create a new node.
+   - If one exponent is greater, copy that term to the result and move its pointer.
+   - Continue until both lists are exhausted.
+3. Append any remaining terms from either list.
+
+**Pseudocode:**
+
+```c
+struct PolyNode* addPolynomials(struct PolyNode* poly1, struct PolyNode* poly2) {
+    struct PolyNode* result = NULL;
+    struct PolyNode** lastPtr = &result;
+
+    while (poly1 && poly2) {
+        struct PolyNode* temp = (struct PolyNode*)malloc(sizeof(struct PolyNode));
+        if (poly1->exp == poly2->exp) {
+            temp->coeff = poly1->coeff + poly2->coeff;
+            temp->exp = poly1->exp;
+            poly1 = poly1->next;
+            poly2 = poly2->next;
+        } else if (poly1->exp > poly2->exp) {
+            temp->coeff = poly1->coeff;
+            temp->exp = poly1->exp;
+            poly1 = poly1->next;
+        } else {
+            temp->coeff = poly2->coeff;
+            temp->exp = poly2->exp;
+            poly2 = poly2->next;
+        }
+        temp->next = NULL;
+        *lastPtr = temp;
+        lastPtr = &(temp->next);
+    }
+
+    // Append remaining terms
+    while (poly1) {
+        struct PolyNode* temp = (struct PolyNode*)malloc(sizeof(struct PolyNode));
+        temp->coeff = poly1->coeff;
+        temp->exp = poly1->exp;
+        temp->next = NULL;
+        *lastPtr = temp;
+        lastPtr = &(temp->next);
+        poly1 = poly1->next;
+    }
+    while (poly2) {
+        struct PolyNode* temp = (struct PolyNode*)malloc(sizeof(struct PolyNode));
+        temp->coeff = poly2->coeff;
+        temp->exp = poly2->exp;
+        temp->next = NULL;
+        *lastPtr = temp;
+        lastPtr = &(temp->next);
+        poly2 = poly2->next;
+    }
+    return result;
+}
+```
+
+**Summary:**
+
+- Each term of the polynomial is a node.
+- Addition is performed by traversing both lists and combining like terms.
+
+---
+
+
+## ✅ Reversing a Singly Linked List
+
+### 🔹 Function to Reverse the List
+
+```c
+// Function to reverse a singly linked list
+void reverseList(struct Node** head) {
+    struct Node* prev = NULL;
+    struct Node* current = *head;
+    struct Node* next = NULL;
+
+    while (current != NULL) {
+        next = current->next;   // Store next node
+        current->next = prev;   // Reverse current node's pointer
+        prev = current;         // Move prev to current node
+        current = next;         // Move to next node
+    }
+    *head = prev; // Update head to new first node
+}
+```
+
+### 🔹 How It Works
+
+- **prev** keeps track of the previous node (initially `NULL`).
+- **current** traverses the list.
+- For each node, we:
+  1. Save the next node.
+  2. Reverse the `next` pointer to point to the previous node.
+  3. Move `prev` and `current` forward.
+- At the end, `prev` points to the new head, so we update `*head`.
+
+### 🔹 Example Usage
+
+```c
+reverseList(&head);
+printf("Reversed List: ");
+printList(head);
+```
+
+**Output:**
+
+```
+Reversed List: 20 -> 5 -> 2 -> NULL
+```
+
+## ✅ Sorting a Singly Linked List (By Rearranging Links)
+
+To sort a singly linked list **without changing the data values** in the nodes, you need to rearrange the links (pointers) between nodes. One common approach is to use **Bubble Sort** by swapping the nodes themselves (not just their data).
+
+### 🔹 Function to Sort the List (Bubble Sort by Links)
+
+```c
+// Function to sort the linked list by rearranging links (not data)
+void sortList(struct Node** head) {
+    if (*head == NULL || (*head)->next == NULL)
+        return;
+
+    int swapped;
+    struct Node **ptr;
+    do {
+        swapped = 0;
+        ptr = head;
+        while ((*ptr)->next != NULL) {
+            struct Node* a = *ptr;
+            struct Node* b = a->next;
+            if (a->data > b->data) {
+                // Swap nodes by changing links
+                a->next = b->next;
+                b->next = a;
+                *ptr = b;
+                swapped = 1;
+            }
+            ptr = &((*ptr)->next);
+        }
+    } while (swapped);
+}
+```
+
+### 🔹 Example Usage
+
+```c
+sortList(&head);
+printf("Sorted List: ");
+printList(head);
+```
+
+**Output:**
+
+```
+Sorted List: 2 -> 5 -> 20 -> NULL
+```
+
+**Note:**
+
+- This function does not modify the data field of any node.
+- It only rearranges the links between nodes to achieve a sorted order.
+- Time complexity is O(n²) for Bubble Sort; for large lists, consider more efficient algorithms.
+
+---
+
