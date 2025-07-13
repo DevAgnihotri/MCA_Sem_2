@@ -4,6 +4,8 @@
 
 ## Matrix Multiplication: Strassen's Algorithm
 
+(https://www.youtube.com/watch?v=9GQwTbJozZg&ab_channel=ExamAasaanHai%21%21%21)
+
 ### Introduction to Matrix Multiplication
 
 **Matrix multiplication** is a fundamental operation in computer science and mathematics. For two matrices A (m×n) and B (n×p), the result is matrix C (m×p) where each element C[i][j] is computed as the dot product of row i of A and column j of B.
@@ -29,8 +31,6 @@
 **Time Complexity**: O(n³) for n×n matrices
 
 ### Q1.1. How does Strassen's matrix multiplication provide better time complexity over the classical matrix multiplication algorithm? Apply Strassen's algorithm on the following matrices:
-
-**Question 1.1: How does Strassen's matrix multiplication provide better time complexity over the classical matrix multiplication algorithm? Apply Strassen's algorithm on the following matrices:**
 
 ```
 1 5      8 2
@@ -318,8 +318,6 @@ Both approaches ensure that each subproblem is solved only once, leading to sign
 
 ### Q1. Write down the algorithm of Floyd-Warshall to compute all-pair shortest paths in a graph. Also, apply it on a given graph.
 
-**Question 1: Write down the algorithm of Floyd-Warshall to compute all-pair shortest paths in a graph. Also, apply it on a given graph.**
-
 ### Floyd-Warshall Algorithm
 (https://www.youtube.com/watch?v=DCDwITxLUZc&ab_channel=XtraLectures)
 #### Introduction
@@ -596,6 +594,83 @@ Starting from dp[8][9] = 6:
 
 ## Minimum Spanning Tree Algorithms
 
+### Minimum Cost Spanning Tree (MCST)
+
+#### What is a Minimum Cost Spanning Tree?
+
+A **Minimum Cost Spanning Tree (MCST)** of a connected, undirected, weighted graph is a subset of the edges that connects all the vertices together, without any cycles, and with the minimum possible total edge weight.
+
+- **Spanning Tree**: A tree that includes all the vertices of the graph.
+- **Minimum Cost**: The sum of the weights of the edges in the tree is as small as possible.
+
+#### Properties
+
+- Contains all vertices of the original graph.
+- Has exactly (V-1) edges if there are V vertices.
+- No cycles (i.e., it is a tree).
+- The total weight is minimized.
+
+#### Example
+
+Consider the following graph:
+
+```
+   (2)      (3)
+  A ------ B ------ C
+  |        |        |
+(6)|      (8)|      (5)|
+  |        |        |
+  D ------ E ------ F
+   (5)      (10)
+```
+
+**Vertices**: A, B, C, D, E, F  
+**Edges with weights**:  
+- AB: 2
+- BC: 3
+- AE: 8
+- AC: not directly connected
+- AD: 6
+- DE: 5
+- EF: 10
+- CF: 5
+
+**Step-by-step MCST construction (using Kruskal's or Prim's algorithm):**
+
+1. **Choose the smallest edge**: AB (2)
+2. **Next smallest**: BC (3)
+3. **Next**: AD (6)
+4. **Next**: CF (5)
+5. **Next**: DE (5)
+
+Now, all vertices are connected with 5 edges (for 6 vertices), and no cycles are formed.
+
+**Edges in MCST**: AB, BC, AD, CF, DE  
+**Total Cost**: 2 + 3 + 6 + 5 + 5 = **21**
+
+#### Visualization
+
+```
+   (2)      (3)
+  A ------ B ------ C
+  |                |
+(6)|              (5)|
+  |                |
+  D ------ E      F
+   (5)
+```
+(Edges AE and EF are not included as they would increase the total cost or form cycles.)
+
+#### Applications
+
+- Network design (telephone, electrical, computer networks)
+- Road construction planning
+- Cluster analysis
+
+#### Summary
+
+A minimum cost spanning tree connects all vertices with the least total edge weight and no cycles. Algorithms like Prim's and Kruskal's are commonly used to find MCSTs efficiently.
+
 ### Prim's Algorithm
 
 #### Introduction
@@ -672,7 +747,7 @@ Starting from dp[8][9] = 6:
 
 ### Q2. Explain Kruskal's algorithm to find the minimum cost spanning tree with an example.
 
-**Question 2: Explain Kruskal's algorithm to find the minimum cost spanning tree with an example.**
+(https://www.youtube.com/watch?v=1BVDvgDGKSE&ab_channel=CSEngineeringGyan)
 
 ### Kruskal's Algorithm
 
@@ -684,43 +759,18 @@ Starting from dp[8][9] = 6:
 
 **Kruskal's Minimum Spanning Tree Algorithm:**
 
-1. **Prepare the edges**:
+1. Remove all Loop edges. ex;....
+2. Remove all parallel edges. ex;...
+3. Arrange all edges in increasing weight
+4. Start adding edges to the beggining from the one with least weight
+5. Avoid edges thaat create a loop
+6. After all edges are added, then check it is a MST or not
+   - All vertices covered
+   - Edges = vertices - 1
 
-   - **Collect all edges** from the graph into a list
-   - **Sort the entire edge list** in ascending order by weight
-   - **This ensures** we always consider the cheapest available edges first
+7. If yes then calculte total weight by adding all values of edges.
 
-2. **Initialize Union-Find data structure**:
 
-   - **Set each vertex as its own parent** (each vertex forms its own component)
-   - **Initialize rank arrays** to track tree heights for efficient union operations
-   - **This helps detect cycles** efficiently during edge addition
-
-3. **Process edges in weight order**:
-
-   - **For each edge in the sorted list**:
-     - **Extract source and destination vertices** of the current edge
-     - **Check if vertices belong to different components** using Union-Find
-     - **If they are in different components**:
-       - **Add the edge to MST** (it won't create a cycle)
-       - **Union the two components** (merge them into one)
-       - **Increment the edge counter**
-
-4. **Cycle prevention**:
-
-   - **If vertices are already connected** (same component):
-     - **Skip this edge** as it would create a cycle
-     - **Continue to next edge** in the sorted list
-
-5. **Termination**:
-
-   - **Stop when MST has V-1 edges** (where V is number of vertices)
-   - **This ensures** all vertices are connected with minimum edges
-
-6. **Union-Find operations**:
-   - **Find operation**: Determines which component a vertex belongs to
-   - **Union operation**: Merges two components into one
-   - **Path compression** and **union by rank** optimize these operations
 
 **Key Strategy**: Process edges from cheapest to most expensive, adding each edge only if it connects previously disconnected components, thus avoiding cycles while minimizing total cost.
 
