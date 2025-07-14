@@ -375,7 +375,7 @@ A project management system where:
 **Example:**  
 Student Table:
 | ID | Name | Class |
-|----|-------|-------|
+|----|------|-------|
 | 1 | Riya | 10 |
 | 2 | Amit | 11 |
 
