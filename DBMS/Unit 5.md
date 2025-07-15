@@ -129,8 +129,6 @@ Locking techniques, when properly implemented, provide robust concurrency contro
 
 ### Q15. What do you mean by concurrency? Demonstrate how 2 phase protocol will be useful for controlling concurrency. Discuss variations of 2PL.
 
-**Question 15: What do you mean by concurrency? Demonstrate how 2 phase protocol will be useful for controlling concurrency. Discuss variations of 2PL.**
-
 - **Concurrency** is the ability of the database to allow multiple transactions to execute at the same time.
 - **Two-Phase Locking (2PL):**
   - Ensures serializability by dividing transaction execution into two phases: growing (acquire locks) and shrinking (release locks).
@@ -209,14 +207,10 @@ Locking techniques, when properly implemented, provide robust concurrency contro
 
 ### Q21. What is a Multi Version Protocol?
 
-**Question 21: What is a Multi Version Protocol?**
-
 - A protocol that allows multiple versions of data items to exist, enabling higher concurrency.
 - Each transaction sees a consistent snapshot of the database.
 
 ### Q22. What is multi-version concurrency control? What are its benefits and disadvantages in comparison to locking?
-
-**Question 22: What is multi-version concurrency control? What are its benefits and disadvantages in comparison to locking?**
 
 - **MVCC** allows multiple versions of data for concurrent access.
 - **Benefits:**
@@ -246,8 +240,6 @@ Locking techniques, when properly implemented, provide robust concurrency contro
   - **Deadlock Detection:** Oracle automatically detects and resolves deadlocks.
 
 ### Q23. What do you mean by dispatcher in terms of Oracle?
-
-**Question 23: What do you mean by dispatcher in terms of Oracle?**
 
 - In Oracle, a **dispatcher** is a background process used in a multi-threaded server (MTS) environment.
 - Dispatchers manage client connections, routing requests to shared server processes.
