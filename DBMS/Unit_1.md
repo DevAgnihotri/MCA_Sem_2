@@ -21,7 +21,7 @@
 - [Define the terms "Data" and "Database".](#1-data)
 - [Discuss various advantages of DBMS.](#-file-system-vs-database-system-dbms)
 - [Explain the ANSI/SPARC architecture in detail.](#-three-level-architecture-as-per-dbms-concept)
-- [Discuss different types of entities, attributes, and relations used in designing an ER diagram.](#-data-model-schema-and-instances)
+- [Discuss different types of entities, attributes, and relations used in designing an ER diagram.](#1-entity)
 
 ---
 
@@ -395,7 +395,6 @@ The **Internal Level**, also known as the **Physical Level**, is the **lowest la
 
 # 📗 **Data Model, Schema, and Instances**
 
-**2016–17 Q2, 2021–22 Q5 & Q6, 2022–23 Q4:** Construct an ER diagram for a university registrar’s office. / Explain participation constraint in an ER diagram with a suitable example. / Draw an ER diagram based on given assumptions and convert it to a relational model. / Discuss different types of entities, attributes, and relations used in designing an ER diagram.
 
 ## 📘 **What is a Data Model?**
 
@@ -635,13 +634,15 @@ Absolutely, Dev! Let’s properly define everything with clarity, structure, and
 
 ##### **Important\***
 
+**2016–17 Q2, 2021–22 Q5 & Q6, 2022–23 Q4:** Construct an ER diagram for a university registrar’s office. / Explain participation constraint in an ER diagram with a suitable example. / Draw an ER diagram based on given assumptions and convert it to a relational model. / Discuss different types of entities, attributes, and relations used in designing an ER diagram.
+
 ## 🧠 **1. Entity **
 
 ### ✅ **_Definition:_**
 
 An **entity** is a real-world object that is **distinct**, **uniquely identifiable**, because of it's features.
 
-> In simple words, an entity is **"something" you can store information about** because it exists and is different from others.
+> In simple words, an entity is **something you can store information about** because it exists and is different from others.
 
 ### 🏫 Example (School System):
 
@@ -900,6 +901,8 @@ The **degree of a relationship** refers to the **number of entities involved** i
 
 **Mapping** in DBMS refers to the **association or connection** between two entities in a relationship. It defines **how entities are related** and how many instances of one entity are associated with instances of another entity.
 
+> In simple terms, mapping shows which items from one group are linked to items in another group.
+
 ### 🏫 **Example (School System):**
 
 - A **Student** is **enrolled in** a **Class**.
@@ -910,6 +913,8 @@ The **degree of a relationship** refers to the **number of entities involved** i
 ### ✅ **What is Cardinality?**
 
 **Cardinality** specifies the **number of instances** of one entity that can or must be associated with instances of another entity in a relationship.
+
+> In simple terms, cardinality tells us "how many" of one entity are linked to "how many" of another entity.
 
 ### 🏫 **Example:**
 
