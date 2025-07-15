@@ -1,27 +1,27 @@
-# PYQs Summary
+# PYQ- [Construct an ER diagram for a university registrar's office.](#-data-model-schema-and-instances) Summary
 
 ### 2016–17
 
 - [What are the disadvantages of database systems?](#4-dbms-database-management-system)
 - [Construct an ER diagram for a university registrar’s office.](#data-model-schema-and-instances)
-- [List and briefly explain the advantages of DBMS over traditional file systems.](#file-system-vs-database-system-dbms)
-- [What problems are associated with the three-schema architecture?](#three-level-architecture-as-per-dbms-concept)
+- [List and briefly explain the advantages of DBMS over traditional file systems.](#-file-system-vs-database-system-dbms)
+- [What problems are associated with the three-schema architecture?](#-three-level-architecture-as-per-dbms-concept)
 
 ### 2021–22
 
-- [What is logical data independence?](#database-system-concept-and-architecture)
-- ["Data redundancy leads to data inconsistency." Justify this statement.](#file-system-vs-database-system-dbms)
-- [What are the advantages of databases over file systems?](#file-system-vs-database-system-dbms)
-- [Discuss the three-level architecture of DBMS with a neat diagram.](#three-level-architecture-as-per-dbms-concept)
-- [Explain participation constraint in an ER diagram with a suitable example.](#data-model-schema-and-instances)
-- [Draw an ER diagram based on given assumptions and convert it to a relational model.](#data-model-schema-and-instances)
+- [What is logical data independence?](#-database-system-concept-and-architecture)
+- ["Data redundancy leads to data inconsistency." Justify this statement.](#-file-system-vs-database-system-dbms)
+- [What are the advantages of databases over file systems?](#-file-system-vs-database-system-dbms)
+- [Discuss the three-level architecture of DBMS with a neat diagram.](#-three-level-architecture-as-per-dbms-concept)
+- [Explain participation constraint in an ER diagram with a suitable example.](#-data-model-schema-and-instances)
+- [Draw an ER diagram based on given assumptions and convert it to a relational model.](#-data-model-schema-and-instances)
 
 ### 2022–23
 
 - [Define the terms "Data" and "Database".](#1-data)
-- [Discuss various advantages of DBMS.](#file-system-vs-database-system-dbms)
-- [Explain the ANSI/SPARC architecture in detail.](#three-level-architecture-as-per-dbms-concept)
-- [Discuss different types of entities, attributes, and relations used in designing an ER diagram.](#data-model-schema-and-instances)
+- [Discuss various advantages of DBMS.](#-file-system-vs-database-system-dbms)
+- [Explain the ANSI/SPARC architecture in detail.](#-three-level-architecture-as-per-dbms-concept)
+- [Discuss different types of entities, attributes, and relations used in designing an ER diagram.](#-data-model-schema-and-instances)
 
 ---
 
@@ -68,12 +68,12 @@ A table storing students' names, roll numbers, marks, and subjects is a database
 
 **2016–17 Q1:** What are the disadvantages of database systems?
 
-- **High cost:** Purchasing, licensing, and maintaining a DBMS can be expensive.  
-- **Complexity:** Designing, installing, and managing a database requires specialized skills.  
-- **Performance overhead:** For simple tasks, a full-featured DBMS may be slower than lightweight solutions.  
-- **Security risk:** Centralizing data makes it a more attractive target for attacks.  
-- **Single point of failure:** If the DBMS goes down, all dependent applications may stop working.  
-- **Maintenance:** Regular backups, tuning, and upgrades are necessary to keep the system running smoothly.  
+- **High cost:** Purchasing, licensing, and maintaining a DBMS can be expensive.
+- **Complexity:** Designing, installing, and managing a database requires specialized skills.
+- **Performance overhead:** For simple tasks, a full-featured DBMS may be slower than lightweight solutions.
+- **Security risk:** Centralizing data makes it a more attractive target for attacks.
+- **Single point of failure:** If the DBMS goes down, all dependent applications may stop working.
+- **Maintenance:** Regular backups, tuning, and upgrades are necessary to keep the system running smoothly.
 
 **Definition:**  
 A DBMS is software that helps to create, manage, and use databases efficiently.
@@ -103,7 +103,9 @@ A **Database Management System** is software that stores and manages all the dat
 
 ---
 
-## 📁 **File System** vs 💾 **Database System (DBMS)**
+## 📁 **File System vs Database System (DBMS)**
+
+**2016–17 Q3, 2021–22 Q2 & Q3, 2022–23 Q2:** List and briefly explain the advantages of DBMS over traditional file systems / "Data redundancy leads to data inconsistency." Justify this statement. / What are the advantages of databases over file systems? / Discuss various advantages of DBMS.
 
 | **File System**                                        | **Database System (DBMS)**                                   |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
@@ -121,6 +123,25 @@ A **Database Management System** is software that stores and manages all the dat
 - File systems are **old and outdated**, with many issues like **repetition, inconsistency, low security**, and more.
 - DBMS solves all these problems using **smart tools and techniques**.
 - That’s why most modern systems like banks, schools, hospitals use **DBMS** instead of file systems.
+
+### ❗ "Data redundancy leads to data inconsistency." (Simple Explanation)
+
+**Data redundancy** means the same data is stored in multiple places (duplicate copies).
+
+#### Why is this a problem?
+- If you update data in one place but forget to update it everywhere else, the data becomes **inconsistent** (not the same in all places).
+- For example, if a student's address is stored in two files and you change it in only one, now the files have different addresses for the same student.
+- This makes it hard to know which data is correct.
+- It can cause **errors** in reports, confusion for users, and problems in decision-making.
+
+#### Key Points:
+- **Redundancy = Repetition** of data.
+- **Inconsistency = Mismatched** or conflicting data.
+- **Main reason:** Manual updates in multiple places are error-prone.
+- **DBMS helps:** By storing data in one place, DBMS reduces redundancy and keeps data consistent.
+
+**Summary:**  
+When the same data is stored in many places, it’s easy for mistakes to happen, leading to different versions of the data. This is why data redundancy causes data inconsistency.
 
 ---
 
