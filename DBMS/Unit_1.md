@@ -9,7 +9,7 @@
 
 ### 2021–22
 
-- [What is logical data independence?](#-database-system-concept-and-architecture)
+- [What is logical data independence?](#-data-independence-in-dbms)
 - ["Data redundancy leads to data inconsistency." Justify this statement.](#-file-system-vs-database-system-dbms)
 - [What are the advantages of databases over file systems?](#-file-system-vs-database-system-dbms)
 - [Discuss the three-level architecture of DBMS with a neat diagram.](#-three-level-architecture-as-per-dbms-concept)
@@ -146,8 +146,6 @@ When the same data is stored in many places, it’s easy for mistakes to happen,
 ---
 
 ## 📘 **Database System Concept and Architecture**
-
-**2021–22 Q1:** What is logical data independence?
 
 ### 🔹 **Definition:**
 
@@ -354,6 +352,35 @@ The **Internal Level**, also known as the **Physical Level**, is the **lowest la
 - **Security:** Users can only access the data relevant to them.
 - **Flexibility:** Easy to modify one level without disturbing others.
 
+## 🧩 **Data Independence in DBMS**
+
+**2021–22 Q1:** What is logical data independence?
+
+**Data independence** refers to the capacity to change the schema at one level of a database system without having to change the schema at the next higher level. It is a key advantage of the three-level architecture.
+
+### 1. **Logical Data Independence**
+
+- **Definition:** The ability to change the conceptual (logical) schema without having to change external schemas or application programs.
+- **Example:** Adding a new field to a table or splitting a table into two related tables should not require changes to user views or application code.
+- **Importance:** Protects user applications from changes in the logical structure of data.
+
+### 2. **Physical Data Independence**
+
+- **Definition:** The ability to change the internal (physical) schema without having to change the conceptual schema.
+- **Example:** Changing how data is stored on disk (e.g., using new indexes, changing file organization) does not affect the logical structure or user views.
+- **Importance:** Allows optimization and changes in storage without impacting database design or user applications.
+
+### ✨ **Summary Table**
+
+| Type                      | What Can Change?                  | What Remains Unaffected?         | Example Change                        |
+|---------------------------|-----------------------------------|----------------------------------|---------------------------------------|
+| Logical Data Independence | Conceptual schema (tables, fields)| External schema (user views)     | Add a new column to a table           |
+| Physical Data Independence| Internal schema (storage details) | Conceptual schema (tables, logic)| Change file organization or indexing  |
+
+**In short:**  
+- **Logical data independence** shields user views from changes in logical structure.
+- **Physical data independence** shields logical structure from changes in physical storage.
+- Both are essential for flexibility, maintainability, and scalability in database systems.
 ---
 
 ## 🔄 **Summary Table**
