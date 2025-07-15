@@ -68,6 +68,13 @@ A table storing students' names, roll numbers, marks, and subjects is a database
 
 **2016–17 Q1:** What are the disadvantages of database systems?
 
+- **High cost:** Purchasing, licensing, and maintaining a DBMS can be expensive.  
+- **Complexity:** Designing, installing, and managing a database requires specialized skills.  
+- **Performance overhead:** For simple tasks, a full-featured DBMS may be slower than lightweight solutions.  
+- **Security risk:** Centralizing data makes it a more attractive target for attacks.  
+- **Single point of failure:** If the DBMS goes down, all dependent applications may stop working.  
+- **Maintenance:** Regular backups, tuning, and upgrades are necessary to keep the system running smoothly.  
+
 **Definition:**  
 A DBMS is software that helps to create, manage, and use databases efficiently.
 
