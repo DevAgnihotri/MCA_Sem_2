@@ -1,4 +1,33 @@
+# PYQs Summary
+
+### 2016–17
+
+- [What are the disadvantages of database systems?](#4-dbms-database-management-system)
+- [Construct an ER diagram for a university registrar’s office.](#data-model-schema-and-instances)
+- [List and briefly explain the advantages of DBMS over traditional file systems.](#file-system-vs-database-system-dbms)
+- [What problems are associated with the three-schema architecture?](#three-level-architecture-as-per-dbms-concept)
+
+### 2021–22
+
+- [What is logical data independence?](#database-system-concept-and-architecture)
+- ["Data redundancy leads to data inconsistency." Justify this statement.](#file-system-vs-database-system-dbms)
+- [What are the advantages of databases over file systems?](#file-system-vs-database-system-dbms)
+- [Discuss the three-level architecture of DBMS with a neat diagram.](#three-level-architecture-as-per-dbms-concept)
+- [Explain participation constraint in an ER diagram with a suitable example.](#data-model-schema-and-instances)
+- [Draw an ER diagram based on given assumptions and convert it to a relational model.](#data-model-schema-and-instances)
+
+### 2022–23
+
+- [Define the terms "Data" and "Database".](#1-data)
+- [Discuss various advantages of DBMS.](#file-system-vs-database-system-dbms)
+- [Explain the ANSI/SPARC architecture in detail.](#three-level-architecture-as-per-dbms-concept)
+- [Discuss different types of entities, attributes, and relations used in designing an ER diagram.](#data-model-schema-and-instances)
+
+---
+
 ### 1. **Data**
+
+**2022–23 Q1:** Define the terms "Data" and "Database".
 
 **Definition:**  
 Data is raw facts and figures that have no meaning on their own.
@@ -20,6 +49,8 @@ Information is processed data that has meaning and is useful for decision-making
 
 ### 3. **Database**
 
+**2022–23 Q1:** Define the terms "Data" and "Database".
+
 **Definition:**  
 A database is an organized collection of related information stored electronically for easy access and management.
 
@@ -34,6 +65,8 @@ A table storing students' names, roll numbers, marks, and subjects is a database
 ---
 
 ### 4. **DBMS (Database Management System)**
+
+**2016–17 Q1:** What are the disadvantages of database systems?
 
 **Definition:**  
 A DBMS is software that helps to create, manage, and use databases efficiently.
@@ -85,6 +118,8 @@ A **Database Management System** is software that stores and manages all the dat
 ---
 
 ## 📘 **Database System Concept and Architecture**
+
+**2021–22 Q1:** What is logical data independence?
 
 ### 🔹 **Definition:**
 
@@ -230,6 +265,8 @@ In **3-Tier Architecture**, there is an additional layer between the client and 
 
 ## 🧠 **Three-Level Architecture (As per DBMS Concept)**
 
+**2016–17 Q4, 2021–22 Q4, 2022–23 Q3:** What problems are associated with the three-schema architecture? / Discuss the three-level architecture of DBMS with a neat diagram. / Explain the ANSI/SPARC architecture in detail.
+
 Apart from 1-tier, 2-tier, and 3-tier models, DBMS also follows a special **Three-Level Architecture** designed by ANSI/SPARC. It separates data into three views:
 
 ### 🏞️ **External Level (View Level)**
@@ -302,6 +339,8 @@ The **Internal Level**, also known as the **Physical Level**, is the **lowest la
 ---
 
 # 📗 **Data Model, Schema, and Instances**
+
+**2016–17 Q2, 2021–22 Q5 & Q6, 2022–23 Q4:** Construct an ER diagram for a university registrar’s office. / Explain participation constraint in an ER diagram with a suitable example. / Draw an ER diagram based on given assumptions and convert it to a relational model. / Discuss different types of entities, attributes, and relations used in designing an ER diagram.
 
 ## 📘 **What is a Data Model?**
 
