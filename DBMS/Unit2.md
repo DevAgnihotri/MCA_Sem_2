@@ -1,7 +1,3 @@
-# PYQs Summary
-
-# PYQs Summary
-
 **Relational Algebra & DBMS PYQs:**
 
 1. [Define referential integrity constraint. Explain its importance and how it is implemented in SQL.](#22-referential-integrity)
