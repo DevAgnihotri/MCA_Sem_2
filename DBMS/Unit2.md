@@ -1,8 +1,25 @@
 # PYQs Summary
 
+# PYQs Summary
+
+**Relational Algebra & DBMS PYQs:**
+
 1. [Define referential integrity constraint. Explain its importance and how it is implemented in SQL.](#22-referential-integrity)
 2. [What is domain integrity?](#24-domain-constraints)
 3. [Write the relational algebra expression: For relation Employee(EID, Ename, City), find the names of employees who live in Delhi or Mumbai.](#pyq-3-write-the-relational-algebra-expression-for-relation-employeeeid-ename-city-find-the-names-of-employees-who-live-in-delhi-or-mumbai)
+
+**SQL PYQs Summary:**
+
+1. [Define joins in SQL. Briefly explain its types. Also, discuss the importance of triggers in SQL with an example.](#joins-in-sql)
+2. [Discuss different types of SQL commands. Explain joins, aggregate functions, and sub-queries with neat examples.](#types-of-sql-commands)
+3. [Explain the division operator with an example. How can it be implemented using other relational algebraic operators?](#division-operator-in-sqlrelational-algebra)
+4. [Write the SQL command to create a table named STUDENT with constraints: Roll (Primary Key, must start with ‘S’), Name (Not Null), DOB, Email (Unique), DOR (>= DOB).](#example-table-creation-and-queries)
+5. [What is the difference between a trigger and a procedure? Write a trigger that logs updated salary in the Employee_Backup table.](#triggers-in-sql)
+6. [Write SQL queries on EMP and DEPT tables for joins, filters, and conditions.](#example-table-creation-and-queries)
+7. [Create a table Employee(Emp_id, Emp_name, Emp_add, Emp_basicpay) and insert some records. Create another table Emp_detail(Emp_name, Emp_add) from Employee using a SELECT statement.](#example-table-creation-and-queries)
+8. [What are sub-queries?](#queries-and-subqueries)
+9. [Define a cursor in PL/SQL.](#cursors-in-plsql)
+10. [Create the tables Supplier(SNo, SName, City), Parts(PNo, Pname, Color, City), and Shipment(SNo, PNo, Quantity). Answer queries: total suppliers, suppliers supplying parts, part numbers, change red to black.](#example-table-creation-and-queries)
 
 ---
 
