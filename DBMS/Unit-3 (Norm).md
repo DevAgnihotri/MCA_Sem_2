@@ -225,6 +225,147 @@ A relation is in **2NF** if:
 
 **Therefore, `A⁺ = {A, B, C, D, E}` and the relation is in 2NF.**
 
+
+# Question 1
+
+## Checking 2NF for Relation R(P, Q, R, S, T)
+
+### Given:
+
+- Relation: `R(P, Q, R, S, T)`
+- Functional Dependencies (FDs):
+  - `PQ → R`
+  - `S → T`
+
+### Step 1: Identify Candidate Key(s)
+
+To determine if the relation is in 2NF, we first identify the candidate key(s).
+
+- From `PQ → R`, we know `PQ` determines `R`.
+- From `S → T`, we know `S` determines `T`.
+- To cover all attributes (`P, Q, R, S, T`), the candidate key is `{P, Q, S}`.
+
+### Step 2: Check for Partial Dependencies
+
+A relation is in 2NF if:
+
+1. It is in 1NF.
+2. There are no partial dependencies (i.e., no non-prime attribute is dependent on a proper subset of a candidate key).
+
+#### Prime Attributes:
+
+- Attributes that are part of any candidate key: `P, Q, S`.
+
+#### Non-Prime Attributes:
+
+- Attributes that are not part of any candidate key: `R, T`.
+
+#### Check Dependencies:
+
+- `PQ → R`: `R` is a non-prime attribute, and `PQ` is a proper subset of the candidate key `{P, Q, S}`. **This is a partial dependency.**
+- `S → T`: `T` is a non-prime attribute, and `S` is a proper subset of the candidate key `{P, Q, S}`. **This is a partial dependency.**
+
+### Conclusion:
+
+The relation `R(P, Q, R, S, T)` is **not in 2NF** because it has partial dependencies.
+
+---
+
+### Step 3: Convert to 2NF
+
+To convert the relation into 2NF, we remove the partial dependencies by decomposing the relation.
+
+#### Decomposition:
+
+1. Create a relation for each partial dependency:
+
+   - For `PQ → R`: Create `R1(P, Q, R)`.
+   - For `S → T`: Create `R2(S, T)`.
+
+2. Create a relation for the remaining attributes:
+   - `R3(P, Q, S)` (to ensure all candidate keys are preserved).
+
+#### Final Relations:
+
+- `R1(P, Q, R)` with FD: `PQ → R`
+- `R2(S, T)` with FD: `S → T`
+- `R3(P, Q, S)` (no FDs)
+
+---
+
+### Final 2NF Decomposition:
+
+The decomposed relations are:
+
+1. `R1(P, Q, R)`
+2. `R2(S, T)`
+3. `R3(P, Q, S)`
+
+These relations are now in 2NF, as there are no partial dependencies.
+
+### What is Partial Functional Dependency?
+
+A **partial functional dependency** occurs in a relation when a non-prime attribute (an attribute that is not part of any candidate key) is functionally dependent on a part (proper subset) of a candidate key(i.e. Prime attribute), rather than the whole candidate key.
+
+**Example:**
+
+Consider a relation `R(A, B, C, D)` with the functional dependency `A → B`:
+
+- Here, `B` is partially dependent on `A` because `A` is a part of the candidate key `(A, C)`.
+- This partial dependency violates 2NF.
+
+To resolve this, decompose `R` into two relations:
+
+1. `R1(A, B)` where `A → B`
+2. `R2(A, C, D)` where `(A, C)` is the candidate key.
+
+This decomposition removes the partial dependency and ensures the relation is in 2NF.
+
+Consider a relation `Student_Course (StudentID, CourseID, Instructor, CourseName)` where the candidate key is (StudentID, CourseID):
+
+- `CourseName` depends only on `CourseID` (not on the full key).
+- This is a partial dependency because `CourseName` is determined by part of the candidate key.
+
+---
+
+### Anomalies Due to Partial Dependency
+
+When a relation has partial dependencies, it can lead to several types of anomalies:
+
+#### 1. Insertion Anomaly
+
+- **Problem:** You cannot insert information about a course unless a student is also enrolled in it.
+- **Example:** If you want to add a new course to the database but no student has enrolled yet, you cannot insert the course name and instructor without a StudentID.
+
+#### 2. Update Anomaly
+
+- **Problem:** If you need to update information about a course (like the instructor), you must update it in every row where that course appears.
+- **Example:** If the instructor for a course changes, you have to update the instructor's name for every student enrolled in that course. If you miss any row, the data becomes inconsistent.
+
+#### 3. Deletion Anomaly
+
+- **Problem:** Deleting a student's enrollment in a course might remove all information about the course itself.
+- **Example:** If the last student enrolled in a course drops it and you delete that row, you also lose the course name and instructor information from the database.
+
+---
+
+### Technical Explanation
+
+- **Partial dependency** violates the rules of Second Normal Form (2NF).
+- To avoid these anomalies, relations should be decomposed so that non-prime attributes are fully functionally dependent on the whole candidate key (i.e., the relation should be in 2NF).
+
+---
+
+### Summary Table
+
+| Anomaly Type      | Description                                                         | Example Scenario                                              |
+| ----------------- | ------------------------------------------------------------------- | ------------------------------------------------------------- |
+| Insertion Anomaly | Cannot insert course info without a student enrolled                | Can't add new course unless a student is enrolled             |
+| Update Anomaly    | Must update course info in multiple rows; risk of inconsistency     | Instructor change must be updated for every student in course |
+| Deletion Anomaly  | Deleting last student in a course removes all info about the course | Lose course info if last student drops the course             |
+
+
+
 ### 3. **Third Normal Form (3NF)**
 
 A relation is in **3NF** if:
@@ -322,6 +463,74 @@ A relation is in **3NF** if:
 - Use attribute closure to find candidate keys and check each FD.
 - If any FD violates the rule, the relation is not in 3NF.
 ---
+
+
+### What is Transitive Functional Dependency?
+
+A **transitive functional dependency** occurs when a non-prime attribute is functionally dependent on another non-prime attribute, which in turn is dependent on a candidate key. This creates an indirect dependency on the candidate key.
+
+**Example:**
+
+Consider a relation `R(A, B, C)` with the functional dependencies:
+
+- `A → B`
+- `B → C`
+
+Here, `C` is transitively dependent on `A` through `B`. This violates the rules of Third Normal Form (3NF).
+
+---
+
+### Anomalies Due to Transitive Dependency
+
+When a relation has transitive dependencies, it can lead to the following anomalies:
+
+#### 1. Insertion Anomaly
+
+- **Problem:** You cannot insert information about a dependent attribute(or can also be said as, an attribute) unless the related non-prime attribute is also known.
+- **Example:** In the relation `R(A, B, C)`, you cannot insert a value for `C` unless a corresponding value for `B` is also provided.
+
+#### 2. Update Anomaly
+
+- **Problem:** Updating a value for a non-prime attribute may require multiple rows to be updated, leading to inconsistency.
+- **Example:** If the value of `B` changes, you must update all rows where `B` determines `C`. Missing any row will result in inconsistent data.
+
+#### 3. Deletion Anomaly
+
+- **Problem:** Deleting a row may result in the loss of information about a dependent attribute.
+- **Example:** If you delete a row containing a specific value of `B`, you may lose all information about the corresponding value of `C`.
+
+---
+
+### Resolving Transitive Dependency
+
+To eliminate transitive dependencies, decompose the relation into smaller relations that satisfy 3NF. This ensures that non-prime attributes depend only on candidate keys.
+
+**Example Decomposition:**
+
+Given the relation `R(A, B, C)` with the dependencies `A → B` and `B → C`:
+
+1. Decompose into two relations:
+
+- `R1(A, B)` with `A → B`
+- `R2(B, C)` with `B → C`
+
+2. This eliminates the transitive dependency, as `C` now directly depends on `B` in `R2`.
+
+---
+
+### Summary Table
+
+| Anomaly Type      | Description                                                             | Example Scenario                                      |
+| ----------------- | ----------------------------------------------------------------------- | ----------------------------------------------------- |
+| Insertion Anomaly | Cannot insert dependent attribute without related non-prime attribute   | Can't insert `C` without `B`                          |
+| Update Anomaly    | Must update dependent attribute in multiple rows; risk of inconsistency | Changing `B` requires updating all rows where `B → C` |
+| Deletion Anomaly  | Deleting a row may remove information about dependent attributes        | Deleting `B` may lose all info about `C`              |
+
+By resolving transitive dependencies, the database becomes more consistent and easier to maintain.
+
+---
+
+
 
 ### 4. **Boyce-Codd Normal Form (BCNF)**
 
@@ -536,134 +745,57 @@ Sure! Let's break it down simply:
 
 ---
 
-### Given:
+### Given
 
-- Relation $R(A, B, C, D, E, F)$
-
-- Functional Dependencies (FDs):
-
-  - $AB \to C$
-  - $C \to A$
-  - $D \to E$
-  - $F \to A$
-  - $E \to D$
-
-- Decomposition:
-
-  - $R_1 (A, C, D)$
-  - $R_2 (B, C, D)$
-  - $R_3 (E, F, D)$
+- **Relation:** `R(A, B, C, D, E, F)`
+- **Functional Dependencies (FDs):**
+  - `AB → C`
+  - `C → A`
+  - `D → E`
+  - `F → A`
+  - `E → D`
+- **Decomposition:**
+  - `R1(A, C, D)`
+  - `R2(B, C, D)`
+  - `R3(E, F, D)`
 
 ---
 
 ### How to check if the decomposition is lossless?
 
-- For lossless decomposition, **at least one of the intersections of decomposed relations should functionally determine one of those relations**.
-
-- Check the intersections:
-
-  - $R_1 \cap R_2 = \{ C, D \}$
-  - $R_2 \cap R_3 = \{ D \}$
-  - $R_1 \cap R_3 = \{ D \}$
-
-- Check if the attributes in the intersection functionally determine either $R_1, R_2,$ or $R_3$ using the FDs.
+- For a decomposition to be **lossless**, at least one of the intersections of the decomposed relations should functionally determine all the attributes of one of those relations.
+- Let's check the intersections:
+  - `R1 ∩ R2 = {C, D}`
+  - `R2 ∩ R3 = {D}`
+  - `R1 ∩ R3 = {D}`
 
 ---
 
-### Step 1: Look at $R_1 \cap R_2 = \{ C, D \}$
+### Step 1: Check `R1 ∩ R2 = {C, D}`
 
-- Does $C, D \to R_1$ or $R_2$?
-
-- $R_1 = \{ A, C, D \}$
-
-- We want to check if $CD \to A, C, D$ or at least $CD \to A$.
-
-- Given $C \to A$, and $D \to E$ (not relevant here), so:
-
-- From $C \to A$, $C$ alone determines $A$, so $CD \to A$ is true.
-
-- Since $CD \to A$, and $A, C, D$ is $R_1$, so $CD \to R_1$.
+- Does `{C, D}` functionally determine all attributes of `R1` or `R2`?
+- `R1 = {A, C, D}`
+- We need to check if `{C, D} → {A, C, D}` (or at least `{C, D} → A`).
+- From the FDs, `C → A` is given. So, `{C, D}` can determine `A` (since `C` alone is enough).
+- Therefore, `{C, D} → {A, C, D}` holds.
 
 ---
 
 ### Step 2: Conclusion
 
-- Since $R_1 \cap R_2 = \{ C, D \}$ and $CD \to R_1$, the decomposition is **lossless**.
+- Since the intersection `{C, D}` functionally determines all attributes of `R1`, the decomposition is **lossless**.
 
 ---
 
-### **Summary:**
+### **Summary**
 
-- Lossless means: After splitting, you can join tables back without losing data.
-- Check if intersection attributes determine one relation.
-- Here, $C, D$ (intersection of $R_1$ and $R_2$) determines all of $R_1$.
+- **Lossless decomposition** means that after splitting the relation, you can join the tables back without losing any data.
+- To check, see if the intersection attributes between any two relations functionally determine all attributes of one of those relations.
+- Here, `{C, D}` (intersection of `R1` and `R2`) determines all of `R1`.
 - So, **the decomposition is lossless**.
 
 ---
 
-## Partial Functional Dependency and Anomalies
-
-### What is Partial Functional Dependency?
-
-A **partial functional dependency** occurs in a relation when a non-prime attribute (an attribute that is not part of any candidate key) is functionally dependent on a part (proper subset) of a candidate key(i.e. Prime attribute), rather than the whole candidate key.
-
-**Example:**
-**Example:**
-
-Consider a relation `R(A, B, C, D)` with the functional dependency `A → B`:
-
-- Here, `B` is partially dependent on `A` because `A` is a part of the candidate key `(A, C)`.
-- This partial dependency violates 2NF.
-
-To resolve this, decompose `R` into two relations:
-
-1. `R1(A, B)` where `A → B`
-2. `R2(A, C, D)` where `(A, C)` is the candidate key.
-
-This decomposition removes the partial dependency and ensures the relation is in 2NF.
-
-Consider a relation `Student_Course (StudentID, CourseID, Instructor, CourseName)` where the candidate key is (StudentID, CourseID):
-
-- `CourseName` depends only on `CourseID` (not on the full key).
-- This is a partial dependency because `CourseName` is determined by part of the candidate key.
-
----
-
-### Anomalies Due to Partial Dependency
-
-When a relation has partial dependencies, it can lead to several types of anomalies:
-
-#### 1. Insertion Anomaly
-
-- **Problem:** You cannot insert information about a course unless a student is also enrolled in it.
-- **Example:** If you want to add a new course to the database but no student has enrolled yet, you cannot insert the course name and instructor without a StudentID.
-
-#### 2. Update Anomaly
-
-- **Problem:** If you need to update information about a course (like the instructor), you must update it in every row where that course appears.
-- **Example:** If the instructor for a course changes, you have to update the instructor's name for every student enrolled in that course. If you miss any row, the data becomes inconsistent.
-
-#### 3. Deletion Anomaly
-
-- **Problem:** Deleting a student's enrollment in a course might remove all information about the course itself.
-- **Example:** If the last student enrolled in a course drops it and you delete that row, you also lose the course name and instructor information from the database.
-
----
-
-### Technical Explanation
-
-- **Partial dependency** violates the rules of Second Normal Form (2NF).
-- To avoid these anomalies, relations should be decomposed so that non-prime attributes are fully functionally dependent on the whole candidate key (i.e., the relation should be in 2NF).
-
----
-
-### Summary Table
-
-| Anomaly Type      | Description                                                         | Example Scenario                                              |
-| ----------------- | ------------------------------------------------------------------- | ------------------------------------------------------------- |
-| Insertion Anomaly | Cannot insert course info without a student enrolled                | Can't add new course unless a student is enrolled             |
-| Update Anomaly    | Must update course info in multiple rows; risk of inconsistency     | Instructor change must be updated for every student in course |
-| Deletion Anomaly  | Deleting last student in a course removes all info about the course | Lose course info if last student drops the course             |
 
 ### What is Pseudo-Transitivity?
 
@@ -711,71 +843,6 @@ Pseudo-transitivity is useful for reasoning about functional dependencies and si
 | Pseudo-Transitivity | If `X → Y` and `YW → Z`, then `XW → Z`. |
 
 Pseudo-transitivity helps in deriving new functional dependencies, which is essential for database design and normalization.
-
-### What is Transitive Functional Dependency?
-
-A **transitive functional dependency** occurs when a non-prime attribute is functionally dependent on another non-prime attribute, which in turn is dependent on a candidate key. This creates an indirect dependency on the candidate key.
-
-**Example:**
-
-Consider a relation `R(A, B, C)` with the functional dependencies:
-
-- `A → B`
-- `B → C`
-
-Here, `C` is transitively dependent on `A` through `B`. This violates the rules of Third Normal Form (3NF).
-
----
-
-### Anomalies Due to Transitive Dependency
-
-When a relation has transitive dependencies, it can lead to the following anomalies:
-
-#### 1. Insertion Anomaly
-
-- **Problem:** You cannot insert information about a dependent attribute(or can also be said as, an attribute) unless the related non-prime attribute is also known.
-- **Example:** In the relation `R(A, B, C)`, you cannot insert a value for `C` unless a corresponding value for `B` is also provided.
-
-#### 2. Update Anomaly
-
-- **Problem:** Updating a value for a non-prime attribute may require multiple rows to be updated, leading to inconsistency.
-- **Example:** If the value of `B` changes, you must update all rows where `B` determines `C`. Missing any row will result in inconsistent data.
-
-#### 3. Deletion Anomaly
-
-- **Problem:** Deleting a row may result in the loss of information about a dependent attribute.
-- **Example:** If you delete a row containing a specific value of `B`, you may lose all information about the corresponding value of `C`.
-
----
-
-### Resolving Transitive Dependency
-
-To eliminate transitive dependencies, decompose the relation into smaller relations that satisfy 3NF. This ensures that non-prime attributes depend only on candidate keys.
-
-**Example Decomposition:**
-
-Given the relation `R(A, B, C)` with the dependencies `A → B` and `B → C`:
-
-1. Decompose into two relations:
-
-- `R1(A, B)` with `A → B`
-- `R2(B, C)` with `B → C`
-
-2. This eliminates the transitive dependency, as `C` now directly depends on `B` in `R2`.
-
----
-
-### Summary Table
-
-| Anomaly Type      | Description                                                             | Example Scenario                                      |
-| ----------------- | ----------------------------------------------------------------------- | ----------------------------------------------------- |
-| Insertion Anomaly | Cannot insert dependent attribute without related non-prime attribute   | Can't insert `C` without `B`                          |
-| Update Anomaly    | Must update dependent attribute in multiple rows; risk of inconsistency | Changing `B` requires updating all rows where `B → C` |
-| Deletion Anomaly  | Deleting a row may remove information about dependent attributes        | Deleting `B` may lose all info about `C`              |
-
-By resolving transitive dependencies, the database becomes more consistent and easier to maintain.
-
----
 
 ## Dependency Preserving Decomposition
 
@@ -845,80 +912,3 @@ The closure of the combined FDs (`A → B`, `A → D`, `B → C`) is the same as
 - A decomposition that is not dependency preserving may require additional joins to enforce the original constraints, which can be inefficient.
 
 By ensuring dependency preservation, we maintain the integrity of the database while optimizing its structure.
-
-# Question 1
-
-## Checking 2NF for Relation R(P, Q, R, S, T)
-
-### Given:
-
-- Relation: `R(P, Q, R, S, T)`
-- Functional Dependencies (FDs):
-  - `PQ → R`
-  - `S → T`
-
-### Step 1: Identify Candidate Key(s)
-
-To determine if the relation is in 2NF, we first identify the candidate key(s).
-
-- From `PQ → R`, we know `PQ` determines `R`.
-- From `S → T`, we know `S` determines `T`.
-- To cover all attributes (`P, Q, R, S, T`), the candidate key is `{P, Q, S}`.
-
-### Step 2: Check for Partial Dependencies
-
-A relation is in 2NF if:
-
-1. It is in 1NF.
-2. There are no partial dependencies (i.e., no non-prime attribute is dependent on a proper subset of a candidate key).
-
-#### Prime Attributes:
-
-- Attributes that are part of any candidate key: `P, Q, S`.
-
-#### Non-Prime Attributes:
-
-- Attributes that are not part of any candidate key: `R, T`.
-
-#### Check Dependencies:
-
-- `PQ → R`: `R` is a non-prime attribute, and `PQ` is a proper subset of the candidate key `{P, Q, S}`. **This is a partial dependency.**
-- `S → T`: `T` is a non-prime attribute, and `S` is a proper subset of the candidate key `{P, Q, S}`. **This is a partial dependency.**
-
-### Conclusion:
-
-The relation `R(P, Q, R, S, T)` is **not in 2NF** because it has partial dependencies.
-
----
-
-### Step 3: Convert to 2NF
-
-To convert the relation into 2NF, we remove the partial dependencies by decomposing the relation.
-
-#### Decomposition:
-
-1. Create a relation for each partial dependency:
-
-   - For `PQ → R`: Create `R1(P, Q, R)`.
-   - For `S → T`: Create `R2(S, T)`.
-
-2. Create a relation for the remaining attributes:
-   - `R3(P, Q, S)` (to ensure all candidate keys are preserved).
-
-#### Final Relations:
-
-- `R1(P, Q, R)` with FD: `PQ → R`
-- `R2(S, T)` with FD: `S → T`
-- `R3(P, Q, S)` (no FDs)
-
----
-
-### Final 2NF Decomposition:
-
-The decomposed relations are:
-
-1. `R1(P, Q, R)`
-2. `R2(S, T)`
-3. `R3(P, Q, S)`
-
-These relations are now in 2NF, as there are no partial dependencies.
