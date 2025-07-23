@@ -127,7 +127,7 @@ A relation is in **1NF** if:
 A relation is in **2NF** if:
 
 - It is in 1NF.
-- If in a Realtion all Condidate keys are simple cand. keys
+- If in a Realtion all Candidate keys are simple cand. keys
 - All non-prime attributes are fully functionally dependent on the primary key (no partial dependency(NP depends on NP)).
 
 **Example:**
