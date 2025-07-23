@@ -128,7 +128,8 @@ A relation is in **2NF** if:
 
 - It is in 1NF.
 - If in a Realtion all Candidate keys are simple cand. keys
-- All non-prime attributes are fully functionally dependent on the primary key (no partial dependency(NP depends on NP)).
+- All non-prime attributes are fully functionally dependent on the primary key (no partial dependency(Partial dependency = Non-prime attribute depends on part of a candidate key.
+)).
 
 **Example:**
 
@@ -155,7 +156,74 @@ A relation is in **2NF** if:
 | 101       | Pen         |
 | 102       | Notebook    |
 
+## Example: Finding Attribute Closure and Checking 2NF
+
+Let's take a relation and a set of functional dependencies, compute the closure of a set of attributes, and check if the relation is in Second Normal Form (2NF).
+
+### Given:
+
+- Relation: `R(A, B, C, D, E)`
+- Functional Dependencies (FDs):
+  - `A → B`
+  - `B → C`
+  - `C → D`
+  - `D → E`
+
+### Find: Closure of `{A}` (denoted as `A⁺`)
+
+#### Step-by-Step Solution
+
+1. **Start with `{A}`:**
+   - Initial closure: `{A}`
+
+2. **Apply FDs:**
+   - `A → B`: Add `B` to closure → `{A, B}`
+   - `B → C`: `B` is in closure, add `C` → `{A, B, C}`
+   - `C → D`: `C` is in closure, add `D` → `{A, B, C, D}`
+   - `D → E`: `D` is in closure, add `E` → `{A, B, C, D, E}`
+
+3. **No more FDs can be applied.**
+
+#### **Conclusion:**
+
+- The closure of `{A}` is `{A, B, C, D, E}`.
+- This means knowing `A` allows you to determine all attributes in the relation.
+- Therefore, `{A}` is a candidate key.
+
 ---
+
+**Summary Table:**
+
+| Step         | FD Applied | Attributes Added | Closure So Far      |
+|--------------|------------|-----------------|---------------------|
+| Initial      | —          | —               | {A}                |
+| 1            | A → B      | B               | {A, B}             |
+| 2            | B → C      | C               | {A, B, C}          |
+| 3            | C → D      | D               | {A, B, C, D}       |
+| 4            | D → E      | E               | {A, B, C, D, E}    |
+
+---
+
+### Checking for 2NF
+
+A relation is in **2NF** if:
+- It is in 1NF.
+- There are no partial dependencies (no non-prime attribute is dependent on a proper subset of any candidate key).
+
+#### Analysis:
+
+- The only candidate key is `{A}`.
+- All other attributes (`B`, `C`, `D`, `E`) are non-prime.
+- All FDs have `{A}` or attributes derived from `{A}` as their left side.
+- No non-prime attribute is dependent on a proper subset of a candidate key (since the only candidate key is a single attribute).
+
+#### **Conclusion:**
+
+- The relation is in **2NF**.
+
+---
+
+**Therefore, `A⁺ = {A, B, C, D, E}` and the relation is in 2NF.**
 
 ### 3. **Third Normal Form (3NF)**
 
@@ -164,7 +232,6 @@ A relation is in **3NF** if:
 - It is in 2NF.
 - There are no transitive dependencies (non-prime attributes depend only on the primary key).
 - A relation in which all attribute are key or prime attribute then in 3NF
-- if a PA -> PA trans. is ignored, what's not allowed is NPA -> PA
 
 **Example:**
 
@@ -191,6 +258,69 @@ A relation is in **3NF** if:
 | 10           | HR             |
 | 20           | IT             |
 
+## Example: Checking 3NF (Correct and Incorrect Cases)
+
+### Example 1: Relation in 3NF (Incorrect Case)
+
+#### Given:
+- Relation: `R(A, B, C)`
+- Functional Dependencies:
+  - `A → B`
+  - `B → C`
+
+#### Step 1: Find Candidate Key(s)
+- Compute closure of `{A}`:
+  - `{A} → {A, B}` (by `A → B`)
+  - `{A, B} → {A, B, C}` (by `B → C`)
+  - So, `{A}` is a candidate key.
+
+#### Step 2: Check Each FD for 3NF
+- **A → B**:  
+  - Left side (`A`) is a candidate key. Satisfies 3NF.
+- **B → C**:  
+  - Left side (`B`) is not a candidate key.
+  - Right side (`C`) is a non-prime attribute (not in any candidate key).
+  - **Violation:** This FD does **not** satisfy 3NF.
+
+#### Conclusion:
+- **R(A, B, C)** is **not in 3NF** due to the transitive dependency `B → C`.
+
+---
+
+### Example 2: Relation in 3NF (Correct Case)
+
+#### Given:
+- Relation: `R(A, B, C)`
+- Functional Dependencies:
+  - `A → B`
+  - `A → C`
+
+#### Step 1: Find Candidate Key(s)
+- Closure of `{A}`:
+  - `{A} → {A, B, C}` (by both FDs)
+  - So, `{A}` is a candidate key.
+
+#### Step 2: Check Each FD for 3NF
+- **A → B** and **A → C**:
+  - Left side (`A`) is a candidate key.
+  - Both FDs satisfy 3NF.
+
+#### Conclusion:
+- **R(A, B, C)** is **in 3NF**.
+
+---
+
+### Summary Table
+
+| Example | Candidate Key(s) | FD Violating 3NF | 3NF Status   |
+|---------|------------------|------------------|--------------|
+| 1       | {A}              | B → C            | Not in 3NF   |
+| 2       | {A}              | None             | In 3NF       |
+
+**Key Points:**  
+- For 3NF, for every FD `X → Y`, either `X` is a superkey or every attribute in `Y` is prime.
+- Use attribute closure to find candidate keys and check each FD.
+- If any FD violates the rule, the relation is not in 3NF.
 ---
 
 ### 4. **Boyce-Codd Normal Form (BCNF)**
