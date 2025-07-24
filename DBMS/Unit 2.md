@@ -2,7 +2,7 @@
 
 1. [Define referential integrity constraint. Explain its importance and how it is implemented in SQL.](#22-referential-integrity)
 2. [What is domain integrity?](#24-domain-constraints)
-3. [Write the relational algebra expression: For relation Employee(EID, Ename, City), find the names of employees who live in Delhi or Mumbai.](#pyq-3-write-the-relational-algebra-expression-for-relation-employeeeid-ename-city-find-the-names-of-employees-who-live-in-delhi-or-mumbai)
+3. [Write the relational algebra expression: For relation Employee(EID, Ename, City), find the names of employees who live in Delhi or Mumbai.](#3-relational-algebra)
 
 **SQL PYQs Summary:**
 
@@ -48,8 +48,8 @@ The **Relational Data Model** is a way to organize data in tables (called relati
 
 ### Types of Integrity Constraints:
 
-- **Entity Integrity**
-- **Referential Integrity**
+- **Entity Integrity** (Table must have Primary key, Unique, Not Null)
+- **Referential Integrity** (F key in a table matches P key in another)
 - **Key Constraints**
 - **Domain Constraints**
 
