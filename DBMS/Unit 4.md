@@ -376,30 +376,17 @@ The four ACID properties ensure reliable processing of database transactions:
 | Avoidance  | Dynamically avoid unsafe states (e.g., Banker's algorithm). |
 
 ---
-
-### Lock-Based Protocols [Q17]
-
-**Question 17: Short notes on Lock based Protocols**
-
-- **Lock-based protocols** are concurrency control mechanisms that use locks to manage access to database items.
-- Types of locks:
-  - **Shared lock (S-lock):** Allows multiple transactions to read a data item but not modify it.
-  - **Exclusive lock (X-lock):** Allows a transaction to both read and modify a data item; no other transaction can access it.
-- **Two-Phase Locking (2PL):**
-  - Transactions acquire all the locks they need (growing phase), then release them (shrinking phase).
-  - Guarantees serializability but may cause deadlocks.
-
----
-
 ### Deadlock Prevention Protocols [Q17]
 
 **Question 17: Short notes on Deadlock prevention protocols**
 
 - **Deadlock prevention protocols** are techniques to ensure that deadlocks do not occur.
 - Common methods:
-  - **Wait-Die Scheme:** Older transactions may wait for younger ones; younger transactions requesting a lock held by an older one are aborted.
-  - **Wound-Wait Scheme:** Older transactions requesting a lock held by a younger one preempt (wound) the younger one; younger transactions wait for older ones.
-  - **Resource Ordering:** Impose a global order on resources and require transactions to request locks in that order.
+  - **Wait-Die Scheme:** In this method, each transaction gets a timestamp when it starts. If an older transaction (with a smaller timestamp) requests a lock held by a younger transaction (with a larger timestamp), the older one waits. But if a younger transaction requests a lock held by an older one, the younger transaction is aborted ("dies") and restarted later with the same timestamp. This prevents deadlock by making sure younger transactions don't wait for older ones.
+
+  - **Wound-Wait Scheme:** Here, if an older transaction requests a lock held by a younger transaction, the older one "wounds" (forces to abort) the younger transaction, which is then restarted later. If a younger transaction requests a lock held by an older one, the younger transaction simply waits. This also prevents deadlock by making sure older transactions are not blocked by younger ones.
+
+  - **Resource Ordering:** In this approach, all resources (like data items or locks) are given a unique order (for example, R1 < R2 < R3). Transactions must request locks in this fixed order. If a transaction needs multiple resources, it must request them in the order defined. This prevents circular waiting, which is a main cause of deadlocks, because transactions cannot wait for resources in a way that forms a cycle.
 
 ---
 
