@@ -141,6 +141,77 @@ B → CD does **not** exist over the relation R(A, B, C, D, E) with the given FD
 
 ---
 
+## Canonical Cover (Minimal Cover) for FDs
+
+Given:
+- Relation: R(P, Q, R, S)
+- Functional Dependencies:  
+  F = { P → QR, Q → R, P → Q, PQ → R }
+
+### Step 1: Split FDs so that each has a single attribute on the right
+
+- P → Q
+- P → R
+- Q → R
+- P → Q (already present)
+- PQ → R
+
+After splitting, we have:
+- P → Q
+- P → R
+- Q → R
+- PQ → R
+
+### Step 2: Remove extraneous FDs and attributes
+
+#### Check if any FD is redundant
+
+- **PQ → R**:  
+  Since P → R and Q → R are already present, PQ → R is redundant (can be derived from P → R or Q → R).
+
+- **P → Q**:  
+  Already present.
+
+- **P → R**:  
+  Already present.
+
+- **Q → R**:  
+  Already present.
+
+#### Remove redundant FDs
+
+- Remove PQ → R.
+
+### Step 3: Remove extraneous attributes from left sides
+
+- **P → Q**: Left side is minimal.
+- **P → R**: Left side is minimal.
+- **Q → R**: Left side is minimal.
+
+### Step 4: Final Canonical Cover
+
+**Canonical cover Fc:**
+- P → Q
+- P → R
+- Q → R
+
+### **Summary Table**
+
+| Original FD | After Splitting | Redundant? | In Canonical Cover? |
+|-------------|----------------|------------|---------------------|
+| P → QR      | P → Q, P → R   | No         | Yes                 |
+| Q → R       | Q → R          | No         | Yes                 |
+| P → Q       | P → Q          | No         | Yes                 |
+| PQ → R      | PQ → R         | Yes        | No                  |
+
+---
+
+**Final Answer:**  
+The canonical cover Fc for the given set of FDs is:
+- **P → Q**
+- **P → R**
+- **Q → R**
+
 ## Normal Forms in Database Design (Normalization)
 
 Normalization is the process of organizing data in a database to reduce redundancy and improve data integrity. It involves dividing large tables into smaller ones and defining relationships between them. Normal forms are a series of guidelines to achieve this.
