@@ -209,7 +209,7 @@ After splitting, we have:
 **Final Answer:**  
 The canonical cover Fc for the given set of FDs is:
 - **P → Q**
-- **P → R**
+- **P → R** (may remove this as P -> Q and Q -> R so P->R)
 - **Q → R**
 
 ## Normal Forms in Database Design (Normalization)
