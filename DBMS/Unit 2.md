@@ -342,22 +342,117 @@ DELETE FROM Employee WHERE Emp_id = 101;
 **PYQ: Define joins in SQL. Briefly explain its types.**
 
 **Definition:**
-A **join** combines rows from two or more tables based on a related column.
 
-### Types of Joins:
+A **join** in SQL is used to combine rows from two or more tables based on a related column between them. Joins help retrieve data that is spread across multiple tables by linking them through common fields.
 
-- **INNER JOIN:** Returns rows with matching values in both tables
-- **LEFT JOIN:** Returns all rows from the left table, and matched rows from the right
-- **RIGHT JOIN:** Returns all rows from the right table, and matched rows from the left
-- **FULL JOIN:** Returns all rows when there is a match in one of the tables
-- **CROSS JOIN:** Returns the Cartesian product
+### Types of Joins (with simple explanations and examples):
 
-**Example:**
+- **INNER JOIN:** Returns only the rows where there is a match in both tables.
+  - *Example:* Get employees with their department names.
+    ```sql
+    SELECT E.Emp_name, D.Dept_name
+    FROM Employee E
+    INNER JOIN Department D ON E.Dept_id = D.Dept_id;
+    ```
+
+- **LEFT JOIN (LEFT OUTER JOIN):** Returns all rows from the left table, and the matched rows from the right table. If there is no match, NULLs are shown for right table columns.
+  - *Example:* List all employees and their department names (if any).
+    ```sql
+    SELECT E.Emp_name, D.Dept_name
+    FROM Employee E
+    LEFT JOIN Department D ON E.Dept_id = D.Dept_id;
+    ```
+
+- **RIGHT JOIN (RIGHT OUTER JOIN):** Returns all rows from the right table, and the matched rows from the left table. If there is no match, NULLs are shown for left table columns.
+  - *Example:* List all departments and their employees (if any).
+    ```sql
+    SELECT E.Emp_name, D.Dept_name
+    FROM Employee E
+    RIGHT JOIN Department D ON E.Dept_id = D.Dept_id;
+    ```
+
+- **FULL JOIN (FULL OUTER JOIN):** Returns all rows when there is a match in either left or right table. If there is no match, NULLs are shown for missing matches.
+  - *Example:* List all employees and departments, matching where possible.
+    ```sql
+    SELECT E.Emp_name, D.Dept_name
+    FROM Employee E
+    FULL OUTER JOIN Department D ON E.Dept_id = D.Dept_id;
+    ```
+  - *Real Example:*
+    Suppose:
+    ```
+    Employee
+    +---------+-----------+----------+
+    | Emp_id  | Emp_name  | Dept_id  |
+    +---------+-----------+----------+
+    | 1       | John      | 10       |
+    | 2       | Priya     | 20       |
+    | 3       | Aman      | NULL     |
+    +---------+-----------+----------+
+
+    Department
+    +---------+-----------+
+    | Dept_id | Dept_name |
+    +---------+-----------+
+    | 10      | HR        |
+    | 30      | IT        |
+    +---------+-----------+
+    ```
+    Result:
+    ```
+    +-----------+-----------+
+    | Emp_name  | Dept_name |
+    +-----------+-----------+
+    | John      | HR        |
+    | Priya     | NULL      |
+    | Aman      | NULL      |
+    | NULL      | IT        |
+    +-----------+-----------+
+    ```
+
+- **CROSS JOIN:** Returns the Cartesian product of both tables (every row of the first table combined with every row of the second table).
+  - *Example:* Combine every employee with every department.
+    ```sql
+    SELECT E.Emp_name, D.Dept_name
+    FROM Employee E
+    CROSS JOIN Department D;
+    ```
+  - *Real Example:*
+    Using the same tables as above, the result is:
+    ```
+    +-----------+-----------+
+    | Emp_name  | Dept_name |
+    +-----------+-----------+
+    | John      | HR        |
+    | John      | IT        |
+    | Priya     | HR        |
+    | Priya     | IT        |
+    | Aman      | HR        |
+    | Aman      | IT        |
+    +-----------+-----------+
+    ```
+
+**Importance of Triggers in SQL:**
+
+- Triggers are special procedures that run automatically when certain events (like INSERT, UPDATE, DELETE) happen on a table.
+- They help automate tasks such as logging changes, enforcing business rules, or maintaining audit trails.
+
+**Example of a Trigger:**
+
+Suppose you want to log every salary update in an Employee_Backup table:
 
 ```sql
-SELECT E.Emp_name, D.Dept_name
-FROM Employee E
-INNER JOIN Department D ON E.Dept_id = D.Dept_id;
+CREATE TABLE Employee_Backup (
+  Emp_id INT,
+  New_Salary DECIMAL(10,2)
+);
+
+CREATE TRIGGER LogSalaryUpdate
+AFTER UPDATE OF Emp_basicpay ON Employee
+FOR EACH ROW
+BEGIN
+  INSERT INTO Employee_Backup VALUES (:NEW.Emp_id, :NEW.Emp_basicpay);
+END;
 ```
 
 ---
