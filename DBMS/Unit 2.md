@@ -432,29 +432,6 @@ A **join** in SQL is used to combine rows from two or more tables based on a rel
     +-----------+-----------+
     ```
 
-**Importance of Triggers in SQL:**
-
-- Triggers are special procedures that run automatically when certain events (like INSERT, UPDATE, DELETE) happen on a table.
-- They help automate tasks such as logging changes, enforcing business rules, or maintaining audit trails.
-
-**Example of a Trigger:**
-
-Suppose you want to log every salary update in an Employee_Backup table:
-
-```sql
-CREATE TABLE Employee_Backup (
-  Emp_id INT,
-  New_Salary DECIMAL(10,2)
-);
-
-CREATE TRIGGER LogSalaryUpdate
-AFTER UPDATE OF Emp_basicpay ON Employee
-FOR EACH ROW
-BEGIN
-  INSERT INTO Employee_Backup VALUES (:NEW.Emp_id, :NEW.Emp_basicpay);
-END;
-```
-
 ---
 
 ## Set Operators: Union, Intersection, Minus
@@ -503,7 +480,8 @@ Works ÷ Project
 **PYQ: Define a cursor in PL/SQL.**
 
 **Definition:**
-A **cursor** is a pointer to the result set of a query. It allows row-by-row processing in PL/SQL.
+- A **cursor** is a  used to retrive data one row at a time from the result set.
+- It allows row by row processing in PL/SQL.
 
 **Example:**
 
@@ -525,6 +503,31 @@ END;
 
 **Definition:**
 A **trigger** is a special procedure that automatically executes in response to certain events (INSERT, UPDATE, DELETE) on a table.
+
+
+**Importance of Triggers in SQL:**
+
+- Triggers are special procedures that run automatically when certain events (like INSERT, UPDATE, DELETE) happen on a table.
+- They help automate tasks such as logging changes, enforcing business rules, or maintaining audit trails.
+
+**Example of a Trigger:**
+
+Suppose you want to log every salary update in an Employee_Backup table:
+
+```sql
+CREATE TABLE Employee_Backup (
+  Emp_id INT,
+  New_Salary DECIMAL(10,2)
+);
+
+CREATE TRIGGER LogSalaryUpdate
+AFTER UPDATE OF Emp_basicpay ON Employee
+FOR EACH ROW
+BEGIN
+  INSERT INTO Employee_Backup VALUES (:NEW.Emp_id, :NEW.Emp_basicpay);
+END;
+```
+
 
 - **Importance:**
   - Automates actions (logging, validation)
@@ -569,6 +572,146 @@ END;
 ---
 
 ## Example Table Creation and Queries
+
+**PYQ For a relation ClientMaster[Client_No(Varchar, primary key), Name(Varchar, not null), Address1 (Varchar), City (Varchar, default 'Delhi'), Pincode(Number), Bal_Due(Float)], find the SQL queries for following-** 
+1. Create the given relation. 
+2. Add new field as state in the relation. 
+3. Remove the city field from the relation. 
+4. Remove the existence of ClientMaster relation. 
+5. Rename clientMaster to Client Master. 
+
+Sure! Let's go step by step and **answer both parts (a and b)** in detail.
+
+---
+
+## **a. SQL Queries for the `ClientMaster` Relation**
+
+Given relation:
+**ClientMaster\[Client\_No (Varchar, primary key), Name (Varchar, not null), Address1 (Varchar), City (Varchar, default 'Delhi'), Pincode (Number), Bal\_Due (Float)]**
+
+---
+
+### 1. **Create the given relation**
+
+```sql
+CREATE TABLE ClientMaster (
+    Client_No VARCHAR(20) PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    Address1 VARCHAR(255),
+    City VARCHAR(50) DEFAULT 'Delhi',
+    Pincode NUMERIC(6),
+    Bal_Due FLOAT
+);
+```
+
+---
+
+### 2. **Add new field as `State` in the relation**
+
+```sql
+ALTER TABLE ClientMaster
+ADD State VARCHAR(50);
+```
+
+---
+
+### 3. **Remove the `City` field from the relation**
+
+```sql
+ALTER TABLE ClientMaster
+DROP COLUMN City;
+```
+
+---
+
+### 4. **Remove the existence of `ClientMaster` relation**
+
+```sql
+DROP TABLE ClientMaster;
+```
+
+---
+
+### 5. **Rename `ClientMaster` to `Client Master`**
+
+> Note: Table names with spaces are **allowed** in SQL, but they must be enclosed in quotes or brackets depending on the RDBMS (like MySQL, PostgreSQL, SQL Server). Still, it's not recommended due to readability issues.
+
+```sql
+ALTER TABLE ClientMaster
+RENAME TO "Client Master";
+```
+
+(If you're using MySQL, you can use: `RENAME TABLE ClientMaster TO \`Client Master\`;\`)
+
+---
+
+## **b. EMP Table Attributes Analysis**
+
+**EMP(Empid, Name, DOB, Address, Passport\_No, License\_No, SSN)**
+
+Let's analyze:
+
+---
+
+
+**PYQ A table named EMP(Empid, Name, DOB, Address, Passport_No, Lisence_No, SSN) is there. Find out the following: Alternative Keys, Non-key Attributes, Non-Prime attributes, Prime Attribute.** 
+
+### 🔑 **Alternative Keys:**
+
+Alternative keys are candidate keys **other than** the primary key.
+
+Assuming each of the following is **unique** for every employee:
+
+* Passport\_No
+* License\_No
+* SSN
+
+So, the **candidate keys** are:
+
+* Empid (assumed primary key)
+* Passport\_No
+* License\_No
+* SSN
+
+**➡ Alternative keys:**
+`Passport_No`, `License_No`, `SSN`
+
+---
+
+### 🔒 **Non-key Attributes:**
+
+These are attributes **not part of any candidate key**.
+
+So from the table:
+
+* `Name`, `DOB`, `Address`
+
+**➡ Non-key attributes:**
+`Name`, `DOB`, `Address`
+
+---
+
+### ❌ **Non-prime Attributes:**
+
+Attributes **not part of any candidate key** = same as non-key attributes.
+
+**➡ Non-prime attributes:**
+`Name`, `DOB`, `Address`
+
+---
+
+### ✅ **Prime Attributes:**
+
+Attributes that are **part of any candidate key**.
+
+From earlier:
+
+* `Empid`, `Passport_No`, `License_No`, `SSN`
+
+**➡ Prime attributes:**
+`Empid`, `Passport_No`, `License_No`, `SSN`
+
+---
 
 **PYQ: Write the SQL command to create a table named STUDENT with constraints: Roll (Primary Key, must start with ‘S’), Name (Not Null), DOB, Email (Unique), DOR (>= DOB).**
 
