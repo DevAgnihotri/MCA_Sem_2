@@ -573,6 +573,19 @@ END;
 
 ## Example Table Creation and Queries
 
+**PYQ There is a table named EMP (ID, Name, DOJ). Write the SQL query to display all the employee details. (Note: Date of joining must be displayed in the format '07/December/2019')**
+
+```sql
+SELECT
+  ID,
+  Name,
+  TO_CHAR(DOJ, 'DD/Month/YYYY') AS DOJ
+FROM EMP;
+```
+
+> Note:  
+> - In Oracle, use `TO_CHAR(DOJ, 'DD/Month/YYYY')` for formatting the date as required.
+
 **PYQ For a relation ClientMaster[Client_No(Varchar, primary key), Name(Varchar, not null), Address1 (Varchar), City (Varchar, default 'Delhi'), Pincode(Number), Bal_Due(Float)], find the SQL queries for following-** 
 1. Create the given relation. 
 2. Add new field as state in the relation. 
