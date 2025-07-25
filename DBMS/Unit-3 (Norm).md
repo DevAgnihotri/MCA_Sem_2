@@ -88,6 +88,57 @@ Given:
 
 **Therefore, AD → F is a valid functional dependency in R.**
 
+## Question: Does B → CD hold in R(A, B, C, D, E)?
+
+### Given:
+- Relation: R(A, B, C, D, E)
+- Functional Dependencies:
+  - A → BC
+  - CD → E
+  - B → D
+  - E → A
+
+### To Check:
+Does B → CD hold? (i.e., can B determine both C and D?)
+
+---
+
+### Step 1: Find the closure of B (B⁺)
+
+Start with: {B}
+
+Apply FDs:
+- B → D ⇒ Add D: {B, D}
+- Any FD with left side in {B, D}?
+  - A → BC: Need A (not present)
+  - CD → E: Need C and D (C not present)
+  - E → A: Need E (not present)
+
+No further FDs can be applied.
+
+**So, B⁺ = {B, D}**
+
+---
+
+### Step 2: Does B⁺ contain both C and D?
+
+- B⁺ contains D, but **not C**.
+
+Therefore, **B → CD does NOT hold** in R.
+
+---
+
+### Summary Table
+
+| Step | FD Applied | Attributes Added | Closure So Far |
+|------|------------|-----------------|---------------|
+| 1    | B → D      | D               | {B, D}        |
+
+---
+
+**Conclusion:**  
+B → CD does **not** exist over the relation R(A, B, C, D, E) with the given FDs.
+
 ---
 
 ## Normal Forms in Database Design (Normalization)
