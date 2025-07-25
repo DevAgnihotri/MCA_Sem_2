@@ -74,7 +74,21 @@ The four ACID properties ensure reliable processing of database transactions:
 
 - **Serial schedule:** All operations of one transaction are executed before another starts (no interleaving).
 - **Non-serial schedule:** Operations of transactions are interleaved.
-- **Serializable schedule:** A non-serial schedule that is equivalent to some serial schedule (produces the same result).
+
+- **Serializable schedule:** A schedule is serializable if its outcome (final database state) is the same as that produced by some serial schedule, even if the operations are interleaved. This ensures that concurrent execution of transactions does not violate database consistency.
+- There are two main types:
+  - **Conflict serializable:** Can be transformed into a serial schedule by swapping non-conflicting operations.
+  - **View serializable:** Produces the same read/write results as a serial schedule, even if not conflict serializable.
+- Serializable schedules are crucial for maintaining correctness in concurrent transaction processing.
+
+| Feature             | Serial Schedule                                         | Non-Serial Schedule                                   |
+|---------------------|--------------------------------------------------------|-------------------------------------------------------|
+| Execution Order     | All operations of one transaction before another starts | Operations of multiple transactions are interleaved   |
+| Interleaving        | No interleaving of transactions                        | Interleaving of operations from different transactions|
+| Simplicity          | Simple to understand and analyze                       | More complex due to interleaving                      |
+| Concurrency         | No concurrency                                         | Allows concurrency                                    |
+| Example             | T1 → T2 → T3                                           | T1 and T2 operations mixed (e.g., r1(X), r2(Y), w1(X))|
+| Serializability     | Always serializable                                    | May or may not be serializable                        |
 
 **Conflict Serializability Test:**
 
