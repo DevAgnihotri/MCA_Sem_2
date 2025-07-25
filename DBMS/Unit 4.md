@@ -118,27 +118,6 @@ The four ACID properties ensure reliable processing of database transactions:
 
 ## Recoverability and Recovery from Transaction Failures
 
-### Recoverability in DBMS
-
-**Recoverability** is a crucial property in database systems that ensures the database can be restored to a consistent state after a failure, especially when multiple transactions are executed concurrently.
-
-- In a multi-transaction environment, some transactions may depend on the results of others (for example, one transaction reads data written by another).
-- A schedule (order of operations) is **recoverable** if, whenever a transaction T2 reads data written by transaction T1, T2 commits only after T1 commits.
-- This prevents situations where a transaction commits based on uncommitted changes from another transaction, which could be lost if the first transaction fails and is rolled back.
-
-#### Types of Schedules Based on Recoverability
-
-| Schedule Type | Description                                                                             |
-| ------------- | --------------------------------------------------------------------------------------- |
-| Recoverable   | Transactions commit only after all transactions whose changes they read have committed. |
-| Cascadeless   | Transactions only read data written by committed transactions (no cascading rollbacks). |
-| Strict        | Transactions can neither read nor overwrite uncommitted data (strongest form, safest).  |
-
-- **Cascading Rollback:** If a transaction fails and its changes are read by others, all dependent transactions must also be rolled back. This is called cascading rollback and is undesirable.
-- **Strict schedules** prevent cascading rollbacks by ensuring transactions only access committed data.
-
----
-
 ### Recoverability in Transaction Schedules
 
 - **Recoverability** is a property of a transaction schedule that ensures if a transaction fails and is rolled back, all other transactions that depend on it (i.e., have read its uncommitted changes) are also rolled back. This prevents the database from ending up in an inconsistent state.
