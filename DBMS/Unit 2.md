@@ -645,15 +645,6 @@ RENAME TO "Client Master";
 
 ---
 
-## **b. EMP Table Attributes Analysis**
-
-**EMP(Empid, Name, DOB, Address, Passport\_No, License\_No, SSN)**
-
-Let's analyze:
-
----
-
-
 **PYQ A table named EMP(Empid, Name, DOB, Address, Passport_No, Lisence_No, SSN) is there. Find out the following: Alternative Keys, Non-key Attributes, Non-Prime attributes, Prime Attribute.** 
 
 ### 🔑 **Alternative Keys:**
