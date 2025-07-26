@@ -29,7 +29,7 @@ An **object** in Java is a fundamental building block of object-oriented program
 #### Key Characteristics of an Object:
 
 - **State:** The data or information stored in the object, represented by its attributes or fields (e.g., color, name, age).
-- **Behavior:** The actions or operations the object can perform, defined by its methods (e.g., start(), study(), deposit()).
+- **Behavior:** The actions or operations the object can perform, defined by its methods (e.g. start(), study(), deposit()).
 - **Identity:** A unique reference that distinguishes one object from another, even if their state is identical.
 
 #### How Objects Work in Java:
