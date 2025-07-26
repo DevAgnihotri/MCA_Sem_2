@@ -22,7 +22,7 @@
 
 ## Objects
 
-### What is an Object?
+### What is an Object ?
 
 An **object** in Java is a fundamental building block of object-oriented programming. It represents a real-world entity and encapsulates both data and behavior.
 
