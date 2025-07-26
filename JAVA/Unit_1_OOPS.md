@@ -8,8 +8,6 @@
 
 ### Q1. Distinguish between Procedure Oriented Programming and Object Oriented Programming.
 
-**Question 1: Distinguish between Procedure Oriented Programming and Object Oriented Programming.**
-
 | Aspect               | Procedure Oriented Programming (POP)     | Object Oriented Programming (OOP)      |
 | -------------------- | ---------------------------------------- | -------------------------------------- |
 | **Main Focus**       | Functions and procedures                 | Objects and classes                    |
