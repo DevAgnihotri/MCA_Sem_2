@@ -18,9 +18,6 @@
 | **Examples**         | C, Pascal, FORTRAN                       | Java, C++, Python                      |
 | **Data Handling**    | Data and functions are separate          | Data and methods are bundled together  |
 
-**Summary:**  
-POP organizes code around functions, making it less secure and harder to maintain for large projects. OOP organizes code around objects, improving security, reusability, and maintainability.
-
 ---
 
 ## Objects
