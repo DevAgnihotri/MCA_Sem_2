@@ -735,8 +735,6 @@ public class Student {
 
 ### Q5. What do you mean by Constructor? How many types of constructors are available in Java?
 
-**Question 5: What do you mean by Constructor? How many types of constructors are available in Java?**
-
 #### What is a Constructor?
 
 - A **constructor** is a special method that is automatically called when an object is created
@@ -780,8 +778,6 @@ public class Person {
 ```
 
 ### Q10. Explain the role of constructor and also explain how subclass constructor implicitly calls superclass constructor in Java.
-
-**Question 10: Explain the role of constructor and also explain how subclass constructor implicitly calls superclass constructor in Java.**
 
 #### Role of Constructor:
 
