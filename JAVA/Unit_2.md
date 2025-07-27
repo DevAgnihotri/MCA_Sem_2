@@ -265,13 +265,14 @@ public class Test {
 - Used to achieve multiple inheritance and abstraction.
 
 **Differences Table:**
-| Feature | Abstract Class | Interface |
-| -------------- | ------------------- | ---------------------- |
-| Methods | Abstract + Concrete | Only abstract (Java 7) |
-| Variables | Instance/Static | Static + final |
-| Inheritance | Single | Multiple |
-| Constructor | Yes | No |
-| Implementation | Partial | Full (by implementing) |
+
+| Feature        | Abstract Class                       | Interface                                 |
+|----------------|-------------------------------------|-------------------------------------------|
+| Methods        | Abstract and concrete methods        | Only abstract (Java 7), default/static (Java 8+) |
+| Variables      | Instance and static variables        | Only static final variables               |
+| Inheritance    | Single inheritance (extends one)     | Multiple inheritance (implements many)    |
+| Constructor    | Can have constructors                | Cannot have constructors                  |
+| Implementation | Partial (can provide method bodies)  | Full (must implement all methods)         |
 
 **Key Points:**
 
