@@ -76,8 +76,6 @@ Think of a **class** as a blueprint for a house, and **objects** as the actual h
 
 ### Q7. Object is an instance of class, justify your answer.
 
-**Question 7: Object is an instance of class, justify your answer.**
-
 - A **class** is like a blueprint or template that defines the structure and behavior of objects.
 - An **object** is a specific instance created from that class blueprint.
 - **Justification:**
