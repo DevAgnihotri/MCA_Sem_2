@@ -583,7 +583,7 @@ JVM = Core execution engine
 #### Detailed Process:
 
 ```
-Java Source Code (.java)
+    Java Source Code (.java)
          ↓
     javac Compiler
          ↓
