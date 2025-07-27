@@ -173,10 +173,6 @@ class Dog extends Animal {
 - Before the subclass constructor runs, Java automatically calls the superclass constructor (using `super()`), even if you do not write it explicitly.
 - If you want to call a specific superclass constructor, you can use `super(parameters)` as the first line in the subclass constructor.
 
-**Why is this important?**
-
-- Ensures that the parent part of the object is properly initialized before the child part.
-
 **Example:**
 
 ```java
