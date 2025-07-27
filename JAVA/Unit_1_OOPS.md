@@ -236,8 +236,10 @@ class Dog extends Animal {
 ### What is Encapsulation?
 
 - **Encapsulation** is the bundling of data (attributes) and methods that operate on that data into a single unit (class)
-- It also involves **data hiding** using access modifiers
-- Often called "data hiding" or "information hiding"
+
+- It protects the internal state of an object by restricting direct access from outside the class.
+- Encapsulation is achieved using access modifiers (like `private`, `public`, `protected`) to control visibility.
+- This approach is also known as "data hiding" or "information hiding" because it hides the implementation details and exposes only what is necessary.
 
 ### Q8. Write 3 uses of Encapsulation in Object Oriented Programming.
 
