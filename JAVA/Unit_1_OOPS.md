@@ -526,8 +526,6 @@ class Example {
 
 ### Q1. Compare Java Runtime Environment and Java Virtual Machine.
 
-**Question 1: Compare Java Runtime Environment and Java Virtual Machine.**
-
 | Aspect                  | Java Virtual Machine (JVM)                      | Java Runtime Environment (JRE)                                          |
 | ----------------------- | ----------------------------------------------- | ----------------------------------------------------------------------- |
 | **Definition**          | A runtime engine that executes Java bytecode    | A software package that provides libraries and JVM to run Java programs |
@@ -545,8 +543,6 @@ class Example {
 ---
 
 ### Q2. Explain the difference between JDK and JRE in Java.
-
-**Question 2: Explain the difference between JDK and JRE in Java.**
 
 | Feature            | JDK (Java Development Kit)                         | JRE (Java Runtime Environment)          |
 | ------------------ | -------------------------------------------------- | --------------------------------------- |
