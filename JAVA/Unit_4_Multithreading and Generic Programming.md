@@ -169,18 +169,12 @@ public class Test {
    class Counter {
         private int count = 0;
         public void increment() {
-             synchronized(this) {
-                   count++;
-             }
+            synchronized(this) {
+                count++;
+            }
         }
    }
    ```
-
-**Key Points:**
-
-- Synchronization can be applied to static methods as well, locking the class object.
-- Overusing synchronization can lead to performance issues or deadlocks if not managed carefully.
-
 ---
 
 ## 5. Daemon Threads (Q4)
