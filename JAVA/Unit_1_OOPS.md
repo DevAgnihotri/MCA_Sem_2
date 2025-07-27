@@ -101,7 +101,6 @@ Car car2 = new Car(); // car2 is another instance of Car class
 
 ### Q1. How are objects implemented in Java?
 
-**Question 1: How are objects implemented in Java?**
 Objects in Java are implemented through the following process:
 
 1. **Class Definition:** Define a class with attributes (fields) and methods.
