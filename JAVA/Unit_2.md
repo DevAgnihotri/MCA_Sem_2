@@ -58,14 +58,12 @@ Inheritance means acquiring properties and behaviors from another class. Java su
      ```
 4. **Multiple Inheritance**
    - A class inherits from more than one class. **Not supported for classes in Java** (to avoid confusion if two parents have the same method).
-
-**Table:**
-| Type | Structure/Example |
-| ------------ | ---------------------------------- |
-| Single | A → B |
-| Multilevel | A → B → C |
-| Hierarchical | A<br> / \ <br>B C |
-| Multiple | Not supported for classes in Java |
+| Type         | Structure / Example                                                                 |
+|--------------|-------------------------------------------------------------------------------------|
+| Single       | `A → B`<br>*(One subclass inherits from one superclass)*                            |
+| Multilevel   | `A → B → C`<br>*(A superclass, a subclass, and a subclass of that subclass)*        |
+| Hierarchical | <pre>   A<br>  / \<br>B   C</pre><br>*(Multiple subclasses inherit from one superclass)* |
+| Multiple     | *Not supported for classes in Java*<br>*(Achieved via interfaces only)*             |
 
 **Note:**
 
