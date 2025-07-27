@@ -572,8 +572,6 @@ JVM = Core execution engine
 
 ### Q3. Explain the compilation and execution process of Java program with proper diagram.
 
-**Question 3: Explain the compilation and execution process of Java program with proper diagram.**
-
 #### Step-by-Step Process:
 
 1. **Source Code Creation (.java file)**
