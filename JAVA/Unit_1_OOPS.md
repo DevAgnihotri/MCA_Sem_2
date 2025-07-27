@@ -290,8 +290,6 @@ public class BankAccount {
 
 ## Q. What do you understand by Polymorphism? Explain types of polymorphism with proper example.
 
-### What is Polymorphism?
-
 **Polymorphism** is a core concept in object-oriented programming that allows a single interface or method to represent different underlying forms (data types). In Java, polymorphism enables objects to be treated as instances of their parent class rather than their actual class, allowing the same method or operation to behave differently based on the object that invokes it.
 
 - The word "polymorphism" means "many forms".
