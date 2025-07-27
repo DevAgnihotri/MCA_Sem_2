@@ -239,7 +239,7 @@ public class TestDaemon {
   - `notify()`: Wakes up one waiting thread.
   - `notifyAll()`: Wakes up all waiting threads.
 
-**Example (Producer-Consumer Concept):**
+**Example (Producer-Consumer Concept) :**
 
 - **Producer thread** calls `produce()`, puts data in the buffer, and calls `notify()` to wake up the consumer.
 - **Consumer thread** calls `consume()`, waits if no data is available, and calls `notify()` after consuming to wake up the producer.
