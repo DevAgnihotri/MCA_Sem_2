@@ -333,42 +333,61 @@ class C implements A, B {
 
 ---
 
-**PYQ Q28. Diff between Abstract Class and Interface**
-
-**PYQ Q28. Diff between Abstract Class and Interface**
-
-**Abstract Class:**
-
-- Can have method bodies (concrete methods) and abstract methods.
-- Supports single inheritance.
-- Can have constructors.
-- Can have instance variables.
-
-**Interface:**
-
-- Only method signatures (Java 7), but can have default/static methods (Java 8+).
-- Supports multiple inheritance.
-- No constructors.
-- Only static final variables.
-
-**Summary Table:**
-| Feature | Abstract Class | Interface |
-| -------------- | ------------------- | ---------------------- |
-| Methods | Abstract + Concrete | Only abstract (Java 7) |
-| Variables | Instance/Static | Static + final |
-| Inheritance | Single | Multiple |
-| Constructor | Yes | No |
-| Implementation | Partial | Full (by implementing) |
-
----
-
 ## Packages in Java
+
+A package in Java is a way to organize related classes and interfaces into a single namespace. 
+- Packages help avoid naming conflicts, make code easier to maintain, and provide access protection. 
+- By grouping classes logically, packages support modular programming and code reuse. 
 
 - **Defining Package:** Use `package` keyword at the top of the file.
 - **Importing Package:** Use `import` keyword.
 - **Static Import:** Use `import static` for static members.
 - **Naming Convention:** Lowercase, reverse domain (e.g., `com.example.app`)
 - **Making JAR Files:** Use `jar` tool to bundle classes.
+
+### Creating and Importing a Package in Java
+
+**Defining a Package:**
+At the top of your Java file, use the `package` keyword:
+
+```java
+package mypack;
+
+public class Message {
+    public void show() {
+        System.out.println("Hello from mypack!");
+    }
+}
+```
+
+**Compiling:**
+Save the file as `Message.java` inside a folder named `mypack`. Compile using:
+
+```sh
+javac mypack/Message.java
+```
+
+**Using the Package:**
+In another file, import and use the package:
+
+```java
+import mypack.Message;
+
+public class TestPackage {
+    public static void main(String[] args) {
+        Message msg = new Message();
+        msg.show();
+    }
+}
+```
+
+**Compiling and Running:**
+Compile `TestPackage.java` and run:
+
+```sh
+javac TestPackage.java
+java TestPackage
+```
 
 **PYQ Q20. What is the role of class path in Java Package?**
 
