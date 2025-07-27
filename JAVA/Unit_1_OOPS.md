@@ -290,7 +290,7 @@ public class BankAccount {
 
 ## Q. What do you understand by Polymorphism? Explain types of polymorphism with proper example.
 
-**Polymorphism** is a core concept in object-oriented programming that allows a single interface or method to represent different underlying forms (data types). In Java, polymorphism enables objects to be treated as instances of their parent class rather than their actual class, allowing the same method or operation to behave differently based on the object that invokes it.
+**Polymorphism** means that one method or function can work in different ways depending on the object it is used with. In Java, it lets you use the same method name for different types of objects, and the correct version runs based on the object's actual type.
 
 - The word "polymorphism" means "many forms".
 - It allows the same method name or operator to perform different tasks depending on the context.
@@ -502,30 +502,6 @@ class Example {
 | **Dynamic**              | Java supports dynamic loading of classes at runtime, enabling flexible and extensible applications.                                                                |
 | **Distributed**          | Java provides built-in networking libraries (like RMI and sockets) to create distributed applications that can communicate over networks.                          |
 | **Portable**             | Java programs are portable across platforms because there are no implementation-dependent features and the same bytecode runs on any JVM.                          |
-
-### Detailed Explanation:
-
-1. **Platform Independence:**
-
-   - Java code is compiled to bytecode
-   - JVM interprets bytecode on any platform
-   - Same program runs on Windows, Linux, Mac
-
-2. **Object-Oriented:**
-
-   - Everything is an object (except primitives)
-   - Supports all OOP principles
-
-3. **Security:**
-
-   - No pointers to avoid memory corruption
-   - Bytecode verification
-   - Security manager for applets
-
-4. **Robustness:**
-   - Automatic garbage collection
-   - Exception handling mechanism
-   - Type checking at compile time
 
 ---
 
