@@ -240,6 +240,7 @@ class Dog extends Animal {
 - It protects the internal state of an object by restricting direct access from outside the class.
 - Encapsulation is achieved using access modifiers (like `private`, `public`, `protected`) to control visibility.
 - This approach is also known as "data hiding" or "information hiding" because it hides the implementation details and exposes only what is necessary.
+- getter and seeter methods are used to work on data
 
 ### Q8. Write 3 uses of Encapsulation in Object Oriented Programming.
 
