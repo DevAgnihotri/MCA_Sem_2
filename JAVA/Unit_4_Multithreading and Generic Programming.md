@@ -226,6 +226,10 @@ public class TestDaemon {
 
 ## 6. Inter-thread Communication
 
+**Diagram: Inter-thread Communication**
+
+![Inter-thread Communication in Java](https://d8it4huxumps7.cloudfront.net/bites/wp-content/banners/2024/12/6761185589ecf_inter_thread_communication_in_java.jpg)
+
 **Why Needed?**
 
 - Sometimes threads need to coordinate their actions, such as in the producer-consumer problem, where one thread produces data and another consumes it.
