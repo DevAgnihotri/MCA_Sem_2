@@ -337,6 +337,7 @@ Swing is a part of Java's standard library for building graphical user interface
 **Q5. Describe different types of Layout Manager used in Java using example**
 
 ### What is a Layout Manager?
+
 - A **Layout Manager** in Java is the one that controls the size and position of components inside a container (such as a `JFrame` or `JPanel`).
 - It automatically arranges buttons, labels, text fields, and other components, so you don't have to manually specify their coordinates.
 - Layout managers make GUIs flexible and responsive to window resizing and different screen sizes.
@@ -369,10 +370,10 @@ panel.add(new JButton("B"));
 #### 2. BorderLayout Example
 
 ```java
-JFrame frame = new JFrame();
-frame.setLayout(new BorderLayout());
-frame.add(new JButton("North"), BorderLayout.NORTH);
-frame.add(new JButton("Center"), BorderLayout.CENTER);
+JPanel panel = new JPanel();
+panel.setLayout(new BorderLayout());
+panel.add(new JButton("North"), BorderLayout.NORTH);
+panel.add(new JButton("Center"), BorderLayout.CENTER);
 ```
 
 #### 3. GridLayout Example
@@ -600,15 +601,14 @@ public class ColorChangeDemo {
 ## Difference Table
 
 | Feature                | Applet                                                      | Normal Java Program (Application)                  |
-|------------------------|-------------------------------------------------------------|---------------------------------------------------|
+|------------------------|-------------------------------------------------------------|----------------------------------------------------|
 | Definition             | Runs inside a browser or applet viewer                      | Runs independently as a standalone application     |
-| Entry Point            | `init()`, `start()`, `paint()`, `stop()`, `destroy()` methods | `public static void main(String[] args)` method    |
+| Entry Point            | `init()`,`start()`,`paint()`,`stop()`,`destroy()` methods   | `public static void main(String[] args)` method    |
 | GUI Library            | Uses AWT/Swing, but must extend `Applet`/`JApplet`          | Can use AWT/Swing, no such restriction             |
 | Execution Environment  | Needs browser/applet viewer                                 | Needs JVM, runs from command line or IDE           |
 | Security Restrictions  | Runs in sandbox, limited access to system resources         | Fewer restrictions, can access local resources     |
 | Usage                  | Web-based interactive content                               | Desktop applications, utilities, backend programs  |
 
----
 ---
 PYQ
 
