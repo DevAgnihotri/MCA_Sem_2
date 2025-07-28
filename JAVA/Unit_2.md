@@ -268,7 +268,7 @@ public class Test {
 
 | Feature        | Abstract Class                       | Interface                                 |
 |----------------|--------------------------------------|-------------------------------------------|
-| Methods        | Abstract and concrete methods        | Only abstract (Java 7), default/static (Java 8+) |
+| Methods        | Abstract and concrete methods        | Only abstract (Java 7), default/static (Java 8+)|
 | Variables      | Instance and static variables        | Only static final variables               |
 | Inheritance    | Single inheritance (extends one)     | Multiple inheritance (implements many)    |
 | Constructor    | Can have constructors                | Cannot have constructors                  |
