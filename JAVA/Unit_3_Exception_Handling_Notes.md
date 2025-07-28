@@ -1,7 +1,5 @@
 # Exception Handling in Java
 
-> **This file answers your assignment questions in simple English. Each question is clearly marked (Q1, Q2, etc.) and explained with easy points, tables, and examples.**
-
 ## 🔹 Q1: What do you mean by Exception? What is checked and unchecked exception?
 
 **Definition:**
