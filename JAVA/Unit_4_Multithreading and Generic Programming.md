@@ -291,7 +291,7 @@ t2.start();
 
 - You can enumerate, interrupt, or set priorities for all threads in a group.
 - Thread groups can be nested (a group can have subgroups).
-- Modern Java often uses thread pools (`ExecutorService`) instead of thread groups for advanced management.
+- Modern Java often uses thread pools (`ExecutorService`) instead of thread groups for advanced management..
 
 ---
 
